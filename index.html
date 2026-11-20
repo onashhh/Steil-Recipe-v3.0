@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
-
-    <!-- Custom Home Screen Icon (iOS & Android) -->
-<link rel="apple-touch-icon" href="icon.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon.png">
-
-<!-- Optional: Hides the browser address bar when opened from Home Screen -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Steil Recipe v3.0 — Smart Scaling Recipe & Kitchen Timer App</title>
+    <title>Steil Recipe v3.2 — Smart Scaling Recipe & Kitchen Timer App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <script>
@@ -130,9 +121,9 @@
         <span class="w-4.5 h-0.5 bg-ink-900 rounded-full"></span>
     </button>
 
-    <div class="flex items-baseline gap-1.5" aria-label="Steil Recipe v3.0">
+    <div class="flex items-baseline gap-1.5" aria-label="Steil Recipe v3.2">
         <span class="font-extrabold text-[15px] tracking-tight text-ink-900">Steil Recipe</span>
-        <span class="text-[9px] font-bold tracking-wide text-tangerine-600 bg-peach-soft px-1.5 py-0.5 rounded-full">v3.0</span>
+        <span class="text-[9px] font-bold tracking-wide text-tangerine-600 bg-peach-soft px-1.5 py-0.5 rounded-full">v3.2</span>
     </div>
 
     <div class="flex items-center gap-1">
@@ -511,8 +502,16 @@
                         <span id="detail-category" class="px-3.5 py-1 rounded-full text-[11px] font-extrabold bg-tangerine-500 text-white shadow-xs">Main</span>
                         <span class="text-xs font-bold text-ink-400">⏱ <strong id="detail-prep" class="text-ink-900">30 mins</strong></span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button" id="detail-bookmark-btn" onclick="toggleActiveBookmark()" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-tangerine-600 font-extrabold text-xs hover:bg-peach-card transition">★ Saved</button>
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="openEditRecipeModal()" class="px-3 py-1.5 rounded-full bg-peach-soft text-ink-900 font-extrabold text-xs hover:bg-peach-card transition flex items-center gap-1" title="Edit Recipe">
+                            <span>✎</span>
+                            <span>Edit</span>
+                        </button>
+                        <button type="button" id="detail-history-btn" onclick="openRecipeHistoryModal()" class="px-2.5 py-1.5 rounded-full bg-peach-soft text-ink-700 font-extrabold text-xs hover:bg-peach-card transition flex items-center gap-1" title="View Change Log & Restore Previous Versions">
+                            <span>↺</span>
+                            <span id="detail-history-count">0</span>
+                        </button>
+                        <button type="button" id="detail-bookmark-btn" onclick="toggleActiveBookmark()" class="px-3 py-1.5 rounded-full bg-peach-soft text-tangerine-600 font-extrabold text-xs hover:bg-peach-card transition">★ Saved</button>
                         <button type="button" onclick="exitRecipeDetail()" class="w-8 h-8 rounded-full bg-peach-soft flex items-center justify-center text-xs font-bold text-ink-700" aria-label="Close recipe">✕</button>
                     </div>
                 </div>
@@ -561,6 +560,7 @@
                 <div class="flex items-center justify-between">
                     <h3 class="font-extrabold text-sm text-ink-900">Cooking Steps</h3>
                     <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="openRecipeInChatGPT()" class="px-2.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-extrabold text-[11px]" title="Open ChatGPT with this recipe">ChatGPT ↗</button>
                         <button type="button" onclick="openAiChefHelp()" class="px-3 py-1.5 rounded-full bg-peach-soft text-tangerine-600 font-extrabold text-[11px]">✦ AI Chef</button>
                         <button type="button" id="detail-cooking-mode-btn" onclick="openFocusMode()" class="px-3 py-1.5 rounded-full bg-tangerine-500 text-white font-extrabold text-[11px] shadow-orb">Cooking Mode</button>
                     </div>
@@ -604,12 +604,22 @@
             </div>
 
             <div class="rounded-[28px] bg-ink-900 text-white p-6 shadow-xl space-y-5 relative overflow-hidden">
-                <div class="flex items-center justify-between gap-2">
-                    <span class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-tangerine-500 text-white uppercase tracking-wider">Dedicated Cooking Page</span>
-                    <span id="focus-step-number" class="text-xs font-extrabold text-tangerine-400 uppercase tracking-widest">Step 1 of 5</span>
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                    <span class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-tangerine-500 text-white uppercase tracking-wider">Cooking Mode</span>
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="openAiChefHelp()" class="px-2.5 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white text-[10px] font-extrabold flex items-center gap-1 transition" title="In-App AI Chef Assistant">
+                            <span>✦ AI Chef</span>
+                            <span id="focus-chat-count-badge" class="hidden px-1.5 py-0.2 rounded-full bg-tangerine-500 text-white text-[9px]">0</span>
+                        </button>
+                        <button type="button" onclick="openRecipeInChatGPT()" class="px-2.5 py-1 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-[10px] font-extrabold flex items-center gap-1 shadow-xs active:scale-95 transition" title="Open ChatGPT with this recipe & current step pre-filled">
+                            <span>ChatGPT ↗</span>
+                        </button>
+                    </div>
                 </div>
-
-                <h2 id="focus-recipe-title" class="text-lg font-extrabold tracking-tight text-white leading-snug">Recipe Title</h2>
+                <div class="flex items-center justify-between gap-2">
+                    <h2 id="focus-recipe-title" class="text-lg font-extrabold tracking-tight text-white leading-snug">Recipe Title</h2>
+                    <span id="focus-step-number" class="text-xs font-extrabold text-tangerine-400 uppercase tracking-widest shrink-0">Step 1 of 5</span>
+                </div>
 
                 <div class="py-3 px-4 rounded-2xl bg-white/5 border border-white/10 min-h-[130px] flex items-center justify-center text-center">
                     <p id="focus-step-text" class="text-lg font-bold leading-relaxed text-peach-soft">Step instructions here...</p>
@@ -708,7 +718,12 @@
 
         <div class="space-y-2 shrink-0 pt-1">
             <textarea id="ai-chef-prompt" rows="2" onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); submitAiChefHelp(); }" placeholder="e.g. Can I substitute apple cider vinegar for coconut vinegar?" class="w-full p-3 rounded-2xl bg-peach-soft text-xs font-semibold text-ink-900 focus:outline-none focus:ring-2 focus:ring-tangerine-500"></textarea>
-            <button type="button" id="ai-chef-submit-btn" onclick="submitAiChefHelp()" class="w-full py-3 rounded-full bg-tangerine-500 hover:bg-tangerine-600 text-white font-extrabold text-xs shadow-orb active:scale-95 transition">Send to AI Chef ✦</button>
+            <div class="grid grid-cols-3 gap-2">
+                <button type="button" id="ai-chef-submit-btn" onclick="submitAiChefHelp()" class="col-span-2 py-3 rounded-full bg-tangerine-500 hover:bg-tangerine-600 text-white font-extrabold text-xs shadow-orb active:scale-95 transition">Send to AI Chef ✦</button>
+                <button type="button" onclick="openRecipeInChatGPT(document.getElementById('ai-chef-prompt').value.trim())" class="py-3 px-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[11px] active:scale-95 transition flex items-center justify-center gap-1" title="Open ChatGPT with recipe & question pre-filled">
+                    <span>ChatGPT ↗</span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -757,7 +772,7 @@
             </span>
                     <div>
                         <h3 class="font-extrabold text-base tracking-tight text-ink-900">steil</h3>
-                        <p class="text-[10px] text-ink-400 font-bold">v3.0 • Fold & Sleep-Safe</p>
+                        <p class="text-[10px] text-ink-400 font-bold">v3.2 • Fold & Sleep-Safe</p>
                     </div>
                 </div>
                 <button type="button" onclick="toggleMenuDrawer()" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center">✕</button>
@@ -783,7 +798,7 @@
                     <span>✦</span> AI Recipe Generator
                 </button>
                 <button type="button" onclick="toggleMenuDrawer(); openHelpModal()" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
-                    <span>❓</span> What's New in v3.0
+                    <span>❓</span> What's New in v3.2
                 </button>
             </div>
 
@@ -834,7 +849,7 @@
         </div>
 
         <div class="text-center text-[11px] font-extrabold text-ink-400 pb-4">
-            Steil Recipe v3.0 • Fold & Kitchen Ready
+            Steil Recipe v3.2 • Fold & Kitchen Ready
         </div>
     </div>
 </div>
@@ -965,6 +980,100 @@
         <div class="flex gap-2 pt-2">
             <button type="button" onclick="document.getElementById('import-confirm-modal').classList.add('hidden')" class="flex-1 py-3 rounded-full bg-peach-soft text-xs font-bold text-ink-600">Cancel</button>
             <button type="button" onclick="saveConfirmedImportRecipe()" class="flex-1 py-3 rounded-full bg-tangerine-500 text-white text-xs font-extrabold shadow-orb">Save Recipe ✦</button>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT RECIPE MODAL -->
+<div id="edit-recipe-modal" class="hidden fixed inset-0 z-[60] bg-ink-900/50 backdrop-blur-xs flex items-center justify-center p-4" onclick="if(event.target===this) closeEditRecipeModal()">
+    <div class="bg-white w-full max-w-md max-h-[88vh] flex flex-col rounded-[28px] p-5 shadow-2xl space-y-3">
+        <div class="flex items-center justify-between shrink-0 pb-2 border-b border-peach-soft">
+            <div>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-peach-soft text-tangerine-600 uppercase tracking-wider">Recipe Editor</span>
+                <h3 class="font-extrabold text-base text-ink-900 tracking-tight mt-1">Edit Recipe Details</h3>
+            </div>
+            <button type="button" onclick="closeEditRecipeModal()" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center" aria-label="Close editor">✕</button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto space-y-3.5 pr-1 text-xs">
+            <div>
+                <label class="block font-extrabold text-ink-600 mb-1">Recipe Title</label>
+                <input id="edit-recipe-title" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-peach-soft font-bold text-ink-900 focus:outline-none focus:ring-2 focus:ring-tangerine-500" />
+            </div>
+
+            <div class="grid grid-cols-3 gap-2">
+                <div>
+                    <label class="block font-extrabold text-ink-600 mb-1">Category</label>
+                    <select id="edit-recipe-cat" class="w-full px-3 py-2.5 rounded-xl bg-peach-soft font-bold text-ink-900 focus:outline-none">
+                        <option value="Main">Main</option>
+                        <option value="Quick">Quick</option>
+                        <option value="Dessert">Dessert</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-extrabold text-ink-600 mb-1">Prep Time</label>
+                    <input id="edit-recipe-prep" type="text" class="w-full px-3 py-2.5 rounded-xl bg-peach-soft font-bold text-ink-900 focus:outline-none focus:ring-2 focus:ring-tangerine-500" />
+                </div>
+                <div>
+                    <label class="block font-extrabold text-ink-600 mb-1">Servings</label>
+                    <input id="edit-recipe-servings" type="number" min="1" max="100" class="w-full px-3 py-2.5 rounded-xl bg-peach-soft font-mono font-bold text-ink-900 focus:outline-none focus:ring-2 focus:ring-tangerine-500" />
+                </div>
+            </div>
+
+            <div>
+                <label class="block font-extrabold text-ink-600 mb-1">Description</label>
+                <textarea id="edit-recipe-desc" rows="2" class="w-full px-3.5 py-2.5 rounded-xl bg-peach-soft font-medium text-ink-900 focus:outline-none focus:ring-2 focus:ring-tangerine-500"></textarea>
+            </div>
+
+            <!-- EDITABLE INGREDIENTS -->
+            <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <label class="font-extrabold text-ink-900">Ingredients</label>
+                    <button type="button" onclick="addEditIngredientRow()" class="px-2.5 py-1 rounded-full bg-tangerine-500 text-white text-[10px] font-extrabold shadow-xs active:scale-95 transition">+ Add Item</button>
+                </div>
+                <div id="edit-ingredients-container" class="space-y-2"></div>
+            </div>
+
+            <!-- EDITABLE STEPS -->
+            <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <label class="font-extrabold text-ink-900">Cooking Steps</label>
+                    <button type="button" onclick="addEditStepRow()" class="px-2.5 py-1 rounded-full bg-tangerine-500 text-white text-[10px] font-extrabold shadow-xs active:scale-95 transition">+ Add Step</button>
+                </div>
+                <div id="edit-steps-container" class="space-y-2"></div>
+            </div>
+
+            <!-- OPTIONAL CHANGE NOTE FOR LOG -->
+            <div class="pt-1 border-t border-peach-soft">
+                <label class="block font-extrabold text-ink-600 mb-1">Edit Note (Optional — saved to Change Log)</label>
+                <input id="edit-recipe-note" type="text" placeholder="e.g. Reduced sugar, adjusted air fryer time..." class="w-full px-3.5 py-2.5 rounded-xl bg-peach-soft font-medium text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-tangerine-500" />
+            </div>
+        </div>
+
+        <div class="flex gap-2 pt-2 shrink-0 border-t border-peach-soft">
+            <button type="button" onclick="closeEditRecipeModal()" class="flex-1 py-3 rounded-full bg-peach-soft text-xs font-bold text-ink-600">Cancel</button>
+            <button type="button" onclick="saveEditedRecipe()" class="flex-1 py-3 rounded-full bg-tangerine-500 hover:bg-tangerine-600 text-white text-xs font-extrabold shadow-orb active:scale-95 transition">Save & Log Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- RECIPE CHANGE LOG & VERSION RESTORE MODAL -->
+<div id="recipe-history-modal" class="hidden fixed inset-0 z-[60] bg-ink-900/50 backdrop-blur-xs flex items-center justify-center p-4" onclick="if(event.target===this) closeRecipeHistoryModal()">
+    <div class="bg-white w-full max-w-md max-h-[85vh] flex flex-col rounded-[28px] p-5 shadow-2xl space-y-3">
+        <div class="flex items-center justify-between shrink-0 pb-2 border-b border-peach-soft">
+            <div>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-peach-soft text-tangerine-600 uppercase tracking-wider">Version History</span>
+                <h3 class="font-extrabold text-base text-ink-900 tracking-tight mt-1">Recipe Change Log</h3>
+                <p id="history-modal-subtitle" class="text-[10px] font-bold text-ink-400 truncate max-w-[250px]">Restore any previous snapshot</p>
+            </div>
+            <button type="button" onclick="closeRecipeHistoryModal()" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center" aria-label="Close history">✕</button>
+        </div>
+
+        <div id="recipe-history-list" class="flex-1 overflow-y-auto space-y-2.5 pr-1 text-xs"></div>
+
+        <div class="flex gap-2 pt-2 shrink-0 border-t border-peach-soft">
+            <button type="button" id="btn-restore-builtin-original" onclick="restoreBuiltinOriginalVersion()" class="hidden flex-1 py-2.5 rounded-full bg-peach-soft hover:bg-peach-card text-tangerine-700 text-[11px] font-extrabold transition">Reset to Built-in Original</button>
+            <button type="button" onclick="closeRecipeHistoryModal()" class="flex-1 py-2.5 rounded-full bg-ink-900 text-white text-xs font-extrabold">Done</button>
         </div>
     </div>
 </div>
@@ -1960,8 +2069,7 @@
         "bookmarked": true,
         "description": "Soft, pillowy Filipino breakfast bread rolls coated in golden breadcrumbs—tuned for Type 550 & Type 405 flour.",
         "ingredients": [
-          { "amount": 330, "unit": "grams", "name": "Wheat flour Type 550 (Weizenmehl Type 550)" },
-          { "amount": 170, "unit": "grams", "name": "Wheat flour Type 405 (Weizenmehl Type 405)" },
+          { "amount": 500, "unit": "grams", "name": "Wheat flour Type 550/405" },
           { "amount": 1.05, "unit": "cup", "name": "Warm milk (approx. 250g, 37–40°C)" },
           { "amount": 7, "unit": "grams", "name": "Instant dry yeast (approx. 2¼ tsp)" },
           { "amount": 70, "unit": "grams", "name": "White sugar" },
@@ -2766,6 +2874,7 @@
       saveRecipes();
       const bBtn = document.getElementById('detail-bookmark-btn');
       if (bBtn) bBtn.textContent = r.bookmarked ? '★ Saved' : '☆ Save';
+      updateRecipeHistoryBadge(r);
       renderHomeFeatured();
       renderAllRecipes();
       showToast(r.bookmarked ? '★ Added to Favorites!' : 'Removed from Favorites.');
@@ -3826,6 +3935,54 @@
       renderAiChefChatHistory();
     }
 
+
+    function buildChatGPTRecipePrompt(customQuestion = '') {
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (!r) {
+        return customQuestion || 'Hi ChatGPT, I need cooking assistance with a recipe.';
+      }
+      const scaledIngs = (r.ingredients || []).map(i => {
+        const amt = getIngredientAmount(i);
+        const amtStr = amt === null
+          ? `${i.amount || ''} ${i.unit || ''}`.trim()
+          : `${formatIngredientAmount(amt * currentScale)} ${i.unit || ''}`.trim();
+        return `- ${amtStr} ${i.name}`.trim();
+      }).join('\n');
+
+      const scaledSteps = (r.steps || []).map((st, idx) => `${idx + 1}. ${formatScaledStepText(st, currentScale)}`).join('\n');
+      const cookingOpen = !document.getElementById('view-cooking')?.classList.contains('hidden');
+      const stepContext = cookingOpen && currentFocusSteps[currentFocusIndex]
+        ? `\nI am currently on Step ${currentFocusIndex + 1} of ${currentFocusSteps.length}: "${currentFocusSteps[currentFocusIndex]}"`
+        : '';
+
+      const questionLine = customQuestion
+        ? `\nMy question: ${customQuestion}`
+        : '\nPlease act as my cooking assistant while I make this recipe. Ready for my questions!';
+
+      return `I am cooking "${r.title}" (${currentScale.toFixed(1)}x batch, ${Math.round((r.servings || 2) * currentScale)} servings).
+
+Ingredients:
+${scaledIngs}
+
+Steps:
+${scaledSteps}${stepContext}${questionLine}`;
+    }
+
+    function openRecipeInChatGPT(customQuestion = '') {
+      const promptText = buildChatGPTRecipePrompt(customQuestion);
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(promptText).catch(() => {});
+        }
+      } catch (e) {}
+
+      // ChatGPT supports pre-filling the prompt via ?q= URL parameter (keep under safe URL length)
+      const safeQuery = promptText.length > 3800 ? promptText.slice(0, 3800) + '...' : promptText;
+      const chatGptUrl = `https://chatgpt.com/?q=${encodeURIComponent(safeQuery)}`;
+      window.open(chatGptUrl, '_blank', 'noopener,noreferrer');
+      showToast('Opening ChatGPT with your recipe pre-filled (also copied to clipboard)!');
+    }
+
     async function submitAiChefHelp() {
       const promptInput = document.getElementById('ai-chef-prompt');
       const prompt = promptInput.value.trim();
@@ -3852,7 +4009,7 @@
 
       try {
         const recentHistory = aiChefHistory[recipeKey].slice(-6).map(m => `${m.role === 'user' ? 'Cook' : 'Chef'}: ${m.text}`).join('\n');
-        const focusOpen = !document.getElementById('focus-mode-modal')?.classList.contains('hidden');
+        const focusOpen = !document.getElementById('view-cooking')?.classList.contains('hidden');
         const currentStepContext = focusOpen && currentFocusSteps[currentFocusIndex]
           ? `Currently on Step ${currentFocusIndex + 1} of ${currentFocusSteps.length}: "${currentFocusSteps[currentFocusIndex]}".`
           : '';
@@ -4497,6 +4654,384 @@ Respond clearly in 2-4 helpful sentences.`;
       } catch (err) {
         showToast('Smart paste error: ' + err.message);
       }
+    }
+
+
+    // =========================================================================
+    // 8. RECIPE EDITOR, CHANGE LOG & VERSION RESTORATION
+    // =========================================================================
+    function updateRecipeHistoryBadge(r) {
+      const countEl = document.getElementById('detail-history-count');
+      if (!countEl) return;
+      const count = Array.isArray(r?.editHistory) ? r.editHistory.length : 0;
+      countEl.textContent = count;
+    }
+
+    function cloneRecipeSnapshot(r) {
+      return {
+        title: r.title,
+        category: r.category,
+        difficulty: r.difficulty || 'Easy',
+        servings: Number(r.servings) || 2,
+        prepTime: r.prepTime || '25 mins',
+        description: r.description || '',
+        ingredients: JSON.parse(JSON.stringify(r.ingredients || [])),
+        steps: JSON.parse(JSON.stringify(r.steps || []))
+      };
+    }
+
+    function summarizeRecipeChanges(prev, next) {
+      const changes = [];
+      if (prev.title !== next.title) {
+        changes.push(`Title changed from "${prev.title}" to "${next.title}"`);
+      }
+      if (prev.category !== next.category) {
+        changes.push(`Category: ${prev.category} → ${next.category}`);
+      }
+      if (prev.prepTime !== next.prepTime) {
+        changes.push(`Prep time: ${prev.prepTime} → ${next.prepTime}`);
+      }
+      if (Number(prev.servings) !== Number(next.servings)) {
+        changes.push(`Servings: ${prev.servings} → ${next.servings}`);
+      }
+      if ((prev.description || '').trim() !== (next.description || '').trim()) {
+        changes.push('Updated recipe description');
+      }
+
+      const prevIngs = prev.ingredients || [];
+      const nextIngs = next.ingredients || [];
+      if (prevIngs.length !== nextIngs.length) {
+        changes.push(`Ingredients count: ${prevIngs.length} → ${nextIngs.length} items`);
+      }
+      const maxIng = Math.min(prevIngs.length, nextIngs.length);
+      let modifiedIngs = 0;
+      for (let i = 0; i < maxIng; i++) {
+        const a = `${prevIngs[i].amount} ${prevIngs[i].unit} ${prevIngs[i].name}`.trim();
+        const b = `${nextIngs[i].amount} ${nextIngs[i].unit} ${nextIngs[i].name}`.trim();
+        if (a !== b) modifiedIngs++;
+      }
+      if (modifiedIngs > 0) {
+        changes.push(`Modified ${modifiedIngs} ingredient${modifiedIngs > 1 ? 's' : ''}`);
+      }
+
+      const prevSteps = prev.steps || [];
+      const nextSteps = next.steps || [];
+      if (prevSteps.length !== nextSteps.length) {
+        changes.push(`Cooking steps count: ${prevSteps.length} → ${nextSteps.length} steps`);
+      }
+      const maxSteps = Math.min(prevSteps.length, nextSteps.length);
+      let modifiedSteps = 0;
+      for (let i = 0; i < maxSteps; i++) {
+        if (prevSteps[i].trim() !== nextSteps[i].trim()) modifiedSteps++;
+      }
+      if (modifiedSteps > 0) {
+        changes.push(`Edited ${modifiedSteps} cooking step${modifiedSteps > 1 ? 's' : ''}`);
+      }
+
+      return changes.length ? changes : ['Saved updated recipe snapshot'];
+    }
+
+    function createEditIngredientRowHtml(ing = { amount: 1, unit: 'tbsp', name: '' }) {
+      const amtVal = ing.amount !== undefined && ing.amount !== null ? ing.amount : '';
+      return `
+        <div class="edit-ing-row flex items-center gap-1.5 bg-peach-soft/80 p-2 rounded-2xl">
+          <input type="text" value="${escapeHtml(amtVal)}" placeholder="Qty" class="edit-ing-amt w-14 px-2 py-2 rounded-xl bg-white font-mono font-extrabold text-ink-900 text-center focus:outline-none focus:ring-1 focus:ring-tangerine-500" />
+          <input type="text" value="${escapeHtml(ing.unit || '')}" placeholder="Unit" class="edit-ing-unit w-16 px-2 py-2 rounded-xl bg-white font-bold text-ink-700 focus:outline-none focus:ring-1 focus:ring-tangerine-500" />
+          <input type="text" value="${escapeHtml(ing.name || '')}" placeholder="Ingredient name" class="edit-ing-name flex-1 min-w-0 px-2.5 py-2 rounded-xl bg-white font-bold text-ink-900 focus:outline-none focus:ring-1 focus:ring-tangerine-500" />
+          <button type="button" onclick="this.closest('.edit-ing-row').remove()" class="w-7 h-7 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 font-extrabold flex items-center justify-center shrink-0" title="Remove ingredient">✕</button>
+        </div>
+      `;
+    }
+
+    function addEditIngredientRow() {
+      const container = document.getElementById('edit-ingredients-container');
+      if (!container) return;
+      container.insertAdjacentHTML('beforeend', createEditIngredientRowHtml({ amount: '', unit: '', name: '' }));
+      const inputs = container.querySelectorAll('.edit-ing-name');
+      inputs[inputs.length - 1]?.focus();
+    }
+
+    function createEditStepRowHtml(stepText = '', index = 0) {
+      return `
+        <div class="edit-step-row flex items-start gap-2 bg-peach-soft/80 p-2.5 rounded-2xl">
+          <span class="edit-step-num w-6 h-6 rounded-full bg-tangerine-500 text-white text-[10px] font-extrabold flex items-center justify-center shrink-0 mt-1">${index + 1}</span>
+          <textarea rows="2" placeholder="Describe cooking step..." class="edit-step-text flex-1 min-w-0 px-3 py-2 rounded-xl bg-white font-medium text-ink-900 focus:outline-none focus:ring-1 focus:ring-tangerine-500">${escapeHtml(stepText)}</textarea>
+          <div class="flex flex-col gap-1 shrink-0">
+            <button type="button" onclick="moveEditStepRow(this, -1)" class="w-6 h-6 rounded-full bg-white text-ink-600 hover:text-tangerine-600 text-[10px] font-extrabold flex items-center justify-center" title="Move step up">↑</button>
+            <button type="button" onclick="moveEditStepRow(this, 1)" class="w-6 h-6 rounded-full bg-white text-ink-600 hover:text-tangerine-600 text-[10px] font-extrabold flex items-center justify-center" title="Move step down">↓</button>
+            <button type="button" onclick="removeEditStepRow(this)" class="w-6 h-6 rounded-full bg-rose-50 text-rose-600 text-[10px] font-extrabold flex items-center justify-center" title="Remove step">✕</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function refreshEditStepNumbers() {
+      document.querySelectorAll('#edit-steps-container .edit-step-num').forEach((badge, idx) => {
+        badge.textContent = idx + 1;
+      });
+    }
+
+    function addEditStepRow() {
+      const container = document.getElementById('edit-steps-container');
+      if (!container) return;
+      const count = container.querySelectorAll('.edit-step-row').length;
+      container.insertAdjacentHTML('beforeend', createEditStepRowHtml('', count));
+      const textareas = container.querySelectorAll('.edit-step-text');
+      textareas[textareas.length - 1]?.focus();
+    }
+
+    function moveEditStepRow(btn, dir) {
+      const row = btn.closest('.edit-step-row');
+      const container = document.getElementById('edit-steps-container');
+      if (!row || !container) return;
+      if (dir === -1 && row.previousElementSibling) {
+        container.insertBefore(row, row.previousElementSibling);
+      } else if (dir === 1 && row.nextElementSibling) {
+        container.insertBefore(row.nextElementSibling, row);
+      }
+      refreshEditStepNumbers();
+    }
+
+    function removeEditStepRow(btn) {
+      btn.closest('.edit-step-row')?.remove();
+      refreshEditStepNumbers();
+    }
+
+    function openEditRecipeModal() {
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (!r) return;
+
+      document.getElementById('edit-recipe-title').value = r.title || '';
+      document.getElementById('edit-recipe-cat').value = ['Main', 'Quick', 'Dessert'].includes(r.category) ? r.category : 'Main';
+      document.getElementById('edit-recipe-prep').value = r.prepTime || '';
+      document.getElementById('edit-recipe-servings').value = r.servings || 2;
+      document.getElementById('edit-recipe-desc').value = r.description || '';
+      document.getElementById('edit-recipe-note').value = '';
+
+      const ingContainer = document.getElementById('edit-ingredients-container');
+      ingContainer.innerHTML = (r.ingredients || []).map(ing => createEditIngredientRowHtml(ing)).join('');
+
+      const stepContainer = document.getElementById('edit-steps-container');
+      stepContainer.innerHTML = (r.steps || []).map((st, idx) => createEditStepRowHtml(st, idx)).join('');
+
+      document.getElementById('edit-recipe-modal').classList.remove('hidden');
+    }
+
+    function closeEditRecipeModal() {
+      document.getElementById('edit-recipe-modal').classList.add('hidden');
+    }
+
+    function saveEditedRecipe() {
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (!r) return;
+
+      const newTitle = document.getElementById('edit-recipe-title').value.trim();
+      if (!newTitle) {
+        showToast('Recipe title cannot be empty.');
+        return;
+      }
+
+      const newIngredients = [];
+      document.querySelectorAll('#edit-ingredients-container .edit-ing-row').forEach(row => {
+        const rawAmt = row.querySelector('.edit-ing-amt')?.value.trim() || '';
+        const unit = row.querySelector('.edit-ing-unit')?.value.trim() || '';
+        const name = row.querySelector('.edit-ing-name')?.value.trim() || '';
+        if (!name && !rawAmt) return;
+        const parsedAmt = parseRecipeAmount(rawAmt);
+        newIngredients.push({
+          amount: parsedAmt !== null ? parsedAmt : (rawAmt || 1),
+          unit,
+          name: name || 'Ingredient'
+        });
+      });
+
+      if (newIngredients.length === 0) {
+        showToast('Keep at least one ingredient.');
+        return;
+      }
+
+      const newSteps = [];
+      document.querySelectorAll('#edit-steps-container .edit-step-text').forEach(ta => {
+        const val = ta.value.trim();
+        if (val) newSteps.push(val);
+      });
+
+      if (newSteps.length === 0) {
+        showToast('Keep at least one cooking step.');
+        return;
+      }
+
+      const previousSnapshot = cloneRecipeSnapshot(r);
+      const updatedCandidate = {
+        title: newTitle,
+        category: document.getElementById('edit-recipe-cat').value,
+        prepTime: document.getElementById('edit-recipe-prep').value.trim() || '25 mins',
+        servings: Math.max(1, parseInt(document.getElementById('edit-recipe-servings').value) || 2),
+        description: document.getElementById('edit-recipe-desc').value.trim(),
+        ingredients: newIngredients,
+        steps: newSteps
+      };
+
+      const changeSummary = summarizeRecipeChanges(previousSnapshot, updatedCandidate);
+      const customNote = document.getElementById('edit-recipe-note').value.trim();
+
+      if (!Array.isArray(r.editHistory)) r.editHistory = [];
+      r.editHistory.unshift({
+        id: 'rev_' + Date.now(),
+        timestamp: new Date().toISOString(),
+        note: customNote,
+        changes: changeSummary,
+        snapshot: previousSnapshot
+      });
+
+      // Keep up to 25 previous revisions per recipe
+      if (r.editHistory.length > 25) {
+        r.editHistory = r.editHistory.slice(0, 25);
+      }
+
+      // Apply changes to active recipe
+      r.title = updatedCandidate.title;
+      r.category = updatedCandidate.category;
+      r.prepTime = updatedCandidate.prepTime;
+      r.servings = updatedCandidate.servings;
+      r.description = updatedCandidate.description;
+      r.ingredients = updatedCandidate.ingredients;
+      r.steps = updatedCandidate.steps;
+
+      saveRecipes();
+      renderHomeFeatured();
+      renderAllRecipes();
+      closeEditRecipeModal();
+      openRecipeDetail(r.id, true);
+
+      if (activeCookingSession && activeCookingSession.recipeId === r.id) {
+        persistActiveCookingSession(r.id);
+      }
+      showToast('Recipe updated & previous version saved to Change Log!');
+    }
+
+    function openRecipeHistoryModal() {
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (!r) return;
+
+      const sub = document.getElementById('history-modal-subtitle');
+      if (sub) sub.textContent = r.title;
+
+      const builtinBtn = document.getElementById('btn-restore-builtin-original');
+      const hasBuiltin = RESTORED_BACKUP_RECIPES.some(b => b.id === r.id);
+      if (builtinBtn) builtinBtn.classList.toggle('hidden', !hasBuiltin);
+
+      const listEl = document.getElementById('recipe-history-list');
+      const historyList = Array.isArray(r.editHistory) ? r.editHistory : [];
+
+      if (historyList.length === 0) {
+        listEl.innerHTML = `
+          <div class="p-6 rounded-2xl bg-peach-soft text-center space-y-1.5">
+            <p class="font-extrabold text-ink-900">No edits logged yet</p>
+            <p class="text-[11px] text-ink-500 leading-relaxed">Whenever you edit this recipe, a full snapshot is automatically saved here so you can undo mistakes anytime.</p>
+          </div>
+        `;
+      } else {
+        listEl.innerHTML = historyList.map((entry, idx) => {
+          const dateObj = new Date(entry.timestamp);
+          const timeStr = isNaN(dateObj.getTime())
+            ? 'Saved version'
+            : dateObj.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+          const versionNum = historyList.length - idx;
+          const changeBullets = (entry.changes || []).map(c => `<li>• ${escapeHtml(c)}</li>`).join('');
+          return `
+            <div class="p-3.5 rounded-2xl bg-peach-soft/80 border border-peach-card space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded-full bg-white text-tangerine-600 font-extrabold text-[10px]">Before Edit #${versionNum}</span>
+                  <span class="text-[10px] font-bold text-ink-400">${escapeHtml(timeStr)}</span>
+                </div>
+                <button type="button" onclick="restoreRecipeVersion('${entry.id}')" class="px-3 py-1 rounded-full bg-tangerine-500 hover:bg-tangerine-600 text-white text-[10px] font-extrabold shadow-xs active:scale-95 transition">
+                  ↺ Restore This
+                </button>
+              </div>
+              ${entry.note ? `<p class="text-[11px] font-extrabold text-ink-900 bg-white/80 px-2.5 py-1.5 rounded-xl">“${escapeHtml(entry.note)}”</p>` : ''}
+              <ul class="text-[10px] font-semibold text-ink-600 space-y-0.5 pl-1">
+                ${changeBullets}
+              </ul>
+              <p class="text-[10px] text-ink-400 font-bold">Snapshot: ${escapeHtml(entry.snapshot?.title || r.title)} • ${(entry.snapshot?.ingredients || []).length} items, ${(entry.snapshot?.steps || []).length} steps</p>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('recipe-history-modal').classList.remove('hidden');
+    }
+
+    function closeRecipeHistoryModal() {
+      document.getElementById('recipe-history-modal').classList.add('hidden');
+    }
+
+    function restoreRecipeVersion(revisionId) {
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (!r || !Array.isArray(r.editHistory)) return;
+      const entry = r.editHistory.find(e => e.id === revisionId);
+      if (!entry || !entry.snapshot) return;
+
+      // Save current state to history before restoring so even a restore can be undone!
+      const currentBeforeRestore = cloneRecipeSnapshot(r);
+      r.editHistory.unshift({
+        id: 'rev_' + Date.now(),
+        timestamp: new Date().toISOString(),
+        note: 'Auto-saved before restoring previous version',
+        changes: [`Restored snapshot from ${new Date(entry.timestamp).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}`],
+        snapshot: currentBeforeRestore
+      });
+
+      const snap = JSON.parse(JSON.stringify(entry.snapshot));
+      r.title = snap.title;
+      r.category = snap.category;
+      r.difficulty = snap.difficulty || r.difficulty;
+      r.servings = snap.servings;
+      r.prepTime = snap.prepTime;
+      r.description = snap.description;
+      r.ingredients = snap.ingredients;
+      r.steps = snap.steps;
+
+      saveRecipes();
+      renderHomeFeatured();
+      renderAllRecipes();
+      closeRecipeHistoryModal();
+      openRecipeDetail(r.id, true);
+      showToast('↺ Previous recipe version restored!');
+    }
+
+    function restoreBuiltinOriginalVersion() {
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (!r) return;
+      const builtin = RESTORED_BACKUP_RECIPES.find(b => b.id === r.id);
+      if (!builtin) return;
+
+      if (!Array.isArray(r.editHistory)) r.editHistory = [];
+      r.editHistory.unshift({
+        id: 'rev_' + Date.now(),
+        timestamp: new Date().toISOString(),
+        note: 'Auto-saved before resetting to built-in original',
+        changes: ['Reset recipe back to default built-in original'],
+        snapshot: cloneRecipeSnapshot(r)
+      });
+
+      const fresh = JSON.parse(JSON.stringify(builtin));
+      r.title = fresh.title;
+      r.category = fresh.category;
+      r.difficulty = fresh.difficulty;
+      r.servings = fresh.servings;
+      r.prepTime = fresh.prepTime;
+      r.description = fresh.description;
+      r.ingredients = fresh.ingredients;
+      r.steps = fresh.steps;
+
+      saveRecipes();
+      renderHomeFeatured();
+      renderAllRecipes();
+      closeRecipeHistoryModal();
+      openRecipeDetail(r.id, true);
+      showToast('🔄 Restored built-in original recipe!');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
