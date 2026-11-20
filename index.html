@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
-    
-<!-- Custom Home Screen Icon (iOS & Android) -->
+
+    <!-- Custom Home Screen Icon (iOS & Android) -->
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon.png">
 
 <!-- Optional: Hides the browser address bar when opened from Home Screen -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Steil Recipe v2.9 — Smart Scaling Recipe & Kitchen Timer App</title>
+    <title>Steil Recipe v3.0 — Smart Scaling Recipe & Kitchen Timer App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <script>
@@ -70,103 +70,50 @@
           scrollbar-width: none;
         }
 
-        /* SAMSUNG GALAXY Z FOLD TABLETOP / FLEX MODE (Native Hardware Hinge Detection: Vertical Top/Bottom Split) */
-        @media (vertical-viewport-segments: 2) {
-          body.fold-auto #focus-mode-modal:not(.hidden) {
+        /* SAMSUNG GALAXY Z FOLD TABLETOP / FLEX MODE (Native Hardware Hinge Detection) */
+        @media (horizontal-viewport-segments: 2) {
+          body.fold-auto #view-cooking:not(.hidden) {
             display: grid !important;
-            grid-template-rows: env(viewport-segment-height 0 0, 50dvh) env(viewport-segment-height 0 1, 50dvh);
-            padding: 0 !important;
+            grid-template-rows: env(viewport-segment-height 0 0) env(viewport-segment-height 0 1);
+            height: calc(100dvh - 4rem);
             overflow: hidden;
           }
-          body.fold-auto #focus-top-pane {
-            height: env(viewport-segment-height 0 0, 50dvh);
+          body.fold-auto #cooking-top-pane {
+            height: env(viewport-segment-height 0 0);
             overflow-y: auto;
-            padding: 1.25rem 1.5rem;
-            border-bottom: 2px solid rgba(251, 146, 60, 0.45);
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(249, 115, 22, 0.35);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
           }
-          body.fold-auto #focus-bottom-pane {
-            height: env(viewport-segment-height 0 1, 50dvh);
+          body.fold-auto #cooking-bottom-pane {
+            height: env(viewport-segment-height 0 1);
             overflow-y: auto;
-            padding: 1.25rem 1.5rem;
-            background: rgba(12, 10, 9, 0.96);
+            padding-top: 0.75rem;
+            padding-bottom: 5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
           }
           body.fold-auto #view-detail:not(.hidden) {
             display: grid !important;
-            grid-template-rows: env(viewport-segment-height 0 0, 46dvh) env(viewport-segment-height 0 1, 54dvh);
+            grid-template-rows: env(viewport-segment-height 0 0) env(viewport-segment-height 0 1);
             height: calc(100dvh - 4rem);
             overflow: hidden;
           }
           body.fold-auto #detail-top-pane {
-            height: env(viewport-segment-height 0 0, 46dvh);
+            height: env(viewport-segment-height 0 0);
             overflow-y: auto;
             padding-bottom: 0.75rem;
             border-bottom: 2px solid #f5e4d7;
           }
           body.fold-auto #detail-bottom-pane {
-            height: env(viewport-segment-height 0 1, 54dvh);
+            height: env(viewport-segment-height 0 1);
             overflow-y: auto;
             padding-top: 0.75rem;
             padding-bottom: 5rem;
           }
-        }
-
-        /* SIMULATED TABLETOP / FLEX MODE PREVIEW FOR TESTING ON STANDARD SCREENS */
-        body.tabletop-sim #focus-mode-modal:not(.hidden) {
-          display: grid !important;
-          grid-template-rows: 1fr 1fr;
-          padding: 0 !important;
-          overflow: hidden;
-        }
-        body.tabletop-sim #focus-top-pane {
-          overflow-y: auto;
-          padding: 1.25rem 1.5rem;
-          border-bottom: 3px solid #f97316;
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        body.tabletop-sim #focus-top-pane::after {
-          content: "FOLD HINGE • TOP DISPLAY";
-          position: absolute;
-          bottom: 4px;
-          right: 12px;
-          font-size: 9px;
-          font-weight: 800;
-          letter-spacing: 0.14em;
-          color: #fb923c;
-          opacity: 0.85;
-        }
-        body.tabletop-sim #focus-bottom-pane {
-          overflow-y: auto;
-          padding: 1.25rem 1.5rem;
-          background: #141110;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        body.tabletop-sim #view-detail:not(.hidden) {
-          display: grid !important;
-          grid-template-rows: 46dvh 1fr;
-          height: calc(100dvh - 4.25rem);
-          overflow: hidden;
-        }
-        body.tabletop-sim #detail-top-pane {
-          overflow-y: auto;
-          padding-bottom: 0.75rem;
-          border-bottom: 3px solid #f97316;
-          position: relative;
-        }
-        body.tabletop-sim #detail-bottom-pane {
-          overflow-y: auto;
-          padding-top: 0.75rem;
-          padding-bottom: 5.5rem;
         }
     </style>
 </head>
@@ -183,14 +130,15 @@
         <span class="w-4.5 h-0.5 bg-ink-900 rounded-full"></span>
     </button>
 
-    <div class="flex items-baseline gap-1.5" aria-label="Steil Recipe v2.9">
+    <div class="flex items-baseline gap-1.5" aria-label="Steil Recipe v3.0">
         <span class="font-extrabold text-[15px] tracking-tight text-ink-900">Steil Recipe</span>
-        <span class="text-[9px] font-bold tracking-wide text-tangerine-600 bg-peach-soft px-1.5 py-0.5 rounded-full">v2.9</span>
+        <span class="text-[9px] font-bold tracking-wide text-tangerine-600 bg-peach-soft px-1.5 py-0.5 rounded-full">v3.0</span>
     </div>
 
     <div class="flex items-center gap-1">
-        <button type="button" id="btn-tabletop-toggle" onclick="toggleTabletopSim()" class="w-9 h-9 rounded-full hover:bg-peach-soft flex items-center justify-center text-ink-900 transition" title="Toggle Z Fold Tabletop Mode Preview" aria-label="Toggle Tabletop Mode">
-            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><line x1="4" y1="12" x2="20" y2="12" stroke-dasharray="2 2"/></svg>
+        <button type="button" id="header-resume-cooking-pill" onclick="resumeSavedCookingSession()" class="hidden px-2.5 py-1.5 rounded-full bg-tangerine-500 text-white text-[10px] font-extrabold shadow-orb active:scale-95 transition flex items-center gap-1" title="Return to Active Cooking Mode">
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            <span>Cooking</span>
         </button>
         <button type="button" onclick="focusHomeSearch()" class="w-9 h-9 rounded-full hover:bg-peach-soft flex items-center justify-center text-ink-900 transition" aria-label="Search">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.5-3.5"/></svg>
@@ -208,6 +156,22 @@
     <!-- VIEW 1: HOME -->
     <section id="view-home" class="space-y-6">
 
+        <!-- PERSISTENT RESUME COOKING BANNER -->
+        <div id="home-resume-cooking-banner" class="hidden rounded-[22px] bg-ink-900 text-white p-4 shadow-xl border border-tangerine-500/40 flex items-center justify-between gap-3">
+            <div onclick="resumeSavedCookingSession()" class="flex items-center gap-3 min-w-0 flex-1 cursor-pointer">
+                <span class="w-10 h-10 rounded-2xl bg-tangerine-500 text-white flex items-center justify-center shrink-0 shadow-orb font-extrabold text-sm">🍳</span>
+                <div class="min-w-0 flex-1">
+                    <span class="text-[9px] font-extrabold uppercase tracking-widest text-tangerine-400 block">In-Progress Cooking Session</span>
+                    <p id="home-resume-cooking-title" class="text-xs font-extrabold text-white truncate mt-0.5">Resume Cooking: Recipe (Step 1 of 5) →</p>
+                    <p id="home-resume-cooking-meta" class="text-[10px] text-peach-soft/80 font-medium truncate mt-0.5">Progress saved automatically</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="resumeSavedCookingSession()" class="px-3 py-2 rounded-full bg-tangerine-500 hover:bg-tangerine-600 text-white text-[11px] font-extrabold shadow-orb active:scale-95 transition">Resume →</button>
+                <button type="button" onclick="endActiveCookingSession(false)" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold flex items-center justify-center" title="Dismiss Cooking Session" aria-label="Dismiss Cooking Session">✕</button>
+            </div>
+        </div>
+
         <!-- EDITORIAL GREETING -->
         <div class="pt-1 flex items-center justify-between">
             <div>
@@ -224,7 +188,7 @@
         <!-- SEARCH BAR -->
         <div class="space-y-2">
             <div class="relative">
-                <input id="home-search-input" type="text" oninput="handleHomeSearch(this.value)" placeholder="Search 22 recipes or ingredients..." class="w-full pl-10 pr-4 py-3 rounded-2xl bg-peach-soft/80 border border-transparent focus:border-tangerine-400 focus:bg-white text-xs font-semibold text-ink-900 placeholder:text-ink-400 focus:outline-none transition" />
+                <input id="home-search-input" type="text" oninput="handleHomeSearch(this.value)" placeholder="Search 21 recipes or ingredients..." class="w-full pl-10 pr-4 py-3 rounded-2xl bg-peach-soft/80 border border-transparent focus:border-tangerine-400 focus:bg-white text-xs font-semibold text-ink-900 placeholder:text-ink-400 focus:outline-none transition" />
                 <svg class="w-4 h-4 text-ink-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.5-3.5"/></svg>
             </div>
             <div id="home-search-results" class="hidden space-y-2 pt-1"></div>
@@ -234,7 +198,7 @@
         <div class="space-y-2.5">
             <p class="text-[11px] font-bold text-ink-400 tracking-wide">Select Your Category</p>
             <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1">
-                <button type="button" onclick="setHomeCategory('All')" id="cat-pill-All" class="cat-pill px-5 py-2 rounded-full bg-tangerine-500 text-white text-xs font-extrabold shadow-orb transition shrink-0">All (22)</button>
+                <button type="button" onclick="setHomeCategory('All')" id="cat-pill-All" class="cat-pill px-5 py-2 rounded-full bg-tangerine-500 text-white text-xs font-extrabold shadow-orb transition shrink-0">All (21)</button>
                 <button type="button" onclick="setHomeCategory('Main')" id="cat-pill-Main" class="cat-pill px-5 py-2 rounded-full bg-peach-soft text-ink-600 hover:bg-peach-card text-xs font-bold transition shrink-0">Main</button>
                 <button type="button" onclick="setHomeCategory('Quick')" id="cat-pill-Quick" class="cat-pill px-5 py-2 rounded-full bg-peach-soft text-ink-600 hover:bg-peach-card text-xs font-bold transition shrink-0">Quick</button>
                 <button type="button" onclick="setHomeCategory('Dessert')" id="cat-pill-Dessert" class="cat-pill px-5 py-2 rounded-full bg-peach-soft text-ink-600 hover:bg-peach-card text-xs font-bold transition shrink-0">Dessert</button>
@@ -294,7 +258,7 @@
         <!-- FEATURED RECIPES LIST -->
         <div class="space-y-3">
             <div class="flex items-center justify-between">
-                <h2 id="home-saved-count-label" class="text-xs font-extrabold text-ink-700">Recipes For You (22)</h2>
+                <h2 id="home-saved-count-label" class="text-xs font-extrabold text-ink-700">Recipes For You (21)</h2>
                 <button type="button" onclick="navigateTab('all')" class="text-[11px] font-extrabold text-tangerine-500 hover:underline">See All</button>
             </div>
             <div id="home-featured-list" class="space-y-3"></div>
@@ -334,7 +298,7 @@
         </div>
 
         <div class="flex gap-2">
-            <button type="button" onclick="setAllFilter('all')" id="filter-btn-all" class="flex-1 py-2.5 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb">All Recipes (22)</button>
+            <button type="button" onclick="setAllFilter('all')" id="filter-btn-all" class="flex-1 py-2.5 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb">All Recipes (21)</button>
             <button type="button" onclick="setAllFilter('saved')" id="filter-btn-saved" class="flex-1 py-2.5 rounded-full bg-peach-soft text-ink-600 font-extrabold text-xs">Favorites ★</button>
         </div>
 
@@ -475,9 +439,13 @@
         <div class="rounded-[34px] bg-gradient-to-b from-[#fffaf7] to-peach-soft p-5 sm:p-6 text-center space-y-5 relative overflow-hidden border border-white">
             <div class="flex items-center justify-between text-[10px] font-extrabold">
                 <span id="wake-lock-badge" class="px-2.5 py-1 rounded-full bg-white text-ink-500 border border-peach-card">Sleep-Safe Clock Ready</span>
-                <button type="button" onclick="launchNativeTimerFromInput()" class="px-3 py-1 rounded-full bg-ink-900 text-white hover:bg-tangerine-600 transition active:scale-95 flex items-center gap-1" title="Open built-in phone Clock timer">
-                    <span>📱</span>
-                    <span>Phone Timer</span>
+                <button type="button" onclick="launchNativeTimerFromInput()" class="px-3 py-1 rounded-full bg-ink-900 text-white hover:bg-tangerine-600 transition active:scale-95 flex items-center gap-1.5" title="Open built-in Android or iOS Clock timer">
+                    <svg class="w-3.5 h-3.5 text-tangerine-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 3L2 6M22 6l-3-3"/>
+                        <circle cx="12" cy="13" r="8"/>
+                        <path d="M12 9v4l2.5 2"/>
+                    </svg>
+                    <span>Clock App</span>
                 </button>
             </div>
 
@@ -518,8 +486,12 @@
                     <button type="button" onclick="createNewIndependentTimer()" class="col-span-2 py-3.5 rounded-full bg-tangerine-500 hover:bg-tangerine-600 text-white font-extrabold text-xs shadow-orb active:scale-95 transition">
                         Start App Timer
                     </button>
-                    <button type="button" onclick="launchNativeTimerFromInput()" class="py-3.5 px-2 rounded-full bg-white border border-peach-card hover:border-tangerine-400 text-ink-900 font-extrabold text-[11px] active:scale-95 transition flex items-center justify-center gap-1">
-                        <span>📱</span>
+                    <button type="button" onclick="launchNativeTimerFromInput()" class="py-3.5 px-2 rounded-full bg-white border border-peach-card hover:border-tangerine-400 text-ink-900 font-extrabold text-[11px] active:scale-95 transition flex items-center justify-center gap-1.5" title="Open built-in Android or iOS Clock app">
+                        <svg class="w-4 h-4 text-tangerine-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 3L2 6M22 6l-3-3"/>
+                            <circle cx="12" cy="13" r="8"/>
+                            <path d="M12 9v4l2.5 2"/>
+                        </svg>
                         <span>Clock App</span>
                     </button>
                 </div>
@@ -590,7 +562,7 @@
                     <h3 class="font-extrabold text-sm text-ink-900">Cooking Steps</h3>
                     <div class="flex items-center gap-1.5">
                         <button type="button" onclick="openAiChefHelp()" class="px-3 py-1.5 rounded-full bg-peach-soft text-tangerine-600 font-extrabold text-[11px]">✦ AI Chef</button>
-                        <button type="button" onclick="openFocusMode()" class="px-3 py-1.5 rounded-full bg-tangerine-500 text-white font-extrabold text-[11px] shadow-orb">Focus Mode</button>
+                        <button type="button" id="detail-cooking-mode-btn" onclick="openFocusMode()" class="px-3 py-1.5 rounded-full bg-tangerine-500 text-white font-extrabold text-[11px] shadow-orb">Cooking Mode</button>
                     </div>
                 </div>
                 <div id="detail-steps" class="space-y-3"></div>
@@ -616,54 +588,77 @@
         </div>
     </section>
 
-</main>
-
-<!-- FOCUS MODE MODAL (GALAXY Z FOLD TABLETOP / FLEX MODE SPLITTABLE) -->
-<div id="focus-mode-modal" class="hidden fixed inset-0 z-50 bg-ink-900/95 backdrop-blur-md flex flex-col justify-between p-6 text-white">
-    <!-- TOP DISPLAY PANE (ABOVE THE HINGE IN TABLETOP MODE) -->
-    <div id="focus-top-pane" class="flex-1 flex flex-col justify-between max-w-md mx-auto w-full">
-        <div class="flex items-center justify-between">
-            <div>
-                <div class="flex items-center gap-2">
-                    <span class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-tangerine-500 text-white uppercase tracking-wider">Focus Cooking Mode</span>
-                    <span id="focus-scale-badge" class="px-2.5 py-1 rounded-full text-[10px] font-mono font-extrabold bg-white/10 text-tangerine-300">1.0×</span>
+    <!-- VIEW 3: DEDICATED COOKING MODE PAGE (PERSISTENT PROGRESS & Z FOLD HINGE READY) -->
+    <section id="view-cooking" class="hidden space-y-5 pt-2 pb-8">
+        <!-- TOP DISPLAY PANE (ABOVE HINGE ON Z FOLD) -->
+        <div id="cooking-top-pane" class="space-y-4">
+            <div class="flex items-center justify-between gap-2">
+                <button type="button" onclick="returnFromCookingToRecipe()" class="px-3.5 py-2 rounded-full bg-peach-soft hover:bg-peach-card text-ink-900 font-extrabold text-xs flex items-center gap-1.5 active:scale-95 transition">
+                    <span>←</span>
+                    <span>Recipe & Checklist</span>
+                </button>
+                <div class="flex items-center gap-1.5">
+                    <span id="focus-scale-badge" class="px-2.5 py-1 rounded-full text-[11px] font-mono font-extrabold bg-peach-soft text-tangerine-600">1.0×</span>
+                    <button type="button" onclick="endActiveCookingSession(true)" class="px-3 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 font-extrabold text-[11px] transition">End Session</button>
                 </div>
-                <h3 id="focus-recipe-title" class="text-lg font-extrabold tracking-tight mt-1.5">Recipe Title</h3>
             </div>
-            <div class="flex items-center gap-2">
-                <button type="button" onclick="toggleTabletopSim()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold" title="Toggle Tabletop Split View" aria-label="Toggle Tabletop Split View">📱</button>
-                <button type="button" onclick="requestCloseFocusMode()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-sm font-bold" aria-label="Close cooking mode">✕</button>
+
+            <div class="rounded-[28px] bg-ink-900 text-white p-6 shadow-xl space-y-5 relative overflow-hidden">
+                <div class="flex items-center justify-between gap-2">
+                    <span class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-tangerine-500 text-white uppercase tracking-wider">Dedicated Cooking Page</span>
+                    <span id="focus-step-number" class="text-xs font-extrabold text-tangerine-400 uppercase tracking-widest">Step 1 of 5</span>
+                </div>
+
+                <h2 id="focus-recipe-title" class="text-lg font-extrabold tracking-tight text-white leading-snug">Recipe Title</h2>
+
+                <div class="py-3 px-4 rounded-2xl bg-white/5 border border-white/10 min-h-[130px] flex items-center justify-center text-center">
+                    <p id="focus-step-text" class="text-lg font-bold leading-relaxed text-peach-soft">Step instructions here...</p>
+                </div>
+
+                <!-- STEP PROGRESS DOTS -->
+                <div id="cooking-step-dots" class="flex items-center justify-center gap-1.5 flex-wrap"></div>
             </div>
         </div>
 
-        <div class="space-y-4 my-auto text-center py-4">
-            <span id="focus-step-number" class="text-xs font-extrabold text-tangerine-400 uppercase tracking-widest">Step 1 of 5</span>
-            <p id="focus-step-text" class="text-xl font-bold leading-relaxed text-peach-soft min-h-[110px] flex items-center justify-center px-3">Step instructions here...</p>
-        </div>
-    </div>
+        <!-- BOTTOM CONTROL & QUICK CHECKLIST PANE (BELOW HINGE ON Z FOLD) -->
+        <div id="cooking-bottom-pane" class="space-y-4">
+            <div id="focus-timer-action" class="hidden flex items-center justify-center gap-2 flex-wrap">
+                <button type="button" id="focus-start-timer-btn" onclick="startTimerFromFocus()" class="px-5 py-3 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb active:scale-95 transition">⏱ Start App Timer</button>
+                <button type="button" id="focus-native-timer-btn" onclick="startNativeTimerFromFocus()" class="px-4 py-3 rounded-full bg-ink-900 text-white font-extrabold text-xs active:scale-95 transition flex items-center gap-1.5" title="Open in Android or iOS Clock App">
+                    <svg class="w-4 h-4 text-tangerine-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 3L2 6M22 6l-3-3"/>
+                        <circle cx="12" cy="13" r="8"/>
+                        <path d="M12 9v4l2.5 2"/>
+                    </svg>
+                    <span>Clock App</span>
+                </button>
+            </div>
 
-    <!-- BOTTOM CONTROL PANE (BELOW THE HINGE IN TABLETOP MODE) -->
-    <div id="focus-bottom-pane" class="space-y-4 max-w-md mx-auto w-full pt-2">
-        <div id="focus-timer-action" class="hidden flex items-center justify-center gap-2 flex-wrap">
-            <button type="button" id="focus-start-timer-btn" onclick="startTimerFromFocus()" class="px-5 py-3 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb active:scale-95 transition">⏱ Start App Timer</button>
-            <button type="button" id="focus-native-timer-btn" onclick="startNativeTimerFromFocus()" class="px-4 py-3 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs active:scale-95 transition">📱 Phone Timer</button>
-        </div>
+            <!-- STEP NAVIGATION & COMPLETE CURRENT STEP -->
+            <div class="space-y-2.5">
+                <label class="flex items-center justify-center gap-2.5 p-3 rounded-2xl bg-peach-soft cursor-pointer">
+                    <input id="cooking-current-step-checkbox" type="checkbox" onchange="toggleCurrentCookingStepChecked(this.checked)" class="w-4 h-4 rounded text-tangerine-500 accent-tangerine-500" />
+                    <span class="text-xs font-extrabold text-ink-900">Mark this step completed</span>
+                </label>
 
-        <div class="flex items-center justify-center gap-3">
-            <button type="button" onclick="readStepAloud(document.getElementById('focus-step-text').textContent)" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold text-peach-soft">🔊 Read Aloud</button>
-            <button type="button" onclick="openAiChefHelp()" class="px-4 py-2 rounded-full bg-tangerine-500/20 border border-tangerine-400/40 text-tangerine-300 text-xs font-extrabold flex items-center gap-1.5">
-                <span>✦</span>
-                <span>AI Chef Chat</span>
-                <span id="focus-chat-count-badge" class="hidden px-1.5 py-0.2 rounded-full bg-tangerine-500 text-white text-[9px]">0</span>
-            </button>
-        </div>
+                <div class="flex items-center justify-between gap-3">
+                    <button type="button" onclick="prevFocusStep()" class="flex-1 py-3.5 rounded-full bg-peach-soft hover:bg-peach-card text-ink-900 font-extrabold text-xs active:scale-95 transition">← Previous</button>
+                    <button type="button" id="cooking-next-step-btn" onclick="nextFocusStep()" class="flex-1 py-3.5 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb active:scale-95 transition">Next Step →</button>
+                </div>
+            </div>
 
-        <div class="flex items-center justify-between gap-4">
-            <button type="button" onclick="prevFocusStep()" class="flex-1 py-3.5 rounded-full bg-white/10 font-extrabold text-xs active:scale-95 transition">← Previous</button>
-            <button type="button" onclick="nextFocusStep()" class="flex-1 py-3.5 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb active:scale-95 transition">Next Step →</button>
+            <!-- COLLAPSIBLE INGREDIENTS CHECKLIST IN COOKING PAGE -->
+            <details class="rounded-[22px] bg-white border border-peach-card p-4 shadow-card-clean" open>
+                <summary class="font-extrabold text-xs text-ink-900 cursor-pointer flex items-center justify-between">
+                    <span>Ingredients Checklist (Auto-Saved)</span>
+                    <span id="cooking-ing-progress-pill" class="text-[10px] font-bold text-tangerine-600 bg-peach-soft px-2.5 py-0.5 rounded-full">0/0</span>
+                </summary>
+                <ul id="cooking-mode-ingredients" class="mt-3 space-y-2 text-xs"></ul>
+            </details>
         </div>
-    </div>
-</div>
+    </section>
+
+</main>
 
 <!-- BOTTOM 5-ICON NAVIGATION BAR -->
 <nav class="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-peach-soft pb-[env(safe-area-inset-bottom,0px)]">
@@ -762,7 +757,7 @@
             </span>
                     <div>
                         <h3 class="font-extrabold text-base tracking-tight text-ink-900">steil</h3>
-                        <p class="text-[10px] text-ink-400 font-bold">v2.9 • Fold & Sleep-Safe</p>
+                        <p class="text-[10px] text-ink-400 font-bold">v3.0 • Fold & Sleep-Safe</p>
                     </div>
                 </div>
                 <button type="button" onclick="toggleMenuDrawer()" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center">✕</button>
@@ -772,8 +767,11 @@
                 <button type="button" onclick="toggleMenuDrawer(); navigateTab('home')" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
                     <span>🏠</span> Home Feed
                 </button>
+                <button type="button" id="menu-resume-cooking-btn" onclick="toggleMenuDrawer(); resumeSavedCookingSession()" class="hidden w-full text-left px-4 py-3 rounded-2xl bg-tangerine-500 text-white flex items-center gap-3 shadow-orb">
+                    <span>🍳</span> Resume Active Cooking
+                </button>
                 <button type="button" onclick="toggleMenuDrawer(); navigateTab('all')" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
-                    <span>📖</span> All Recipes (22)
+                    <span>📖</span> All Recipes (21)
                 </button>
                 <button type="button" onclick="toggleMenuDrawer(); navigateTab('planner')" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
                     <span>📅</span> Weekly Meal Planner
@@ -785,21 +783,8 @@
                     <span>✦</span> AI Recipe Generator
                 </button>
                 <button type="button" onclick="toggleMenuDrawer(); openHelpModal()" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
-                    <span>❓</span> What's New in v2.9
+                    <span>❓</span> What's New in v3.0
                 </button>
-            </div>
-
-            <!-- GALAXY Z FOLD TABLETOP SIMULATOR TOGGLE -->
-            <div class="flex items-center justify-between gap-3 pt-3 border-t border-peach-soft">
-                <div>
-                    <p class="text-[11px] font-extrabold text-ink-600">Z Fold Tabletop Preview</p>
-                    <p class="text-[10px] text-ink-400">Simulate split hinge layout</p>
-                </div>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input id="menu-tabletop-toggle" type="checkbox" class="sr-only peer" onchange="toggleTabletopSim(this.checked, true)" aria-label="Simulate Galaxy Z Fold Tabletop Mode" />
-                    <span class="w-11 h-6 bg-ink-200 rounded-full peer-checked:bg-tangerine-500 transition"></span>
-                    <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow-sm transition peer-checked:translate-x-5"></span>
-                </label>
             </div>
 
             <div class="space-y-2 pt-2 border-t border-peach-soft">
@@ -843,13 +828,13 @@
                     </label>
                 </div>
                 <button type="button" onclick="resetToDefaultBackup()" class="w-full mt-2 py-2.5 px-3 rounded-xl bg-white border border-peach-card text-[11px] font-extrabold text-tangerine-600 hover:bg-peach-soft transition">
-                    🔄 Restore All 22 Default Recipes
+                    🔄 Restore All 21 Default Recipes
                 </button>
             </div>
         </div>
 
         <div class="text-center text-[11px] font-extrabold text-ink-400 pb-4">
-            Steil Recipe v2.9 • Fold & Kitchen Ready
+            Steil Recipe v3.0 • Fold & Kitchen Ready
         </div>
     </div>
 </div>
@@ -859,7 +844,7 @@
     <div class="bg-white w-full max-w-md max-h-[85vh] overflow-y-auto rounded-[28px] p-6 shadow-2xl space-y-4">
         <div class="flex items-center justify-between sticky top-0 bg-white/95 pb-2 border-b border-peach-soft">
             <div>
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-peach-soft text-tangerine-600 uppercase tracking-wider">v2.9 Release Notes</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-peach-soft text-tangerine-600 uppercase tracking-wider">v3.0 Release Notes</span>
                 <h3 class="font-extrabold text-base text-ink-900 tracking-tight mt-1">New Kitchen & Z Fold Features</h3>
             </div>
             <button type="button" onclick="document.getElementById('tutorial-modal').classList.add('hidden')" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center">✕</button>
@@ -868,7 +853,7 @@
         <div class="space-y-2.5 text-xs">
             <div class="p-3.5 rounded-2xl bg-peach-soft space-y-1">
                 <h4 class="font-extrabold text-ink-900">📱 1. Samsung Galaxy Z Fold Tabletop Mode</h4>
-                <p class="text-ink-600 leading-relaxed">Automatically splits Focus Cooking Mode & Recipe Detail across the vertical hinge—displaying instructions on top and touch controls below.</p>
+                <p class="text-ink-600 leading-relaxed">Automatically splits Focus Cooking Mode & Recipe Detail across the hinge—displaying instructions on top and touch controls below.</p>
             </div>
             <div class="p-3.5 rounded-2xl bg-peach-soft space-y-1">
                 <h4 class="font-extrabold text-ink-900">⏱️ 2. Sleep-Safe Timers & Built-In Phone Timer</h4>
@@ -994,7 +979,13 @@
         </div>
     </div>
     <div class="flex items-center gap-1.5">
-        <button type="button" onclick="openBuiltInPhoneTimer(activePopupTimer.remaining || activePopupTimer.total || 60, activePopupTimer.label)" class="px-2.5 py-1.5 rounded-full bg-white/15 text-xs font-extrabold" title="Open in Phone Clock App">📱</button>
+        <button type="button" onclick="openBuiltInPhoneTimer(activePopupTimer.remaining || activePopupTimer.total || 60, activePopupTimer.label)" class="w-8 h-8 rounded-full bg-white/15 hover:bg-tangerine-500 text-white flex items-center justify-center transition" title="Open in Phone Clock App" aria-label="Open in Phone Clock App">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 3L2 6M22 6l-3-3"/>
+                <circle cx="12" cy="13" r="8"/>
+                <path d="M12 9v4l2.5 2"/>
+            </svg>
+        </button>
         <button type="button" onclick="pausePopupTimer()" id="popup-pause-btn" class="px-3 py-1.5 rounded-full bg-white/10 text-xs font-extrabold">Pause</button>
         <button type="button" id="popup-stop-alarm-btn" onclick="stopTimerAlarm(); renderActiveTimers()" class="hidden px-3 py-1.5 rounded-full bg-tangerine-500 text-xs font-extrabold">Stop</button>
         <button type="button" onclick="closePopupTimer()" class="w-7 h-7 rounded-full bg-white/10 text-xs font-bold flex items-center justify-center">✕</button>
@@ -1008,6 +999,7 @@
 
 <script>
     const DEFAULT_API_KEY = "AQ.Ab8RN6IFNrxOHvv-2xrM2oCkAtLAmQp97rps4AOrWSByvfwldQ";
+    const DEFAULT_GROQ_API_KEY = "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";
 
     const RESTORED_BACKUP_RECIPES = [
       {
@@ -2013,154 +2005,223 @@
     let customScaleIngredientIndex = null;
     let allFilter = 'all';
     let homeCategoryFilter = 'All';
-    let tabletopSimEnabled = false;
     let wakeLockSentinel = null;
     let isHandlingPopstate = false;
 
-    const PLANNER_CURRENCY_KEY = 'steil_planner_currency_v1';
-    function detectPlannerCurrency() {
-      const region = (navigator.language || '').split('-').pop()?.toUpperCase();
-      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      if (timeZone === 'Asia/Manila' || region === 'PH') return 'PHP';
-      if (timeZone === 'Europe/Berlin' || region === 'DE') return 'EUR';
-      if (timeZone.startsWith('America/') || region === 'US') return 'USD';
-      return 'EUR';
+    const ACTIVE_COOKING_SESSION_KEY = 'steil_active_cooking_session_v1';
+    let activeCookingSession = null;
+
+    function loadActiveCookingSession() {
+      try {
+        const raw = localStorage.getItem(ACTIVE_COOKING_SESSION_KEY);
+        if (!raw) {
+          activeCookingSession = null;
+          return;
+        }
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.recipeId) {
+          activeCookingSession = parsed;
+          checkedIngredientsByRecipe[parsed.recipeId] = new Set(parsed.checkedIngredients || []);
+          checkedStepsByRecipe[parsed.recipeId] = new Set(parsed.checkedSteps || []);
+        }
+      } catch (e) {
+        activeCookingSession = null;
+      }
     }
-    let plannerCurrency = localStorage.getItem(PLANNER_CURRENCY_KEY) || detectPlannerCurrency();
+
+    function persistActiveCookingSession(recipeId = activeRecipeId) {
+      if (!recipeId) return;
+      const r = recipes.find(x => x.id === recipeId);
+      if (!r) return;
+      activeCookingSession = {
+        recipeId,
+        recipeTitle: r.title,
+        stepIndex: currentFocusIndex,
+        totalSteps: (r.steps || []).length,
+        scale: currentScale,
+        checkedIngredients: Array.from(checkedIngredientsByRecipe[recipeId] || []),
+        checkedSteps: Array.from(checkedStepsByRecipe[recipeId] || []),
+        updatedAt: Date.now()
+      };
+      try {
+        localStorage.setItem(ACTIVE_COOKING_SESSION_KEY, JSON.stringify(activeCookingSession));
+      } catch (e) {}
+      updateResumeCookingIndicators();
+    }
+
+    function updateResumeCookingIndicators() {
+      const cookingVisible = !document.getElementById('view-cooking')?.classList.contains('hidden');
+      const hasValidSession = Boolean(activeCookingSession && recipes.some(r => r.id === activeCookingSession.recipeId));
+      const showIndicators = hasValidSession && !cookingVisible;
+
+      const headerPill = document.getElementById('header-resume-cooking-pill');
+      const homeBanner = document.getElementById('home-resume-cooking-banner');
+      const menuBtn = document.getElementById('menu-resume-cooking-btn');
+
+      if (headerPill) headerPill.classList.toggle('hidden', !showIndicators);
+      if (homeBanner) homeBanner.classList.toggle('hidden', !showIndicators);
+      if (menuBtn) menuBtn.classList.toggle('hidden', !hasValidSession);
+
+      if (hasValidSession) {
+        const titleEl = document.getElementById('home-resume-cooking-title');
+        const metaEl = document.getElementById('home-resume-cooking-meta');
+        const stepNum = (activeCookingSession.stepIndex || 0) + 1;
+        const totalSteps = activeCookingSession.totalSteps || 1;
+        const doneSteps = (activeCookingSession.checkedSteps || []).length;
+        const doneIngs = (activeCookingSession.checkedIngredients || []).length;
+        if (titleEl) {
+          titleEl.textContent = `${activeCookingSession.recipeTitle} • Step ${stepNum} of ${totalSteps}`;
+        }
+        if (metaEl) {
+          metaEl.textContent = `${Number(activeCookingSession.scale || 1).toFixed(1)}× batch • ${doneSteps} steps & ${doneIngs} items checked`;
+        }
+      }
+    }
+
+    function resumeSavedCookingSession() {
+      if (!activeCookingSession || !activeCookingSession.recipeId) {
+        showToast('No active cooking session to resume.');
+        return;
+      }
+      const r = recipes.find(x => x.id === activeCookingSession.recipeId);
+      if (!r) {
+        endActiveCookingSession(false);
+        return;
+      }
+      activeRecipeId = r.id;
+      currentScale = Number(activeCookingSession.scale) || 1.0;
+      checkedIngredientsByRecipe[r.id] = new Set(activeCookingSession.checkedIngredients || []);
+      checkedStepsByRecipe[r.id] = new Set(activeCookingSession.checkedSteps || []);
+      openFocusMode(activeCookingSession.stepIndex || 0);
+      showToast(`Resumed ${r.title} (Step ${(activeCookingSession.stepIndex || 0) + 1})`);
+    }
+
+    function endActiveCookingSession(returnHome = true) {
+      activeCookingSession = null;
+      try {
+        localStorage.removeItem(ACTIVE_COOKING_SESSION_KEY);
+      } catch (e) {}
+      updateResumeCookingIndicators();
+      if (returnHome) {
+        navigateTab('home');
+        showToast('Cooking session ended.');
+      }
+    }
+
+    const PLANNER_CURRENCY_KEY = 'steil_planner_currency_v1';
+    let plannerCurrency = localStorage.getItem(PLANNER_CURRENCY_KEY) || 'EUR';
     let plannerBudgetEstimate = null;
-    let nutritionResearchInProgress = false;
-    let nutritionDailyTarget = localStorage.getItem('steil_nutrition_daily_target') || '';
     let geminiApiKey = localStorage.getItem('steil_gemini_key') || DEFAULT_API_KEY;
-    let groqApiKey = localStorage.getItem('steil_groq_key') || '';
+    let groqApiKey = localStorage.getItem('steil_groq_key') || DEFAULT_GROQ_API_KEY;
     let buttonSoundsEnabled = localStorage.getItem('steil_button_sounds_v1') !== 'false';
     let buttonSoundContext = null;
-    let timerAlarmNodes = [];
-    let timerAlarmPlayingUntil = 0;
-    let timerAlarmRepeatInterval = null;
-
+    let nutritionDailyTarget = localStorage.getItem('steil_nutrition_daily_target') || '';
+    let nutritionResearchInProgress = false;
     let activeTimers = [];
     let timerInterval = null;
-
+    let timerAlarmPlayingUntil = 0;
+    let timerAlarmRepeatInterval = null;
+    let timerAlarmNodes = [];
+    let backgroundKeepAliveOsc = null;
+    let backgroundKeepAliveGain = null;
+    const ACTIVE_TIMERS_STORAGE_KEY = 'steil_active_timers_v1';
     let mealPlanData = {
-      Monday: { breakfast: null, lunch: null, dinner: null, snacks: null },
-      Tuesday: { breakfast: null, lunch: null, dinner: null, snacks: null },
-      Wednesday: { breakfast: null, lunch: null, dinner: null, snacks: null },
-      Thursday: { breakfast: null, lunch: null, dinner: null, snacks: null },
-      Friday: { breakfast: null, lunch: null, dinner: null, snacks: null },
-      Saturday: { breakfast: null, lunch: null, dinner: null, snacks: null },
-      Sunday: { breakfast: null, lunch: null, dinner: null, snacks: null }
+      Monday: { breakfast: null, lunch: null },
+      Tuesday: { breakfast: null, lunch: null },
+      Wednesday: { breakfast: null, lunch: null },
+      Thursday: { breakfast: null, lunch: null },
+      Friday: { breakfast: null, lunch: null },
+      Saturday: { breakfast: null, lunch: null },
+      Sunday: { breakfast: null, lunch: null }
     };
     const MEAL_PLAN_KEY = 'steil_meal_plan_v5';
     const RECIPES_KEY = 'steil_recipes_restored_v131';
 
     // =========================================================================
-    // 1. SAMSUNG GALAXY Z FOLD TABLETOP / FLEX MODE SUPPORT
+    // 2. SCREEN WAKE LOCK, BACKGROUND AUDIO KEEPALIVE & SLEEP-SAFE TIMER ENGINE
     // =========================================================================
-    function toggleTabletopSim(forceVal, isManual = true) {
-      tabletopSimEnabled = typeof forceVal === 'boolean' ? forceVal : !tabletopSimEnabled;
-      document.body.classList.toggle('tabletop-sim', tabletopSimEnabled);
-      const headerBtn = document.getElementById('btn-tabletop-toggle');
-      const menuToggle = document.getElementById('menu-tabletop-toggle');
-      if (headerBtn) {
-        headerBtn.classList.toggle('bg-tangerine-500', tabletopSimEnabled);
-        headerBtn.classList.toggle('text-white', tabletopSimEnabled);
-      }
-      if (menuToggle) {
-        menuToggle.checked = tabletopSimEnabled;
-        if (isManual) menuToggle.dataset.manual = tabletopSimEnabled ? 'true' : '';
-      }
-      if (isManual) {
-        showToast(tabletopSimEnabled ? '📱 Galaxy Z Fold Tabletop Split Mode ON' : 'Tabletop Split Mode OFF');
-      }
-    }
-
-    function detectHardwareFlexMode() {
-      const segments = window.viewport?.segments;
-      const isVerticalSplit = Array.isArray(segments) && segments.length === 2 && segments[0].top !== segments[1].top;
-      const isFoldedPosture = navigator.devicePosture?.type === 'folded' && window.innerWidth >= window.innerHeight * 0.85;
-      if (isVerticalSplit || isFoldedPosture) {
-        if (!tabletopSimEnabled) toggleTabletopSim(true, false);
-      } else if (tabletopSimEnabled && !document.getElementById('menu-tabletop-toggle')?.dataset.manual) {
-        toggleTabletopSim(false, false);
-      }
-    }
-
-    window.addEventListener('resize', detectHardwareFlexMode);
-    if (navigator.devicePosture) {
-      navigator.devicePosture.addEventListener('change', detectHardwareFlexMode);
-    }
-
-    // =========================================================================
-    // 2. SCREEN WAKE LOCK & SLEEP-SAFE TIMER ENGINE
-    // =========================================================================
-    async function updateScreenWakeLock() {
-      const hasRunningTimer = activeTimers.some(t => t.running);
-      const focusOpen = !document.getElementById('focus-mode-modal')?.classList.contains('hidden');
-      const shouldKeepAwake = hasRunningTimer || focusOpen;
-
-      const badge = document.getElementById('wake-lock-badge');
-      if (badge) {
-        badge.textContent = shouldKeepAwake ? '🔒 Wake-Lock & Timestamp Active' : 'Sleep-Safe Clock Ready';
-        badge.classList.toggle('text-emerald-700', shouldKeepAwake);
-        badge.classList.toggle('bg-emerald-50', shouldKeepAwake);
-      }
-
-      if (!('wakeLock' in navigator)) return;
+    function saveTimersState() {
       try {
-        if (shouldKeepAwake && !wakeLockSentinel) {
-          wakeLockSentinel = await navigator.wakeLock.request('screen');
-          wakeLockSentinel.addEventListener('release', () => { wakeLockSentinel = null; });
-        } else if (!shouldKeepAwake && wakeLockSentinel) {
-          await wakeLockSentinel.release();
-          wakeLockSentinel = null;
+        localStorage.setItem(ACTIVE_TIMERS_STORAGE_KEY, JSON.stringify({
+          timers: activeTimers,
+          popup: activePopupTimer
+        }));
+      } catch (e) {}
+    }
+
+    function loadSavedTimersState() {
+      try {
+        const raw = localStorage.getItem(ACTIVE_TIMERS_STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed.timers)) {
+          activeTimers = parsed.timers;
+        }
+        if (parsed.popup && parsed.popup.id) {
+          activePopupTimer = parsed.popup;
+          if (activePopupTimer.running || activePopupTimer.remaining > 0) {
+            document.getElementById('cooking-timer-popup')?.classList.remove('hidden');
+          }
+        }
+        if (activeTimers.some(t => t.running) || activePopupTimer.running) {
+          syncAllTimersWithClock();
+          startTimerIntervalIfNeeded();
         }
       } catch (e) {}
     }
 
-    function requestTimerNotificationPermission() {
-      if ('Notification' in window && Notification.permission === 'default') {
-        try { Notification.requestPermission(); } catch (e) {}
-      }
-    }
-
-    function sendTimerCompletedNotification(label) {
-      if ('Notification' in window && Notification.permission === 'granted') {
-        try {
-          new Notification('⏰ Steil Recipe Timer Finished!', {
-            body: `${label} is done!`,
-            tag: 'steil-timer-done'
-          });
-        } catch (e) {}
-      }
-    }
-
-    function syncAllTimersWithClock() {
-      const now = Date.now();
-      let changed = false;
-      activeTimers.forEach(t => {
-        if (t.running && t.endTime) {
-          const newRemaining = Math.max(0, Math.ceil((t.endTime - now) / 1000));
-          if (newRemaining !== t.remaining) {
-            t.remaining = newRemaining;
-            changed = true;
-          }
-          if (t.remaining === 0) {
-            t.running = false;
-            t.endTime = null;
-            playTimerAlarm();
-            sendTimerCompletedNotification(t.label);
-            showToast(`⏰ Timer finished: ${t.label}!`);
-          }
+    function updateBackgroundAudioKeepAlive(shouldRun) {
+      try {
+        if (shouldRun) {
+          const audio = getButtonAudioContext();
+          if (!audio || backgroundKeepAliveOsc) return;
+          const osc = audio.createOscillator();
+          const gain = audio.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(120, audio.currentTime);
+          gain.gain.setValueAtTime(0.00001, audio.currentTime);
+          osc.connect(gain);
+          gain.connect(audio.destination);
+          osc.start();
+          backgroundKeepAliveOsc = osc;
+          backgroundKeepAliveGain = gain;
+        } else if (backgroundKeepAliveOsc) {
+          try { backgroundKeepAliveOsc.stop(); } catch (e) {}
+          backgroundKeepAliveOsc = null;
+          backgroundKeepAliveGain = null;
         }
-      });
+      } catch (e) {}
+    }
 
-      if (activePopupTimer.running && activePopupTimer.endTime) {
-        activePopupTimer.remaining = Math.max(0, Math.ceil((activePopupTimer.endTime - now) / 1000));
-        updatePopupTimerDisplay();
+    async function updateScreenWakeLock() {
+      const hasRunningTimer = activeTimers.some(t => t.running) || activePopupTimer.running;
+      const cookingOpen = !document.getElementById('view-cooking')?.classList.contains('hidden');
+      const shouldKeepAwake = hasRunningTimer || cookingOpen;
+      const badge = document.getElementById('wake-lock-badge');
+
+      updateBackgroundAudioKeepAlive(hasRunningTimer);
+
+      if (!('wakeLock' in navigator)) {
+        if (badge) badge.textContent = 'Timestamp Sync Active';
+        return;
       }
-      if (changed) {
-        renderActiveTimers();
-        updateScreenWakeLock();
+
+      if (shouldKeepAwake) {
+        if (!wakeLockSentinel) {
+          try {
+            wakeLockSentinel = await navigator.wakeLock.request('screen');
+            wakeLockSentinel.addEventListener('release', () => {
+              wakeLockSentinel = null;
+            });
+          } catch (e) {}
+        }
+        if (badge) badge.textContent = wakeLockSentinel ? 'Screen Wake Lock ON' : 'Sleep-Safe Clock Ready';
+      } else if (wakeLockSentinel) {
+        try {
+          await wakeLockSentinel.release();
+        } catch (e) {}
+        wakeLockSentinel = null;
+        if (badge) badge.textContent = 'Sleep-Safe Clock Ready';
       }
     }
 
@@ -2171,22 +2232,162 @@
       }
     });
 
-    // =========================================================================
-    // 3. BUILT-IN PHONE CLOCK / TIMER APP LAUNCHER
-    // =========================================================================
-    function openBuiltInPhoneTimer(seconds, label = 'Steil Recipe Timer') {
-      const secs = Math.max(1, Math.round(seconds));
-      const encodedMsg = encodeURIComponent(label);
-      const isAndroid = /Android/i.test(navigator.userAgent || '');
+    function requestTimerNotificationPermission() {
+      if ('Notification' in window && Notification.permission === 'default') {
+        try { Notification.requestPermission(); } catch (e) {}
+      }
+    }
+
+    function sendTimerDoneNotification(label) {
+      if ('Notification' in window && Notification.permission === 'granted') {
+        try {
+          new Notification('Steil Recipe Timer Done!', { body: `${label} has finished.` });
+        } catch (e) {}
+      }
+    }
+
+    function syncAllTimersWithClock() {
+      const now = Date.now();
+      let anyRunning = false;
+      let anyFinished = false;
+
+      activeTimers.forEach(t => {
+        if (t.running && t.endTime) {
+          const left = Math.max(0, Math.ceil((t.endTime - now) / 1000));
+          t.remaining = left;
+          if (left <= 0) {
+            t.running = false;
+            t.endTime = null;
+            anyFinished = true;
+            sendTimerDoneNotification(t.label);
+          } else {
+            anyRunning = true;
+          }
+        }
+      });
+
+      if (activePopupTimer.running && activePopupTimer.endTime) {
+        const left = Math.max(0, Math.ceil((activePopupTimer.endTime - now) / 1000));
+        activePopupTimer.remaining = left;
+        if (left <= 0) {
+          activePopupTimer.running = false;
+          activePopupTimer.endTime = null;
+          anyFinished = true;
+          sendTimerDoneNotification(activePopupTimer.label);
+        } else {
+          anyRunning = true;
+        }
+      }
+
+      if (anyFinished) {
+        playTimerAlarm();
+        document.getElementById('popup-stop-alarm-btn')?.classList.remove('hidden');
+        showToast('⏰ Timer finished!');
+      }
+
+      saveTimersState();
+      updatePopupTimerUI();
+      renderActiveTimers();
+
+      if (!anyRunning && timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        updateScreenWakeLock();
+      }
+    }
+
+    function updatePopupTimerUI() {
+      const popup = document.getElementById('cooking-timer-popup');
+      if (!popup || popup.classList.contains('hidden')) return;
+      const m = Math.floor(activePopupTimer.remaining / 60);
+      const s = activePopupTimer.remaining % 60;
+      const countEl = document.getElementById('popup-timer-countdown');
+      const labelEl = document.getElementById('popup-timer-label');
+      const pauseBtn = document.getElementById('popup-pause-btn');
+      if (countEl) countEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      if (labelEl) labelEl.textContent = activePopupTimer.label || 'Step Timer';
+      if (pauseBtn) pauseBtn.textContent = activePopupTimer.running ? 'Pause' : 'Resume';
+    }
+
+    function pausePopupTimer() {
+      if (activePopupTimer.running) {
+        activePopupTimer.remaining = Math.max(0, Math.ceil((activePopupTimer.endTime - Date.now()) / 1000));
+        activePopupTimer.running = false;
+        activePopupTimer.endTime = null;
+      } else {
+        if (activePopupTimer.remaining <= 0) activePopupTimer.remaining = activePopupTimer.total || 60;
+        activePopupTimer.running = true;
+        activePopupTimer.endTime = Date.now() + activePopupTimer.remaining * 1000;
+        startTimerIntervalIfNeeded();
+      }
+      saveTimersState();
+      updatePopupTimerUI();
+      updateScreenWakeLock();
+    }
+
+    function closePopupTimer() {
+      stopTimerAlarm();
+      activePopupTimer = { id: null, remaining: 0, total: 0, running: false, label: '', endTime: null };
+      saveTimersState();
+      document.getElementById('cooking-timer-popup')?.classList.add('hidden');
+      updateScreenWakeLock();
+    }
+
+    function downloadCalendarAlarmFallback(secs, label) {
+      const start = new Date(Date.now() + secs * 1000);
+      const end = new Date(start.getTime() + 60 * 1000);
+      const fmt = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+      const safeTitle = String(label || 'Steil Kitchen Timer').replace(/[\r\n,;]/g, ' ');
+      const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Steil Recipe//Kitchen Timer//EN',
+        'BEGIN:VEVENT',
+        `UID:steil-timer-${Date.now()}@steilrecipe`,
+        `DTSTAMP:${fmt(new Date())}`,
+        `DTSTART:${fmt(start)}`,
+        `DTEND:${fmt(end)}`,
+        `SUMMARY:⏰ ${safeTitle}`,
+        'BEGIN:VALARM',
+        'TRIGGER:PT0S',
+        'ACTION:DISPLAY',
+        `DESCRIPTION:${safeTitle} is done!`,
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'steil-kitchen-alarm.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function openBuiltInPhoneTimer(totalSecs, label = 'Steil Kitchen Timer') {
+      const secs = Math.max(1, Math.round(Number(totalSecs) || 60));
+      const cleanLabel = label || 'Steil Kitchen Timer';
+      const encodedMsg = encodeURIComponent(cleanLabel);
+      const ua = navigator.userAgent || '';
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
       if (isAndroid) {
         const androidIntent = `intent:#Intent;action=android.intent.action.SET_TIMER;i.android.intent.extra.alarm.LENGTH=${secs};S.android.intent.extra.alarm.MESSAGE=${encodedMsg};B.android.intent.extra.alarm.SKIP_UI=false;end`;
         window.location.href = androidIntent;
-        showToast(`📱 Opening Phone Clock Timer (${Math.ceil(secs / 60)} min)...`);
+        showToast(`Opening Android Clock Timer (${Math.ceil(secs / 60)} min)...`);
+      } else if (isIOS) {
+        // Apple restricts direct URL schemes to set Clock timers from Safari; trigger Apple Shortcuts bridge or native Calendar Alarm (.ics)
+        const mins = Math.max(1, Math.round(secs / 60));
+        downloadCalendarAlarmFallback(secs, cleanLabel);
+        showToast(`iOS Alert: Tap the downloaded Calendar Alarm (.ics) to set a lock-screen alert in ${mins} min!`);
       } else {
         const mins = Math.floor(secs / 60);
         const remSecs = secs % 60;
-        const formatted = `${mins}m ${remSecs}s (${label})`;
+        const formatted = `${mins}m ${remSecs}s (${cleanLabel})`;
         try {
           const tempInput = document.createElement('input');
           tempInput.value = formatted;
@@ -2195,7 +2396,7 @@
           document.execCommand('copy');
           document.body.removeChild(tempInput);
         } catch (e) {}
-        showToast(`📱 Android Clock Intent ready (${formatted}) — copied to clipboard on this browser.`);
+        showToast(`Timer details (${formatted}) copied! Open on Android or iPhone to launch the phone Clock.`);
       }
     }
 
@@ -2215,15 +2416,21 @@
     // 4. HARDWARE / BROWSER BACK BUTTON HISTORY MANAGEMENT
     // =========================================================================
     window.addEventListener('popstate', () => {
-      const focusModal = document.getElementById('focus-mode-modal');
+      const cookingView = document.getElementById('view-cooking');
       const detailView = document.getElementById('view-detail');
 
       isHandlingPopstate = true;
-      if (focusModal && !focusModal.classList.contains('hidden')) {
-        focusModal.classList.add('hidden');
-        updateScreenWakeLock();
-        showToast('Returned to recipe (progress preserved)');
+      if (cookingView && !cookingView.classList.contains('hidden')) {
+        // Save progress and return cleanly to Recipe Detail — never lose active cooking progress!
+        persistActiveCookingSession();
+        if (activeRecipeId) {
+          openRecipeDetail(activeRecipeId, true);
+          showToast('Saved cooking progress — tap Resume anytime');
+        } else {
+          navigateTab('home', true);
+        }
       } else if (detailView && !detailView.classList.contains('hidden')) {
+        // Close Recipe Detail cleanly back to Home while keeping any active cooking session intact
         detailView.classList.add('hidden');
         activeRecipeId = null;
         navigateTab('home', true);
@@ -2231,14 +2438,14 @@
       isHandlingPopstate = false;
     });
 
-    function requestCloseFocusMode() {
-      const focusModal = document.getElementById('focus-mode-modal');
-      if (!focusModal || focusModal.classList.contains('hidden')) return;
-      if (history.state?.steilView === 'focus') {
+    function returnFromCookingToRecipe() {
+      persistActiveCookingSession();
+      if (history.state?.steilView === 'cooking') {
         history.back();
+      } else if (activeRecipeId) {
+        openRecipeDetail(activeRecipeId, true);
       } else {
-        focusModal.classList.add('hidden');
-        updateScreenWakeLock();
+        navigateTab('home');
       }
     }
 
@@ -2363,16 +2570,15 @@
       const input = document.getElementById('menu-groq-apikey-input');
       const val = input.value.trim().replace(/\\+$/, '');
       input.value = val;
-      groqApiKey = val;
-      if (val) localStorage.setItem('steil_groq_key', val);
-      else localStorage.removeItem('steil_groq_key');
-      showToast(val ? 'Groq backup key saved.' : 'Groq backup key cleared.');
+      groqApiKey = val || DEFAULT_GROQ_API_KEY;
+      localStorage.setItem('steil_groq_key', groqApiKey);
+      showToast(val ? 'Groq backup key saved.' : 'Groq key reset to default.');
     }
 
     function exportAppData() {
       const backup = {
         app: 'Steil Recipe',
-        version: 'v2.9',
+        version: 'v3.0',
         exportedAt: new Date().toISOString(),
         recipes: recipes,
         mealPlan: mealPlanData
@@ -2479,8 +2685,9 @@
       const imp = document.getElementById('view-import-web');
       const timers = document.getElementById('view-timers');
       const detail = document.getElementById('view-detail');
+      const cooking = document.getElementById('view-cooking');
 
-      [home, all, planner, imp, timers, detail].forEach(el => el.classList.add('hidden'));
+      [home, all, planner, imp, timers, detail, cooking].forEach(el => el?.classList.add('hidden'));
 
       document.querySelectorAll('.nav-item').forEach(btn => {
         btn.classList.remove('text-tangerine-500');
@@ -2514,6 +2721,8 @@
         document.getElementById('nav-timers')?.classList.remove('text-ink-400');
         syncHeroDialPreview();
       }
+      updateResumeCookingIndicators();
+      updateScreenWakeLock();
       window.scrollTo(0, 0);
     }
 
@@ -2536,15 +2745,21 @@
       if (!r) return;
       r.bookmarked = !r.bookmarked;
       saveRecipes();
-      const btn = document.getElementById('detail-bookmark-btn');
-      if (btn) btn.textContent = r.bookmarked ? '★ Saved' : '☆ Save';
-      showToast(r.bookmarked ? 'Saved to favorites!' : 'Removed from saved');
+      const bBtn = document.getElementById('detail-bookmark-btn');
+      if (bBtn) bBtn.textContent = r.bookmarked ? '★ Saved' : '☆ Save';
+      renderHomeFeatured();
+      renderAllRecipes();
+      showToast(r.bookmarked ? '★ Added to Favorites!' : 'Removed from Favorites.');
     }
 
-    function openRecipeDetail(id) {
+    function openRecipeDetail(id, skipHistory = false) {
       const isSameRecipe = activeRecipeId === id;
       activeRecipeId = id;
-      if (!isSameRecipe) {
+      if (activeCookingSession && activeCookingSession.recipeId === id) {
+        currentScale = Number(activeCookingSession.scale) || currentScale;
+        checkedIngredientsByRecipe[id] = new Set(activeCookingSession.checkedIngredients || []);
+        checkedStepsByRecipe[id] = new Set(activeCookingSession.checkedSteps || []);
+      } else if (!isSameRecipe) {
         currentScale = 1.0;
         metricIngredientIndexes = new Set();
       }
@@ -2554,7 +2769,8 @@
       const r = recipes.find(x => x.id === id);
       if (!r) return;
 
-      if (!isHandlingPopstate) {
+      // Push history entry so hardware/browser Back button handles cooking states smoothly
+      if (!skipHistory && !isHandlingPopstate) {
         try { history.pushState({ steilView: 'detail', recipeId: id }, '', ''); } catch (e) {}
       }
 
@@ -2572,6 +2788,7 @@
         }
       }
       document.getElementById('scale-multiplier-label').textContent = currentScale.toFixed(1) + '×';
+      updateScalePresetHighlight();
 
       const bBtn = document.getElementById('detail-bookmark-btn');
       if (bBtn) bBtn.textContent = r.bookmarked ? '★ Saved' : '☆ Save';
@@ -2587,7 +2804,10 @@
       document.getElementById('view-meal-planner').classList.add('hidden');
       document.getElementById('view-import-web').classList.add('hidden');
       document.getElementById('view-timers').classList.add('hidden');
+      document.getElementById('view-cooking')?.classList.add('hidden');
       document.getElementById('view-detail').classList.remove('hidden');
+      updateResumeCookingIndicators();
+      updateScreenWakeLock();
       window.scrollTo(0, 0);
     }
 
@@ -2659,11 +2879,23 @@
       return `≈ ${Math.round(milliliters).toLocaleString()} ml`;
     }
 
+    // =========================================================================
+    // 5. PRESERVE TICK BOXES WHEN TOGGLING METRIC / ENGLISH CONVERSION
+    // =========================================================================
     function toggleIngredientCheck(idx, isChecked) {
       if (!activeRecipeId) return;
       if (!checkedIngredientsByRecipe[activeRecipeId]) checkedIngredientsByRecipe[activeRecipeId] = new Set();
       if (isChecked) checkedIngredientsByRecipe[activeRecipeId].add(idx);
       else checkedIngredientsByRecipe[activeRecipeId].delete(idx);
+
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (r) {
+        renderDetailIngredientsAndSteps(r);
+        renderCookingIngredientsChecklist(r);
+      }
+      if (activeCookingSession && activeCookingSession.recipeId === activeRecipeId) {
+        persistActiveCookingSession(activeRecipeId);
+      }
     }
 
     function toggleStepCheck(idx, isChecked) {
@@ -2671,6 +2903,21 @@
       if (!checkedStepsByRecipe[activeRecipeId]) checkedStepsByRecipe[activeRecipeId] = new Set();
       if (isChecked) checkedStepsByRecipe[activeRecipeId].add(idx);
       else checkedStepsByRecipe[activeRecipeId].delete(idx);
+
+      const r = recipes.find(x => x.id === activeRecipeId);
+      if (r) {
+        renderDetailIngredientsAndSteps(r);
+        if (!document.getElementById('view-cooking')?.classList.contains('hidden')) {
+          updateFocusCard();
+        }
+      }
+      if (activeCookingSession && activeCookingSession.recipeId === activeRecipeId) {
+        persistActiveCookingSession(activeRecipeId);
+      }
+    }
+
+    function toggleCurrentCookingStepChecked(isChecked) {
+      toggleStepCheck(currentFocusIndex, isChecked);
     }
 
     function toggleIngredientMetric(index) {
@@ -2719,6 +2966,7 @@
         }).join('');
       }
 
+      // Scale ingredient amounts inside cooking step instructions automatically!
       currentFocusSteps = (r.steps || []).map(step => formatScaledStepText(step, currentScale));
 
       const stepList = document.getElementById('detail-steps');
@@ -2734,7 +2982,14 @@
                   <button type="button" onclick="readStepAloud(this.dataset.step)" data-step="${escapeHtml(scaledStep)}" class="px-2.5 py-1 rounded-full bg-white text-[10px] font-extrabold text-ink-700 hover:text-tangerine-600">🔊 Read</button>
                   ${hasTimerMatch ? `
                     <button type="button" onclick="startTimerForStep(this.dataset.step, ${idx + 1})" data-step="${escapeHtml(scaledStep)}" class="px-2.5 py-1 rounded-full bg-tangerine-500 text-white text-[10px] font-extrabold shadow-xs">⏱ ${hasTimerMatch[0]}</button>
-                    <button type="button" onclick="startNativeTimerForStep(this.dataset.step, ${idx + 1})" data-step="${escapeHtml(scaledStep)}" class="px-2 py-1 rounded-full bg-ink-900 text-white text-[10px] font-extrabold" title="Open in Phone Clock App">📱</button>
+                    <button type="button" onclick="startNativeTimerForStep(this.dataset.step, ${idx + 1})" data-step="${escapeHtml(scaledStep)}" class="px-2.5 py-1 rounded-full bg-ink-900 text-white text-[10px] font-extrabold inline-flex items-center gap-1" title="Open in Android or iOS Clock App">
+                      <svg class="w-3 h-3 text-tangerine-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 3L2 6M22 6l-3-3"/>
+                        <circle cx="12" cy="13" r="8"/>
+                        <path d="M12 9v4l2.5 2"/>
+                      </svg>
+                      <span>Clock</span>
+                    </button>
                   ` : ''}
                 </div>
               </div>
@@ -2890,112 +3145,140 @@
       const parsed = parseStepDurationSeconds(stepText);
       if (!parsed) return;
       requestTimerNotificationPermission();
-
       const now = Date.now();
-      const newTimerObj = {
+      const label = `Step ${stepNum} (${parsed.labelText})`;
+
+      activeTimers.push({
         id: now,
-        label: `Step ${stepNum} Timer`,
+        label,
         remaining: parsed.totalSecs,
         total: parsed.totalSecs,
         running: true,
         endTime: now + parsed.totalSecs * 1000
+      });
+
+      activePopupTimer = {
+        id: now,
+        remaining: parsed.totalSecs,
+        total: parsed.totalSecs,
+        running: true,
+        label,
+        endTime: now + parsed.totalSecs * 1000
       };
-      activeTimers.push(newTimerObj);
+
+      const popup = document.getElementById('cooking-timer-popup');
+      if (popup) popup.classList.remove('hidden');
+      saveTimersState();
+      updatePopupTimerUI();
       renderActiveTimers();
       startTimerIntervalIfNeeded();
       updateScreenWakeLock();
-
-      activePopupTimer = newTimerObj;
-      showCookingPopupTimer();
-
-      showToast(`⏱ Started sleep-safe timer for Step ${stepNum} (${parsed.labelText})!`);
+      showToast(`⏱ Started ${parsed.labelText} timer for Step ${stepNum}!`);
     }
 
     function startNativeTimerForStep(stepText, stepNum) {
       const parsed = parseStepDurationSeconds(stepText);
       if (!parsed) return;
-      openBuiltInPhoneTimer(parsed.totalSecs, `Step ${stepNum} Timer`);
+      openBuiltInPhoneTimer(parsed.totalSecs, `Step ${stepNum} • ${parsed.labelText}`);
     }
 
-    function showCookingPopupTimer() {
-      const pop = document.getElementById('cooking-timer-popup');
-      if (pop) {
-        const m = Math.floor(activePopupTimer.remaining / 60);
-        const s = activePopupTimer.remaining % 60;
-        document.getElementById('popup-timer-countdown').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-        document.getElementById('popup-timer-label').textContent = activePopupTimer.label;
-        document.getElementById('popup-stop-alarm-btn')?.classList.toggle('hidden', !timerAlarmPlayingUntil);
-        pop.classList.remove('hidden');
-      }
-    }
-
-    function closePopupTimer() {
-      const pop = document.getElementById('cooking-timer-popup');
-      if (pop) pop.classList.add('hidden');
-      activePopupTimer.running = false;
-      activePopupTimer.endTime = null;
-      updateScreenWakeLock();
-    }
-
-    function pausePopupTimer() {
-      if (activePopupTimer.running) {
-        activePopupTimer.remaining = Math.max(0, Math.ceil((activePopupTimer.endTime - Date.now()) / 1000));
-        activePopupTimer.running = false;
-        activePopupTimer.endTime = null;
-      } else {
-        activePopupTimer.running = true;
-        activePopupTimer.endTime = Date.now() + activePopupTimer.remaining * 1000;
-      }
-      const btn = document.getElementById('popup-pause-btn');
-      if (btn) btn.textContent = activePopupTimer.running ? 'Pause' : 'Resume';
-      updateScreenWakeLock();
-    }
-
-    function updatePopupTimerDisplay() {
-      const pop = document.getElementById('cooking-timer-popup');
-      if (!pop || !activePopupTimer.running) return;
-      if (activePopupTimer.remaining >= 0) {
-        const m = Math.floor(activePopupTimer.remaining / 60);
-        const s = activePopupTimer.remaining % 60;
-        document.getElementById('popup-timer-countdown').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-        document.getElementById('popup-timer-label').textContent = activePopupTimer.label;
-        if (activePopupTimer.remaining === 0) {
-          activePopupTimer.running = false;
-          activePopupTimer.endTime = null;
-          playTimerAlarm();
-          document.getElementById('popup-stop-alarm-btn')?.classList.remove('hidden');
-          showToast(`⏰ Step Timer Finished!`);
-        }
-      }
-    }
-
-    function openFocusMode() {
+    function openFocusMode(startStepIndex = null) {
       const r = recipes.find(x => x.id === activeRecipeId);
       if (!r || !r.steps || r.steps.length === 0) return;
       currentFocusSteps = r.steps.map(step => formatScaledStepText(step, currentScale));
-      currentFocusIndex = 0;
+
+      if (typeof startStepIndex === 'number' && startStepIndex >= 0 && startStepIndex < currentFocusSteps.length) {
+        currentFocusIndex = startStepIndex;
+      } else if (activeCookingSession && activeCookingSession.recipeId === r.id) {
+        currentFocusIndex = Math.max(0, Math.min(currentFocusSteps.length - 1, activeCookingSession.stepIndex || 0));
+      } else {
+        currentFocusIndex = 0;
+      }
+
       document.getElementById('focus-recipe-title').textContent = r.title;
       const scaleBadge = document.getElementById('focus-scale-badge');
       if (scaleBadge) scaleBadge.textContent = currentScale.toFixed(1) + '×';
       updateFocusChatBadge();
+      renderCookingIngredientsChecklist(r);
       updateFocusCard();
 
       if (!isHandlingPopstate) {
-        try { history.pushState({ steilView: 'focus', recipeId: r.id }, '', ''); } catch (e) {}
+        try { history.pushState({ steilView: 'cooking', recipeId: r.id }, '', ''); } catch (e) {}
       }
 
-      document.getElementById('focus-mode-modal').classList.remove('hidden');
+      [
+        'view-home',
+        'view-all-recipes',
+        'view-meal-planner',
+        'view-import-web',
+        'view-timers',
+        'view-detail'
+      ].forEach(id => document.getElementById(id)?.classList.add('hidden'));
+      document.getElementById('view-cooking')?.classList.remove('hidden');
+
+      persistActiveCookingSession(r.id);
       updateScreenWakeLock();
+      window.scrollTo(0, 0);
     }
 
     function closeFocusMode() {
-      requestCloseFocusMode();
+      returnFromCookingToRecipe();
+    }
+
+    function renderCookingIngredientsChecklist(r) {
+      const list = document.getElementById('cooking-mode-ingredients');
+      const pill = document.getElementById('cooking-ing-progress-pill');
+      if (!list || !r) return;
+      const checkedSet = checkedIngredientsByRecipe[r.id] || new Set();
+      const total = (r.ingredients || []).length;
+      if (pill) pill.textContent = `${checkedSet.size}/${total}`;
+
+      list.innerHTML = (r.ingredients || []).map((i, idx) => {
+        const amount = getIngredientAmount(i);
+        const amountDisplay = amount === null
+          ? escapeHtml(`${i.amount || ''} ${i.unit || ''}`.trim())
+          : `${formatIngredientAmount(amount * currentScale)} ${escapeHtml(i.unit || '')}`.trim();
+        const isChecked = checkedSet.has(idx);
+        return `
+          <li class="flex items-center justify-between py-1.5 border-b border-peach-soft last:border-b-0">
+            <label class="flex items-center gap-2.5 cursor-pointer flex-1 min-w-0">
+              <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleIngredientCheck(${idx}, this.checked)" class="w-4 h-4 rounded text-tangerine-500 accent-tangerine-500 shrink-0" />
+              <span class="font-bold text-ink-900 truncate ${isChecked ? 'line-through opacity-55' : ''}">${escapeHtml(i.name)}</span>
+            </label>
+            <span class="font-mono text-[10px] font-extrabold text-tangerine-600 bg-peach-soft px-2 py-0.5 rounded-full shrink-0 ml-2">${amountDisplay}</span>
+          </li>
+        `;
+      }).join('');
     }
 
     function updateFocusCard() {
       const stepText = currentFocusSteps[currentFocusIndex] || '';
       document.getElementById('focus-step-number').textContent = `Step ${currentFocusIndex + 1} of ${currentFocusSteps.length}`;
       document.getElementById('focus-step-text').textContent = stepText;
+
+      const checkedStepSet = checkedStepsByRecipe[activeRecipeId] || new Set();
+      const stepCheckbox = document.getElementById('cooking-current-step-checkbox');
+      if (stepCheckbox) stepCheckbox.checked = checkedStepSet.has(currentFocusIndex);
+
+      const nextBtn = document.getElementById('cooking-next-step-btn');
+      if (nextBtn) {
+        nextBtn.textContent = currentFocusIndex === currentFocusSteps.length - 1 ? 'Finish Recipe 🎉' : 'Next Step →';
+      }
+
+      const dots = document.getElementById('cooking-step-dots');
+      if (dots) {
+        dots.innerHTML = currentFocusSteps.map((_, idx) => {
+          const isCurrent = idx === currentFocusIndex;
+          const isDone = checkedStepSet.has(idx);
+          const classes = isCurrent
+            ? 'w-6 h-2 rounded-full bg-tangerine-500'
+            : isDone
+              ? 'w-2 h-2 rounded-full bg-emerald-400'
+              : 'w-2 h-2 rounded-full bg-white/25';
+          return `<button type="button" onclick="jumpToCookingStep(${idx})" class="${classes} transition-all" aria-label="Go to step ${idx + 1}"></button>`;
+        }).join('');
+      }
+
       const timerAction = document.getElementById('focus-timer-action');
       const hasTimer = stepText.match(/(\d+)\s*(mins?|minutes?|secs?|seconds?)/i);
       if (hasTimer) {
@@ -3006,13 +3289,22 @@
       }
     }
 
+    function jumpToCookingStep(idx) {
+      if (idx < 0 || idx >= currentFocusSteps.length) return;
+      currentFocusIndex = idx;
+      updateFocusCard();
+      persistActiveCookingSession();
+    }
+
     function nextFocusStep() {
+      toggleStepCheck(currentFocusIndex, true);
       if (currentFocusIndex < currentFocusSteps.length - 1) {
         currentFocusIndex++;
         updateFocusCard();
+        persistActiveCookingSession();
       } else {
         showToast('🎉 Recipe completed!');
-        requestCloseFocusMode();
+        endActiveCookingSession(true);
       }
     }
 
@@ -3020,6 +3312,7 @@
       if (currentFocusIndex > 0) {
         currentFocusIndex--;
         updateFocusCard();
+        persistActiveCookingSession();
       }
     }
 
@@ -3247,6 +3540,9 @@
       if (r) {
         renderDetailIngredientsAndSteps(r);
         renderRecipeNutrition(r);
+        if (activeCookingSession && activeCookingSession.recipeId === r.id) {
+          persistActiveCookingSession(r.id);
+        }
       }
     }
 
@@ -3258,6 +3554,9 @@
       if (r) {
         renderDetailIngredientsAndSteps(r);
         renderRecipeNutrition(r);
+        if (activeCookingSession && activeCookingSession.recipeId === r.id) {
+          persistActiveCookingSession(r.id);
+        }
       }
     }
 
@@ -3306,6 +3605,9 @@
       updateScalePresetHighlight();
       renderDetailIngredientsAndSteps(r);
       renderRecipeNutrition(r);
+      if (activeCookingSession && activeCookingSession.recipeId === r.id) {
+        persistActiveCookingSession(r.id);
+      }
       closeCustomIngredientScale();
       showToast(`Ingredients & steps scaled to ${currentScale.toFixed(2)}×!`);
     }
@@ -3394,275 +3696,49 @@
           { frequency: 880, offset: 0.78 },
           { frequency: 660, offset: 1.06 }
         ];
-        const scheduleBurst = () => {
-          const baseTime = audio.currentTime + 0.02;
-          pattern.forEach(note => {
-            const tone = audio.createOscillator();
-            const volume = audio.createGain();
-            tone.type = 'sine';
-            tone.frequency.setValueAtTime(note.frequency, baseTime + note.offset);
-            volume.gain.setValueAtTime(0.0001, baseTime + note.offset);
-            volume.gain.exponentialRampToValueAtTime(0.11, baseTime + note.offset + 0.025);
-            volume.gain.exponentialRampToValueAtTime(0.0001, baseTime + note.offset + 0.24);
-            tone.connect(volume);
-            volume.connect(audio.destination);
-            tone.start(baseTime + note.offset);
-            tone.stop(baseTime + note.offset + 0.25);
-            timerAlarmNodes.push(tone);
-          });
-        };
-        timerAlarmPlayingUntil = Date.now() + 60000;
-        scheduleBurst();
+        const playPattern = () => pattern.forEach(note => {
+          const tone = audio.createOscillator();
+          const volume = audio.createGain();
+          const noteStart = audio.currentTime + 0.02 + note.offset;
+          tone.type = 'sine';
+          tone.frequency.setValueAtTime(note.frequency, noteStart);
+          volume.gain.setValueAtTime(0.0001, noteStart);
+          volume.gain.exponentialRampToValueAtTime(0.24, noteStart + 0.03);
+          volume.gain.exponentialRampToValueAtTime(0.0001, noteStart + 0.25);
+          tone.connect(volume);
+          volume.connect(audio.destination);
+          tone.start(noteStart);
+          tone.stop(noteStart + 0.27);
+          timerAlarmNodes.push(tone);
+        });
+        timerAlarmPlayingUntil = Date.now() + 10000;
+        playPattern();
         timerAlarmRepeatInterval = setInterval(() => {
           if (Date.now() >= timerAlarmPlayingUntil) {
             stopTimerAlarm();
             renderActiveTimers();
             return;
           }
-          scheduleBurst();
-        }, 1650);
-      } catch (error) {
-        timerAlarmPlayingUntil = 0;
-      }
+          playPattern();
+        }, 1600);
+        if (navigator.vibrate) navigator.vibrate([300, 150, 300, 150, 300]);
+      } catch (error) {}
     }
 
     function stopTimerAlarm() {
+      timerAlarmPlayingUntil = 0;
       clearInterval(timerAlarmRepeatInterval);
       timerAlarmRepeatInterval = null;
-      timerAlarmPlayingUntil = 0;
-      timerAlarmNodes.forEach(node => {
-        try { node.stop(); } catch (error) {}
-      });
+      timerAlarmNodes.forEach(node => { try { node.stop(); } catch (error) {} });
       timerAlarmNodes = [];
       document.getElementById('popup-stop-alarm-btn')?.classList.add('hidden');
+      if (navigator.vibrate) navigator.vibrate(0);
     }
 
-    const DIAL_CIRCUMFERENCE = 578.05;
-
-    function renderTimerDialRing(remaining, total) {
-      const progressCircle = document.getElementById('timer-ring-progress');
-      const knob = document.getElementById('timer-ring-knob');
-      if (!progressCircle || !knob) return;
-      const safeTotal = Math.max(1, total);
-      const progress = Math.max(0, Math.min(1, remaining / safeTotal));
-      progressCircle.style.strokeDashoffset = (DIAL_CIRCUMFERENCE * (1 - progress)).toFixed(2);
-      if (total > 0) {
-        const angle = progress * Math.PI * 2 - Math.PI / 2;
-        knob.style.left = `${(50 + 38.33 * Math.cos(angle)).toFixed(2)}%`;
-        knob.style.top = `${(50 + 38.33 * Math.sin(angle)).toFixed(2)}%`;
-        knob.style.transform = 'translate(-50%, -50%)';
-        knob.classList.remove('opacity-0');
-      } else {
-        knob.classList.add('opacity-0');
-      }
-    }
-
-    function getPrimaryTimer() {
-      return activeTimers.find(timer => timer.running) || activeTimers[activeTimers.length - 1] || null;
-    }
-
-    function updateTimerDial(primaryTimer) {
-      const readout = document.getElementById('hero-dial-readout');
-      const subtitle = document.getElementById('hero-dial-sub');
-      const toggle = document.getElementById('timer-dial-toggle');
-      if (!readout || !subtitle) return;
-      if (primaryTimer) {
-        const mins = Math.floor(primaryTimer.remaining / 60);
-        const secs = primaryTimer.remaining % 60;
-        readout.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        subtitle.textContent = primaryTimer.label || 'Kitchen Timer';
-        renderTimerDialRing(primaryTimer.remaining, primaryTimer.total || primaryTimer.remaining);
-        if (toggle) {
-          toggle.classList.remove('hidden');
-          toggle.textContent = primaryTimer.running ? 'Ⅱ' : '▶';
-          const label = primaryTimer.running ? 'Pause kitchen timer' : 'Resume kitchen timer';
-          toggle.setAttribute('aria-label', label);
-          toggle.title = label;
-        }
-        return;
-      }
-      const mins = Math.max(0, parseInt(document.getElementById('new-timer-mins')?.value) || 0);
-      const secs = Math.max(0, Math.min(59, parseInt(document.getElementById('new-timer-secs')?.value) || 0));
-      const total = mins * 60 + secs;
-      const customLabel = document.getElementById('new-timer-label')?.value.trim();
-      readout.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-      subtitle.textContent = customLabel || 'Kitchen Timer';
-      renderTimerDialRing(total, total);
-      toggle?.classList.add('hidden');
-    }
-
-    function syncHeroDialPreview() {
-      if (!getPrimaryTimer()) updateTimerDial(null);
-    }
-
-    function setTimerPreset(mins, secs) {
-      const minsInput = document.getElementById('new-timer-mins');
-      const secsInput = document.getElementById('new-timer-secs');
-      if (minsInput) minsInput.value = mins;
-      if (secsInput) secsInput.value = secs;
-      syncHeroDialPreview();
-    }
-
-    function togglePrimaryTimer() {
-      const primary = getPrimaryTimer();
-      if (primary) toggleTimerRun(primary.id);
-    }
-
-    function createNewIndependentTimer() {
-      const label = document.getElementById('new-timer-label').value.trim() || 'Kitchen Timer';
-      const mins = parseInt(document.getElementById('new-timer-mins').value) || 0;
-      const secs = parseInt(document.getElementById('new-timer-secs').value) || 0;
-      const totalSecs = (mins * 60) + secs;
-      if (totalSecs <= 0) {
-        showToast('Enter minutes or seconds!');
-        return;
-      }
-      requestTimerNotificationPermission();
-      const now = Date.now();
-      activeTimers.push({
-        id: now,
-        label,
-        remaining: totalSecs,
-        total: totalSecs,
-        running: true,
-        endTime: now + totalSecs * 1000
-      });
-      renderActiveTimers();
-      startTimerIntervalIfNeeded();
-      updateScreenWakeLock();
-      showToast(`Started sleep-safe timer: ${label}`);
-    }
-
-    function startTimerIntervalIfNeeded() {
-      if (timerInterval) return;
-      timerInterval = setInterval(() => {
-        syncAllTimersWithClock();
-      }, 500);
-    }
-
-    function toggleTimerRun(id) {
-      const t = activeTimers.find(x => x.id === id);
-      if (t) {
-        if (t.running) {
-          t.remaining = Math.max(0, Math.ceil((t.endTime - Date.now()) / 1000));
-          t.running = false;
-          t.endTime = null;
-        } else {
-          t.running = true;
-          t.endTime = Date.now() + t.remaining * 1000;
-        }
-        renderActiveTimers();
-        startTimerIntervalIfNeeded();
-        updateScreenWakeLock();
-      }
-    }
-
-    function deleteTimer(id) {
-      activeTimers = activeTimers.filter(x => x.id !== id);
-      if (activeTimers.every(t => t.remaining > 0)) stopTimerAlarm();
-      renderActiveTimers();
-      updateScreenWakeLock();
-    }
-
-    function clearAllTimers() {
-      activeTimers = [];
-      stopTimerAlarm();
-      renderActiveTimers();
-      updateScreenWakeLock();
-      showToast('All timers cleared');
-    }
-
-    function renderActiveTimers() {
-      const cont = document.getElementById('timers-active-container');
-      const primaryTimer = getPrimaryTimer();
-      updateTimerDial(primaryTimer);
-      if (!cont) return;
-      if (activeTimers.length === 0) {
-        cont.innerHTML = '<div class="p-6 rounded-[24px] bg-peach-soft text-center text-xs text-ink-400 font-bold">No active timers. Start one above!</div>';
-        return;
-      }
-      cont.innerHTML = activeTimers.map(t => {
-        const m = Math.floor(t.remaining / 60);
-        const s = t.remaining % 60;
-        return `
-          <div class="p-4 rounded-[22px] bg-white border border-peach-card flex items-center justify-between shadow-card-clean">
-            <div>
-              <p class="font-extrabold text-xs text-ink-900">${escapeHtml(t.label)}</p>
-              <p class="font-mono text-xl font-extrabold text-tangerine-600 mt-0.5">${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}</p>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <button type="button" onclick="openBuiltInPhoneTimer(${t.remaining || t.total || 60}, this.dataset.label)" data-label="${escapeHtml(t.label)}" class="px-2.5 py-2 rounded-full bg-ink-900 text-white text-[10px] font-extrabold" title="Open in Phone Clock App">📱</button>
-              ${t.remaining === 0 && timerAlarmPlayingUntil ? `<button type="button" onclick="stopTimerAlarm(); renderActiveTimers()" class="px-3.5 py-2 rounded-full bg-tangerine-500 text-white text-xs font-extrabold">Stop Alarm</button>` : ''}
-              <button type="button" onclick="toggleTimerRun(${t.id})" class="px-3.5 py-2 rounded-full bg-peach-soft text-xs font-extrabold text-ink-900">${t.running ? 'Pause' : 'Resume'}</button>
-              <button type="button" onclick="deleteTimer(${t.id})" class="w-8 h-8 rounded-full bg-rose-50 text-rose-500 text-xs font-bold flex items-center justify-center">✕</button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function handleHomeSearch(query) {
-      const q = query.trim().toLowerCase();
-      const resDiv = document.getElementById('home-search-results');
-      if (!q) {
-        resDiv.classList.add('hidden');
-        resDiv.innerHTML = '';
-        return;
-      }
-      const matches = recipes.filter(r =>
-        r.title.toLowerCase().includes(q) ||
-        r.category.toLowerCase().includes(q) ||
-        r.ingredients.some(i => i.name.toLowerCase().includes(q))
-      );
-      resDiv.classList.remove('hidden');
-      if (matches.length === 0) {
-        resDiv.innerHTML = `<div class="p-4 rounded-2xl bg-peach-soft text-xs text-ink-400 font-bold">No matching recipes found.</div>`;
-        return;
-      }
-      resDiv.innerHTML = matches.map(r => `
-        <div onclick="openRecipeDetail('${r.id}')" class="p-3 rounded-2xl bg-peach-soft flex items-center justify-between cursor-pointer hover:bg-peach-card transition">
-          <div>
-            <p class="font-extrabold text-xs text-ink-900">${r.title}</p>
-            <p class="text-[10px] text-ink-400 font-bold">${r.category} • ${r.prepTime}</p>
-          </div>
-          <span class="text-xs font-extrabold text-tangerine-500">Open →</span>
-        </div>
-      `).join('');
-    }
-
-    function runFridgeMatch() {
-      const input = document.getElementById('fridge-input').value.trim().toLowerCase();
-      const resultsDiv = document.getElementById('fridge-results');
-      if (!input) {
-        showToast('Enter some ingredients first!');
-        return;
-      }
-      const userItems = input.split(',').map(s => s.trim()).filter(Boolean);
-      const scored = recipes.map(r => {
-        const ingNames = r.ingredients.map(i => i.name.toLowerCase()).join(' ');
-        let matchCount = 0;
-        userItems.forEach(item => {
-          if (ingNames.includes(item)) matchCount++;
-        });
-        return { recipe: r, matchCount, total: r.ingredients.length };
-      }).filter(x => x.matchCount > 0).sort((a, b) => b.matchCount - a.matchCount);
-
-      if (scored.length === 0) {
-        resultsDiv.innerHTML = `<div class="p-3 rounded-xl bg-peach-soft text-xs text-ink-600 font-bold">No exact matches found. Try AI Chef Generator!</div>`;
-        return;
-      }
-      resultsDiv.innerHTML = scored.slice(0, 3).map(s => `
-        <div onclick="openRecipeDetail('${s.recipe.id}')" class="p-3 rounded-xl bg-peach-soft flex items-center justify-between cursor-pointer hover:bg-peach-card transition">
-          <div>
-            <p class="font-extrabold text-xs text-ink-900">${s.recipe.title}</p>
-            <p class="text-[10px] text-tangerine-600 font-bold">Matched ${s.matchCount} of ${s.total} ingredients</p>
-          </div>
-          <span class="text-xs font-extrabold text-tangerine-600">Cook →</span>
-        </div>
-      `).join('');
-    }
-
-    function saveAiChefHistoryStorage() {
+    // =========================================================================
+    // 7. PERSISTENT AI CHEF CHAT HISTORY IN COOKING MODE
+    // =========================================================================
+    function saveAiChefHistory() {
       try {
         localStorage.setItem(AI_CHEF_HISTORY_KEY, JSON.stringify(aiChefHistory));
       } catch (e) {}
@@ -3673,504 +3749,758 @@
       if (!badge) return;
       const msgs = aiChefHistory[activeRecipeId] || [];
       if (msgs.length > 0) {
-        badge.textContent = String(msgs.length);
+        badge.textContent = msgs.length;
         badge.classList.remove('hidden');
       } else {
         badge.classList.add('hidden');
       }
     }
 
-    function renderAiChefHistoryThread() {
+    function renderAiChefChatHistory() {
       const thread = document.getElementById('ai-chef-history-thread');
       if (!thread) return;
+      const r = recipes.find(x => x.id === activeRecipeId);
+      const sub = document.getElementById('ai-chef-recipe-subtitle');
+      if (sub) sub.textContent = r ? `${r.title} • Saved Thread` : 'Cooking Assistant';
+
       const msgs = aiChefHistory[activeRecipeId] || [];
+      updateFocusChatBadge();
+
       if (msgs.length === 0) {
         thread.innerHTML = `<p class="text-[11px] text-ink-400 font-medium text-center py-6">Ask about substitutions, doneness, or this cooking step. Your chat history for this recipe stays saved here.</p>`;
         return;
       }
+
       thread.innerHTML = msgs.map(m => {
-        const isUser = m.role === 'user';
+        if (m.role === 'user') {
+          return `
+            <div class="flex justify-end">
+              <div class="max-w-[85%] px-3.5 py-2.5 rounded-2xl rounded-br-xs bg-tangerine-500 text-white font-semibold text-[11px] leading-relaxed shadow-xs">
+                ${escapeHtml(m.text)}
+              </div>
+            </div>
+          `;
+        }
         return `
-          <div class="flex flex-col ${isUser ? 'items-end' : 'items-start'}">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-ink-400 mb-0.5 px-1">${isUser ? 'You' : '✦ AI Chef'}</span>
-            <div class="max-w-[88%] px-3.5 py-2.5 rounded-2xl leading-relaxed whitespace-pre-line ${isUser ? 'bg-tangerine-500 text-white font-semibold' : 'bg-white border border-peach-card text-ink-900 font-medium shadow-2xs'}">
+          <div class="flex justify-start">
+            <div class="max-w-[90%] px-3.5 py-2.5 rounded-2xl rounded-bl-xs bg-white text-ink-900 font-medium text-[11px] leading-relaxed border border-peach-card shadow-xs">
+              <span class="block text-[9px] font-extrabold text-tangerine-600 uppercase tracking-wider mb-0.5">✦ AI Chef</span>
               ${escapeHtml(m.text)}
             </div>
           </div>
         `;
       }).join('');
+
       thread.scrollTop = thread.scrollHeight;
     }
 
     function clearAiChefChatHistory() {
       if (!activeRecipeId) return;
       aiChefHistory[activeRecipeId] = [];
-      saveAiChefHistoryStorage();
-      renderAiChefHistoryThread();
-      updateFocusChatBadge();
-      showToast('AI Chef chat history cleared');
+      saveAiChefHistory();
+      renderAiChefChatHistory();
+      showToast('AI Chef chat history cleared for this recipe');
     }
 
     function openAiChefHelp() {
-      const r = recipes.find(x => x.id === activeRecipeId);
-      const sub = document.getElementById('ai-chef-recipe-subtitle');
-      if (sub) {
-        sub.textContent = r ? `${r.title} (${currentScale.toFixed(1)}×)` : 'Recipe Chat History';
-      }
       document.getElementById('ai-chef-modal').classList.remove('hidden');
-      renderAiChefHistoryThread();
+      renderAiChefChatHistory();
     }
 
     async function submitAiChefHelp() {
       const promptInput = document.getElementById('ai-chef-prompt');
-      const promptText = promptInput.value.trim();
-      const submitBtn = document.getElementById('ai-chef-submit-btn');
-      if (!promptText) {
-        showToast('Enter a cooking question first!');
-        return;
-      }
+      const prompt = promptInput.value.trim();
+      if (!prompt) { showToast('Type a question first!'); return; }
+
       const r = recipes.find(x => x.id === activeRecipeId);
-      const key = activeRecipeId || 'general';
-      if (!aiChefHistory[key]) aiChefHistory[key] = [];
+      const recipeKey = activeRecipeId || 'general';
+      if (!aiChefHistory[recipeKey]) aiChefHistory[recipeKey] = [];
 
-      aiChefHistory[key].push({ role: 'user', text: promptText, ts: Date.now() });
-      saveAiChefHistoryStorage();
+      // Append user message immediately and persist
+      aiChefHistory[recipeKey].push({ role: 'user', text: prompt, ts: Date.now() });
+      saveAiChefHistory();
       promptInput.value = '';
-      renderAiChefHistoryThread();
-      updateFocusChatBadge();
+      renderAiChefChatHistory();
 
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'AI Chef is thinking...';
+      const submitBtn = document.getElementById('ai-chef-submit-btn');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'AI Chef is thinking...'; }
+
+      const thread = document.getElementById('ai-chef-history-thread');
+      if (thread) {
+        thread.insertAdjacentHTML('beforeend', `<div id="ai-chef-typing" class="text-[11px] font-bold text-tangerine-600 px-2 py-1">✦ AI Chef is typing...</div>`);
+        thread.scrollTop = thread.scrollHeight;
       }
-
-      const focusModalOpen = !document.getElementById('focus-mode-modal')?.classList.contains('hidden');
-      const currentStepContext = focusModalOpen && currentFocusSteps[currentFocusIndex]
-        ? `Currently in Focus Cooking Mode on Step ${currentFocusIndex + 1} of ${currentFocusSteps.length}: "${currentFocusSteps[currentFocusIndex]}".`
-        : '';
-      const recentChat = aiChefHistory[key].slice(-6).map(m => `${m.role === 'user' ? 'User' : 'Chef'}: ${m.text}`).join('\n');
 
       try {
-        const reply = await callGeminiTextWithFallback([{
-          text: `You are an expert Filipino & international culinary AI assistant inside Steil Recipe. Active recipe: "${r ? r.title : 'General dish'}" scaled to ${currentScale.toFixed(1)}x. ${currentStepContext} Keep answers concise, clear, and practical for someone actively cooking.\n\nRecent conversation:\n${recentChat}\n\nRespond to the user's latest question.`
-        }]);
-        aiChefHistory[key].push({ role: 'ai', text: reply, ts: Date.now() });
-        saveAiChefHistoryStorage();
-        renderAiChefHistoryThread();
-        updateFocusChatBadge();
-      } catch (e) {
-        aiChefHistory[key].push({ role: 'ai', text: `⚠️ ${e.message}`, ts: Date.now() });
-        saveAiChefHistoryStorage();
-        renderAiChefHistoryThread();
+        const recentHistory = aiChefHistory[recipeKey].slice(-6).map(m => `${m.role === 'user' ? 'Cook' : 'Chef'}: ${m.text}`).join('\n');
+        const focusOpen = !document.getElementById('focus-mode-modal')?.classList.contains('hidden');
+        const currentStepContext = focusOpen && currentFocusSteps[currentFocusIndex]
+          ? `Currently on Step ${currentFocusIndex + 1} of ${currentFocusSteps.length}: "${currentFocusSteps[currentFocusIndex]}".`
+          : '';
+        const fullPrompt = `You are a concise, practical culinary chef assistant helping a home cook mid-recipe.
+Recipe: "${r ? r.title : 'General Dish'}" (Batch Scale: ${currentScale}x).
+Ingredients: ${r ? r.ingredients.map(i => `${formatIngredientAmount(i.amount * currentScale)} ${i.unit} ${i.name}`).join(', ') : 'N/A'}.
+${currentStepContext}
+Recent Conversation:
+${recentHistory}
+Respond clearly in 2-4 helpful sentences.`;
+
+        const reply = await callGeminiTextWithFallback([{ text: fullPrompt }]);
+        aiChefHistory[recipeKey].push({ role: 'assistant', text: reply, ts: Date.now() });
+        saveAiChefHistory();
+        renderAiChefChatHistory();
+      } catch (err) {
+        document.getElementById('ai-chef-typing')?.remove();
+        showToast('AI Chef error: ' + err.message);
       } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send to AI Chef ✦';
-        }
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to AI Chef ✦'; }
       }
     }
 
-    function openConfirmRecipeModal(parsedData) {
-      pendingImportRecipe = parsedData;
-      document.getElementById('confirm-recipe-title').value = parsedData.title || 'New Recipe';
-      document.getElementById('confirm-recipe-cat').value = ['Main', 'Quick', 'Dessert'].includes(parsedData.category) ? parsedData.category : 'Main';
-      document.getElementById('confirm-recipe-prep').value = parsedData.prepTime || '30 mins';
-      document.getElementById('confirm-recipe-desc').value = parsedData.description || '';
-      const ingCount = (parsedData.ingredients || []).length;
-      const stepCount = (parsedData.steps || []).length;
-      const sourceLabel = parsedData.sourceUrl ? ` from ${new URL(parsedData.sourceUrl).hostname}` : '';
-      document.getElementById('confirm-recipe-ing-count').textContent = `${ingCount} ingredients • ${stepCount} cooking steps extracted${sourceLabel}`;
+    function handleHomeSearch(q) {
+      const box = document.getElementById('home-search-results');
+      const query = q.trim().toLowerCase();
+      if (!query) {
+        box.classList.add('hidden');
+        return;
+      }
+      const matches = recipes.filter(r =>
+        r.title.toLowerCase().includes(query) ||
+        r.category.toLowerCase().includes(query) ||
+        r.ingredients.some(i => i.name.toLowerCase().includes(query))
+      );
+      box.classList.remove('hidden');
+      if (matches.length === 0) {
+        box.innerHTML = `<p class="text-xs text-ink-400 font-bold px-2">No matches found for "${q}".</p>`;
+        return;
+      }
+      box.innerHTML = matches.map(r => `
+        <div onclick="openRecipeDetail('${r.id}')" class="p-3 rounded-2xl bg-white border border-peach-card flex items-center justify-between cursor-pointer hover:border-tangerine-500 transition shadow-xs">
+          <div>
+            <p class="font-extrabold text-xs text-ink-900">${r.title}</p>
+            <p class="text-[10px] text-ink-400 font-bold">${r.category} • ${r.prepTime}</p>
+          </div>
+          <span class="text-xs font-extrabold text-tangerine-500">Open →</span>
+        </div>
+      `).join('');
+    }
+
+    function runFridgeMatch() {
+      const raw = document.getElementById('fridge-input').value.trim().toLowerCase();
+      const box = document.getElementById('fridge-results');
+      if (!raw) { showToast('Enter at least one ingredient!'); return; }
+      const terms = raw.split(',').map(s => s.trim()).filter(Boolean);
+      const scored = recipes.map(r => {
+        const ingText = r.ingredients.map(i => i.name.toLowerCase()).join(' ');
+        const hits = terms.filter(t => ingText.includes(t)).length;
+        return { recipe: r, hits };
+      }).filter(x => x.hits > 0).sort((a, b) => b.hits - a.hits);
+
+      if (scored.length === 0) {
+        box.innerHTML = `<p class="text-xs text-ink-400 font-bold">No exact matches found. Try broader terms like "chicken", "egg", or "garlic".</p>`;
+        return;
+      }
+      box.innerHTML = scored.slice(0, 3).map(x => `
+        <div onclick="openRecipeDetail('${x.recipe.id}')" class="p-3 rounded-2xl bg-peach-soft flex items-center justify-between cursor-pointer hover:bg-peach-card transition">
+          <div>
+            <p class="font-extrabold text-xs text-ink-900">${x.recipe.title}</p>
+            <p class="text-[10px] text-tangerine-600 font-extrabold">Matches ${x.hits} ingredient(s)</p>
+          </div>
+          <span class="text-xs font-extrabold text-tangerine-500">Cook →</span>
+        </div>
+      `).join('');
+    }
+
+    function setTimerPreset(mins, secs) {
+      document.getElementById('new-timer-mins').value = mins;
+      document.getElementById('new-timer-secs').value = secs;
+      syncHeroDialPreview();
+    }
+
+    function updateDialVisuals(remaining, total, running, label = 'Kitchen Timer') {
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      const readout = document.getElementById('hero-dial-readout');
+      const sub = document.getElementById('hero-dial-sub');
+      const progress = document.getElementById('timer-ring-progress');
+      const knob = document.getElementById('timer-ring-knob');
+      const toggle = document.getElementById('timer-dial-toggle');
+      if (readout) readout.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      if (sub) sub.textContent = label || 'Kitchen Timer';
+      if (progress) {
+        const circumference = 2 * Math.PI * 92;
+        const ratio = total > 0 ? Math.max(0, Math.min(1, remaining / total)) : 0;
+        progress.style.strokeDasharray = circumference.toFixed(2);
+        progress.style.strokeDashoffset = (circumference * (1 - ratio)).toFixed(2);
+        if (knob) {
+          if (ratio > 0) {
+            const angle = (-Math.PI / 2) + (2 * Math.PI * ratio);
+            const rPercent = (92 / 240) * 100;
+            knob.style.left = `calc(${(50 + rPercent * Math.cos(angle)).toFixed(2)}% - 0.625rem)`;
+            knob.style.top = `calc(${(50 + rPercent * Math.sin(angle)).toFixed(2)}% - 0.625rem)`;
+            knob.classList.remove('opacity-0');
+          } else {
+            knob.classList.add('opacity-0');
+          }
+        }
+      }
+      if (toggle) {
+        toggle.classList.toggle('hidden', !activeTimers[0]);
+        toggle.textContent = running ? 'Ⅱ' : '▶';
+        toggle.setAttribute('aria-label', running ? 'Pause kitchen timer' : 'Resume kitchen timer');
+        toggle.title = running ? 'Pause kitchen timer' : 'Resume kitchen timer';
+      }
+    }
+
+    function syncHeroDialPreview() {
+      const primary = activeTimers[0];
+      if (primary) {
+        updateDialVisuals(primary.remaining, primary.total, primary.running, primary.label);
+        return;
+      }
+      const mins = Math.max(0, parseInt(document.getElementById('new-timer-mins')?.value) || 0);
+      const secs = Math.max(0, Math.min(59, parseInt(document.getElementById('new-timer-secs')?.value) || 0));
+      const total = (mins * 60) + secs;
+      const label = document.getElementById('new-timer-label')?.value.trim() || 'Kitchen Timer';
+      updateDialVisuals(total, total, false, label);
+    }
+
+    function togglePrimaryTimer() {
+      if (activeTimers[0]) toggleTimer(activeTimers[0].id);
+    }
+
+    function createNewIndependentTimer() {
+      const label = document.getElementById('new-timer-label').value.trim() || 'Kitchen Timer';
+      const mins = parseInt(document.getElementById('new-timer-mins').value) || 0;
+      const secs = parseInt(document.getElementById('new-timer-secs').value) || 0;
+      const totalSecs = (mins * 60) + secs;
+      if (totalSecs <= 0) { showToast('Enter valid minutes or seconds!'); return; }
+
+      requestTimerNotificationPermission();
+      const now = Date.now();
+      activeTimers.push({
+        id: now,
+        label,
+        remaining: totalSecs,
+        total: totalSecs,
+        running: true,
+        endTime: now + totalSecs * 1000
+      });
+      document.getElementById('new-timer-label').value = '';
+      saveTimersState();
+      renderActiveTimers();
+      startTimerIntervalIfNeeded();
+      updateScreenWakeLock();
+      showToast(`Started sleep-safe "${label}" timer!`);
+    }
+
+    function startTimerIntervalIfNeeded() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        syncAllTimersWithClock();
+      }, 500);
+    }
+
+    function renderActiveTimers() {
+      const container = document.getElementById('timers-active-container');
+      if (!container) return;
+
+      syncHeroDialPreview();
+
+      if (activeTimers.length === 0) {
+        container.innerHTML = `<div class="p-6 rounded-[24px] bg-peach-soft text-center text-xs font-bold text-ink-400">No active timers. Start one above!</div>`;
+        return;
+      }
+      container.innerHTML = activeTimers.map(t => {
+        const m = Math.floor(t.remaining / 60);
+        const s = t.remaining % 60;
+        const pct = Math.max(0, Math.min(100, (t.remaining / t.total) * 100));
+        return `
+          <div class="p-4 rounded-[22px] bg-white border border-peach-card shadow-card-clean space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-extrabold text-sm text-ink-900 truncate">${t.label}</span>
+              <span class="font-mono font-extrabold text-xl text-tangerine-500 shrink-0">${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-peach-soft overflow-hidden">
+              <div class="h-full bg-tangerine-500 transition-all" style="width: ${pct}%"></div>
+            </div>
+            <div class="flex justify-end gap-2">
+              <button type="button" onclick="openBuiltInPhoneTimer(${t.remaining || t.total}, '${escapeHtml(t.label).replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-full bg-peach-soft text-xs font-extrabold text-ink-900 inline-flex items-center gap-1" title="Open in built-in Android or iOS Clock app">
+                <svg class="w-3.5 h-3.5 text-tangerine-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 3L2 6M22 6l-3-3"/>
+                  <circle cx="12" cy="13" r="8"/>
+                  <path d="M12 9v4l2.5 2"/>
+                </svg>
+                <span>Clock</span>
+              </button>
+              <button type="button" onclick="toggleTimer(${t.id})" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-xs font-extrabold text-ink-900">${t.running ? 'Pause' : 'Resume'}</button>
+              ${timerAlarmPlayingUntil ? `<button type="button" onclick="stopTimerAlarm(); renderActiveTimers()" class="px-3.5 py-1.5 rounded-full bg-tangerine-500 text-xs font-extrabold text-white">Stop Alarm</button>` : ''}
+              <button type="button" onclick="removeTimer(${t.id})" class="px-3.5 py-1.5 rounded-full bg-rose-50 text-xs font-extrabold text-rose-600">Delete</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleTimer(id) {
+      const t = activeTimers.find(x => x.id === id);
+      if (t) {
+        if (t.running) {
+          t.remaining = Math.max(0, Math.ceil((t.endTime - Date.now()) / 1000));
+          t.running = false;
+          t.endTime = null;
+        } else {
+          if (t.remaining <= 0) t.remaining = t.total;
+          t.running = true;
+          t.endTime = Date.now() + t.remaining * 1000;
+        }
+        saveTimersState();
+        renderActiveTimers();
+        updateScreenWakeLock();
+      }
+    }
+
+    function removeTimer(id) {
+      activeTimers = activeTimers.filter(x => x.id !== id);
+      saveTimersState();
+      renderActiveTimers();
+      updateScreenWakeLock();
+    }
+
+    function clearAllTimers() {
+      stopTimerAlarm();
+      activeTimers = [];
+      saveTimersState();
+      renderActiveTimers();
+      updateScreenWakeLock();
+      showToast('All timers cleared.');
+    }
+
+    function getGeminiCandidateModels() {
+      return ['gemini-2.5-flash', 'gemini-flash-latest', 'gemini-2.0-flash'];
+    }
+
+    function getGroqCandidateModels() {
+      return ['llama-3.3-70b-versatile', 'llama-3.1-8b-instant'];
+    }
+
+    function extractTextFromParts(parts) {
+      return (Array.isArray(parts) ? parts : [])
+        .map(part => typeof part?.text === 'string' ? part.text : '')
+        .filter(Boolean)
+        .join('\n\n');
+    }
+
+    async function callGroqFallback(parts, expectJson) {
+      const cleanGroqKey = (groqApiKey || DEFAULT_GROQ_API_KEY).trim().replace(/\\+$/, '');
+      if (!cleanGroqKey) {
+        throw new Error('No Groq backup API key configured. Add it in Menu -> Groq API Key.');
+      }
+      const promptText = extractTextFromParts(parts);
+      if (!promptText) {
+        throw new Error('Groq text backup cannot process image-only inputs.');
+      }
+
+      const groqModels = getGroqCandidateModels();
+      let lastGroqError = null;
+      for (const modelName of groqModels) {
+        try {
+          const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${cleanGroqKey}`
+            },
+            body: JSON.stringify({
+              model: modelName,
+              temperature: 0.25,
+              ...(expectJson ? { response_format: { type: 'json_object' } } : {}),
+              messages: [
+                {
+                  role: 'system',
+                  content: expectJson
+                    ? 'You are a culinary recipe parser and chef assistant. Always return strictly valid JSON matching the requested schema without markdown fences.'
+                    : 'You are a concise, practical culinary chef assistant helping a home cook.'
+                },
+                { role: 'user', content: promptText }
+              ]
+            })
+          });
+
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            const msg = data?.error?.message || `Groq HTTP ${response.status}`;
+            if (response.status === 401 || response.status === 403) {
+              throw new Error(`Groq API key invalid (${msg}).`);
+            }
+            lastGroqError = new Error(msg);
+            continue;
+          }
+
+          const rawText = data?.choices?.[0]?.message?.content;
+          if (!rawText) throw new Error('Groq returned an empty response.');
+          if (!expectJson) return rawText.trim();
+
+          const cleanedJson = rawText.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
+          return JSON.parse(cleanedJson);
+        } catch (err) {
+          lastGroqError = err;
+          if (String(err.message || '').includes('API key invalid')) throw err;
+        }
+      }
+      throw lastGroqError || new Error('All Groq backup models failed.');
+    }
+
+    async function callGeminiWithFallback(parts, expectJson) {
+      const cleanKey = (geminiApiKey || DEFAULT_API_KEY).trim().replace(/\\+$/, '');
+      const models = getGeminiCandidateModels();
+      let lastGeminiError = null;
+
+      for (const modelName of models) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(cleanKey)}`;
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts }],
+              ...(expectJson ? { generationConfig: { responseMimeType: 'application/json' } } : {})
+            })
+          });
+
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            const msg = data?.error?.message || `HTTP ${response.status}`;
+            lastGeminiError = new Error(`Gemini (${modelName}): ${msg}`);
+            continue;
+          }
+
+          const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (!rawText) {
+            lastGeminiError = new Error(`Gemini (${modelName}) returned an empty response.`);
+            continue;
+          }
+
+          if (!expectJson) return rawText.trim();
+          const cleanedJson = rawText.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
+          return JSON.parse(cleanedJson);
+        } catch (err) {
+          lastGeminiError = err;
+        }
+      }
+
+      if ((groqApiKey || '').trim()) {
+        try {
+          showToast('Gemini busy/unavailable — switching to Groq backup...');
+          return await callGroqFallback(parts, expectJson);
+        } catch (groqErr) {
+          throw new Error(`${lastGeminiError?.message || 'Gemini failed'} | Groq backup also failed: ${groqErr.message}`);
+        }
+      }
+
+      throw lastGeminiError || new Error('All Gemini models failed. Add a Groq backup key in Menu or check your Gemini API key.');
+    }
+
+    async function callGeminiJsonWithFallback(parts) {
+      return callGeminiWithFallback(parts, true);
+    }
+
+    async function callGeminiTextWithFallback(parts) {
+      return callGeminiWithFallback(parts, false);
+    }
+
+    async function runAiRecipeSuggestion() {
+      const dishQuery = document.getElementById('ai-suggest-dish-input').value.trim();
+      if (!dishQuery) {
+        showToast('Enter a dish idea or craving first!');
+        return;
+      }
+      const btn = document.getElementById('btn-run-ai-suggest');
+      const btnText = document.getElementById('btn-ai-suggest-text');
+      btn.disabled = true;
+      btnText.textContent = 'Chef AI is cooking up recipe...';
+
+      try {
+        const prompt = `Create a delicious, complete home-cooking recipe for: "${dishQuery}". Return strictly valid JSON with keys: title, category ("Main", "Quick", or "Dessert"), prepTime (e.g. "30 mins"), servings (number), description, ingredients (array of {amount: number, unit: string, name: string}), steps (array of clear step strings with explicit cooking times like "5 minutes" so timers can auto-detect them).`;
+        const parsed = await callGeminiJsonWithFallback([{ text: prompt }]);
+        openImportConfirmModal(parsed);
+      } catch (err) {
+        showToast('AI Chef Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = 'Generate Recipe with AI';
+      }
+    }
+
+    function openImportConfirmModal(parsed) {
+      const ingredients = Array.isArray(parsed.ingredients) ? parsed.ingredients : [];
+      const steps = Array.isArray(parsed.steps) ? parsed.steps : [];
+      const hasRawSource = Boolean(parsed.sourceUrl || parsed.rawImported);
+      pendingImportRecipe = {
+        id: 'recipe_' + Date.now(),
+        title: parsed.title || 'Imported Dish',
+        category: ['Main', 'Quick', 'Dessert'].includes(parsed.category) ? parsed.category : 'Main',
+        difficulty: parsed.difficulty || 'Easy',
+        servings: parsed.servings || 2,
+        prepTime: parsed.prepTime || '25 mins',
+        description: parsed.description || 'Imported recipe.',
+        bookmarked: true,
+        isBuiltin: false,
+        sourceUrl: /^https?:\/\//i.test(parsed.sourceUrl || '') ? parsed.sourceUrl : '',
+        ingredients: hasRawSource ? ingredients : ingredients.map(i => ({ amount: parseFloat(i.amount) || 1, unit: i.unit || 'pcs', name: i.name || 'Ingredient' })),
+        steps: steps.length ? steps : ['Prepare ingredients and cook until done.']
+      };
+      document.getElementById('confirm-recipe-title').value = pendingImportRecipe.title;
+      document.getElementById('confirm-recipe-cat').value = pendingImportRecipe.category;
+      document.getElementById('confirm-recipe-prep').value = pendingImportRecipe.prepTime;
+      document.getElementById('confirm-recipe-desc').value = pendingImportRecipe.description;
+      const summary = `${pendingImportRecipe.ingredients.length} ingredients • ${pendingImportRecipe.steps.length} steps`;
+      document.getElementById('confirm-recipe-ing-count').textContent = pendingImportRecipe.sourceUrl ? `${summary} • Kept as written` : `${summary} parsed`;
       const preview = document.getElementById('confirm-recipe-preview');
       if (preview) {
-        const ingredients = (parsedData.ingredients || []).slice(0, 30);
-        const steps = (parsedData.steps || []).slice(0, 20);
-        preview.innerHTML = `${ingredients.length ? `<div><p class="font-extrabold text-ink-900 mb-1">Ingredients</p><ul class="space-y-1 text-ink-700">${ingredients.map(item => `<li>• ${escapeHtml(item.sourceText || `${item.amount ?? ''} ${item.unit || ''} ${item.name || ''}`.trim())}</li>`).join('')}</ul></div>` : ''}${steps.length ? `<div><p class="font-extrabold text-ink-900 mb-1">Instructions</p><ol class="space-y-1 text-ink-700 list-decimal pl-4">${steps.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol></div>` : ''}`;
-        preview.classList.toggle('hidden', !ingredients.length && !steps.length);
+        const formatImportAmount = item => {
+          const parsedAmount = getIngredientAmount(item);
+          const original = item.sourceText || item.originalText || '';
+          const rawAmount = String(item.amount ?? '').trim();
+          if (parsedAmount === null) return !rawAmount || rawAmount.toLowerCase() === 'nan' ? escapeHtml(original) : escapeHtml(`${rawAmount} ${item.unit || ''}`.trim());
+          return escapeHtml(`${formatIngredientAmount(parsedAmount)} ${item.unit || ''}`.trim());
+        };
+        preview.classList.remove('hidden');
+        preview.innerHTML = `
+          <div>
+            <p class="font-extrabold text-ink-900 uppercase tracking-wider mb-1">Ingredients</p>
+            <ul class="space-y-1 text-ink-700">${pendingImportRecipe.ingredients.map(item => `<li>• <span class="font-mono font-bold text-tangerine-600">${formatImportAmount(item)}</span> ${escapeHtml(item.name)}</li>`).join('')}</ul>
+          </div>
+          <div>
+            <p class="font-extrabold text-ink-900 uppercase tracking-wider mb-1">Steps</p>
+            <ol class="space-y-1 text-ink-700 list-decimal pl-4">${pendingImportRecipe.steps.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
+          </div>
+        `;
       }
       document.getElementById('import-confirm-modal').classList.remove('hidden');
     }
 
     function saveConfirmedImportRecipe() {
       if (!pendingImportRecipe) return;
-      const newRecipe = {
-        id: 'custom_' + Date.now(),
-        title: document.getElementById('confirm-recipe-title').value.trim() || 'Untitled Recipe',
-        category: document.getElementById('confirm-recipe-cat').value,
-        difficulty: 'Easy',
-        servings: pendingImportRecipe.servings || 2,
-        prepTime: document.getElementById('confirm-recipe-prep').value.trim() || '30 mins',
-        isBuiltin: false,
-        bookmarked: true,
-        description: document.getElementById('confirm-recipe-desc').value.trim(),
-        sourceUrl: pendingImportRecipe.sourceUrl || '',
-        ingredients: pendingImportRecipe.ingredients || [],
-        steps: pendingImportRecipe.steps || []
-      };
-      recipes.unshift(newRecipe);
+      pendingImportRecipe.title = document.getElementById('confirm-recipe-title').value.trim() || pendingImportRecipe.title;
+      pendingImportRecipe.category = document.getElementById('confirm-recipe-cat').value;
+      pendingImportRecipe.prepTime = document.getElementById('confirm-recipe-prep').value.trim() || pendingImportRecipe.prepTime;
+      pendingImportRecipe.description = document.getElementById('confirm-recipe-desc').value.trim();
+
+      recipes.unshift(pendingImportRecipe);
       saveRecipes();
-      document.getElementById('import-confirm-modal').classList.add('hidden');
-      pendingImportRecipe = null;
       renderHomeFeatured();
       renderAllRecipes();
-      openRecipeDetail(newRecipe.id);
-      showToast('Recipe saved!');
-    }
-
-    function cleanJsonString(rawText) {
-      let cleaned = rawText.trim();
-      if (cleaned.startsWith('```json')) cleaned = cleaned.replace(/^```json/i, '');
-      if (cleaned.startsWith('```')) cleaned = cleaned.replace(/^```/, '');
-      if (cleaned.endsWith('```')) cleaned = cleaned.replace(/```$/, '');
-      cleaned = cleaned.trim();
-      const firstBrace = cleaned.indexOf('{');
-      const lastBrace = cleaned.lastIndexOf('}');
-      if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
-        cleaned = cleaned.substring(firstBrace, lastBrace + 1);
-      }
-      return cleaned;
-    }
-
-    const MODEL_FALLBACK_CHAIN = [
-      'gemini-2.5-flash',
-      'gemini-2.5-pro',
-      'gemini-2.0-flash',
-      'gemini-2.0-flash-lite'
-    ];
-
-    async function callGroqJsonFallback(partsArray) {
-      if (!groqApiKey) throw new Error('Groq backup key not set.');
-      const userPrompt = partsArray.filter(part => part.text).map(part => part.text).join('\n\n');
-      if (!userPrompt) throw new Error('Groq backup requires text input.');
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${groqApiKey}`
-        },
-        body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
-          messages: [
-            { role: 'system', content: 'Return only valid JSON matching the requested schema.' },
-            { role: 'user', content: userPrompt }
-          ],
-          response_format: { type: 'json_object' },
-          temperature: 0.3
-        })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error?.message || `Groq HTTP ${res.status}`);
-      const rawText = data.choices?.[0]?.message?.content;
-      if (!rawText) throw new Error('Empty Groq response');
-      return JSON.parse(cleanJsonString(rawText));
-    }
-
-    async function callGroqTextFallback(partsArray) {
-      if (!groqApiKey) throw new Error('Groq backup key not set.');
-      const userPrompt = partsArray.filter(part => part.text).map(part => part.text).join('\n\n');
-      if (!userPrompt) throw new Error('Groq backup requires text input.');
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${groqApiKey}`
-        },
-        body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
-          messages: [{ role: 'user', content: userPrompt }],
-          temperature: 0.4
-        })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error?.message || `Groq HTTP ${res.status}`);
-      return data.choices?.[0]?.message?.content || 'No answer returned.';
-    }
-
-    async function callGeminiJsonWithFallback(partsArray) {
-      let lastErr = null;
-      for (const modelName of MODEL_FALLBACK_CHAIN) {
-        try {
-          const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(geminiApiKey)}`;
-          const res = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ parts: partsArray }],
-              generationConfig: { responseMimeType: "application/json", temperature: 0.3 }
-            })
-          });
-          const data = await res.json();
-          if (!res.ok) {
-            const msg = data.error?.message || `HTTP ${res.status}`;
-            if (res.status === 429 || res.status === 404 || res.status === 503 || msg.includes('quota') || msg.includes('not found')) {
-              lastErr = new Error(msg);
-              continue;
-            }
-            throw new Error(msg);
-          }
-          const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (!rawText) throw new Error('Empty AI response');
-          return JSON.parse(cleanJsonString(rawText));
-        } catch (err) {
-          lastErr = err;
-          if (err.message?.includes('API key not valid')) throw err;
-        }
-      }
-      if (groqApiKey) {
-        try {
-          return await callGroqJsonFallback(partsArray);
-        } catch (groqErr) {
-          throw new Error(`Gemini failed (${lastErr?.message || 'error'}); Groq backup failed (${groqErr.message}).`);
-        }
-      }
-      throw lastErr || new Error('All models failed.');
-    }
-
-    async function callGeminiTextWithFallback(partsArray) {
-      let lastErr = null;
-      for (const modelName of MODEL_FALLBACK_CHAIN) {
-        try {
-          const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(geminiApiKey)}`;
-          const res = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ contents: [{ parts: partsArray }] })
-          });
-          const data = await res.json();
-          if (!res.ok) {
-            const msg = data.error?.message || `HTTP ${res.status}`;
-            if (res.status === 429 || res.status === 404 || res.status === 503) {
-              lastErr = new Error(msg);
-              continue;
-            }
-            throw new Error(msg);
-          }
-          return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No answer returned.';
-        } catch (err) {
-          lastErr = err;
-        }
-      }
-      if (groqApiKey) {
-        try {
-          return await callGroqTextFallback(partsArray);
-        } catch (groqErr) {
-          throw new Error(`Gemini failed (${lastErr?.message || 'error'}); Groq backup failed (${groqErr.message}).`);
-        }
-      }
-      throw lastErr || new Error('All models failed.');
-    }
-
-    async function runAiRecipeSuggestion() {
-      const dishIdea = document.getElementById('ai-suggest-dish-input').value.trim();
-      if (!dishIdea) {
-        showToast('Enter a dish idea or craving first!');
-        return;
-      }
-      const btn = document.getElementById('btn-run-ai-suggest');
-      const btnTxt = document.getElementById('btn-ai-suggest-text');
-      btn.disabled = true;
-      btnTxt.textContent = 'Creating Recipe with AI...';
-
-      try {
-        const prompt = `Create a complete, delicious recipe for: "${dishIdea}". Return ONLY valid JSON with: title, category ("Main", "Quick", or "Dessert"), servings (number), prepTime (e.g. "25 mins"), description, ingredients (array of {amount: number, unit: string, name: string}), and steps (array of clear instructions including exact cooking minutes so timers trigger automatically).`;
-        const parsed = await callGeminiJsonWithFallback([{ text: prompt }]);
-        openConfirmRecipeModal(parsed);
-      } catch (e) {
-        showToast('AI Creation error: ' + e.message);
-      } finally {
-        btn.disabled = false;
-        btnTxt.textContent = 'Generate Recipe with AI';
-      }
+      document.getElementById('import-confirm-modal').classList.add('hidden');
+      const savedId = pendingImportRecipe.id;
+      pendingImportRecipe = null;
+      showToast('Recipe saved to your cookbook!');
+      openRecipeDetail(savedId);
     }
 
     function decodeHtmlEntities(text) {
-      const box = document.createElement('textarea');
-      box.innerHTML = String(text ?? '');
-      return box.value;
+      const textarea = document.createElement('textarea');
+      textarea.innerHTML = String(text ?? '');
+      return textarea.value;
     }
 
     function cleanWebText(value) {
       return decodeHtmlEntities(String(value ?? '').replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
     }
 
-    function parseIsoDuration(value) {
-      const match = String(value ?? '').match(/P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?)?/i);
+    function parseIsoDuration(duration) {
+      const match = String(duration || '').match(/^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?)?$/i);
       if (!match) return '';
-      const minutes = (Number(match[1] || 0) * 1440) + (Number(match[2] || 0) * 60) + Number(match[3] || 0);
-      return minutes > 0 ? `${minutes} mins` : '';
+      const totalMinutes = (Number(match[1] || 0) * 1440) + (Number(match[2] || 0) * 60) + Number(match[3] || 0);
+      if (totalMinutes <= 0) return '';
+      if (totalMinutes < 60) return `${totalMinutes} mins`;
+      const hours = Math.floor(totalMinutes / 60);
+      const mins = totalMinutes % 60;
+      return mins ? `${hours} hr ${mins} mins` : `${hours} hr`;
     }
 
-    function flattenRecipeInstructions(rawSteps) {
-      if (!rawSteps) return [];
-      if (typeof rawSteps === 'string') {
-        return rawSteps.split(/\n+/).map(cleanWebText).filter(Boolean);
+    function parseRecipeIngredientLine(line) {
+      const cleanLine = cleanWebText(line);
+      const match = cleanLine.match(/^((?:\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|\d+\s*[¼½¾⅓⅔⅛⅜⅝⅞]|\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞])(?:\s*(?:-|to|–)\s*(?:\d+\s*\/\s*\d+|\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?)\s*(fluid ounces?|fl oz|ounces?|oz|pounds?|lbs?|kilograms?|kgs?|kg|grams?|g|milliliters?|millilitres?|ml|liters?|litres?|l|cups?|tablespoons?|tbsp|teaspoons?|tsp|pints?|quarts?|gallons?|cloves?|cans?|packages?|packets?|slices?|pieces?|pcs?|stalks?|sprigs?|pinch(?:es)?|dash(?:es)?)?\b\s*(.*)$/i);
+      if (!match) return { amount: '', unit: '', name: cleanLine, sourceText: cleanLine };
+      const rawAmount = match[1].trim();
+      const firstPart = rawAmount.split(/\s*(?:-|to|–)\s*/i)[0].trim();
+      const parsedAmount = parseRecipeAmount(firstPart);
+      return {
+        amount: parsedAmount === null ? rawAmount : parsedAmount,
+        unit: (match[2] || '').trim(),
+        name: (match[3] || cleanLine).trim(),
+        sourceText: cleanLine
+      };
+    }
+
+    function flattenJsonLdNodes(value, out = []) {
+      if (!value) return out;
+      if (Array.isArray(value)) {
+        value.forEach(item => flattenJsonLdNodes(item, out));
+        return out;
       }
-      if (!Array.isArray(rawSteps)) return [];
-      return rawSteps.flatMap(step => {
-        if (typeof step === 'string') return [cleanWebText(step)];
-        if (step?.['@type'] === 'HowToSection' || Array.isArray(step?.itemListElement)) {
-          return flattenRecipeInstructions(step.itemListElement);
-        }
-        return [cleanWebText(step?.text || step?.name || '')];
-      }).filter(Boolean);
-    }
-
-    function parseImportedIngredientLine(line) {
-      const sourceText = cleanWebText(line);
-      if (!sourceText) return null;
-      const quantityPattern = /^(-?\d+\s+\d+\s*\/\s*\d+|-?\d+\s*\/\s*\d+|-?\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞])(?:\s*(?:-|to|–)\s*(?:\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?\s*(.*)$/i;
-      const match = sourceText.match(quantityPattern);
-      if (!match) return { amount: null, unit: '', name: sourceText, sourceText };
-      const amount = parseRecipeAmount(match[1]);
-      let rest = match[2].trim();
-      const unitPattern = /^(fluid ounces?|fl\.?\s*oz\.?|ounces?|oz\.?|pounds?|lbs?\.?|kilograms?|kgs?\.?|kg|grams?|g\.?|milliliters?|millilitres?|ml|liters?|litres?|l|cups?|tablespoons?|tbsp\.?|teaspoons?|tsp\.?|pints?|quarts?|gallons?|cloves?|cans?|packages?|packets?|slices?|pieces?|pinch(?:es)?|dash(?:es)?|bunches?|sprigs?|stalks?|heads?)\b\.?\s*(.*)$/i;
-      const unitMatch = rest.match(unitPattern);
-      const unit = unitMatch ? unitMatch[1].replace(/\.$/, '') : '';
-      const name = (unitMatch ? unitMatch[2] : rest).replace(/^of\s+/i, '').trim() || sourceText;
-      return { amount, unit, name, sourceText };
-    }
-
-    function inferRecipeCategory(recipeNode) {
-      const text = [recipeNode.recipeCategory, recipeNode.keywords, recipeNode.name].flat().join(' ').toLowerCase();
-      if (/\b(dessert|cake|cookie|brownie|pie|pudding|sweet|tart|ice cream)\b/.test(text)) return 'Dessert';
-      if (/\b(quick|15-minute|20-minute|snack|breakfast|salad|sandwich|wrap)\b/.test(text)) return 'Quick';
-      return 'Main';
-    }
-
-    function findJsonLdRecipe(node) {
-      if (!node || typeof node !== 'object') return null;
-      if (Array.isArray(node)) {
-        for (const item of node) {
-          const found = findJsonLdRecipe(item);
-          if (found) return found;
-        }
-        return null;
+      if (typeof value === 'object') {
+        out.push(value);
+        if (value['@graph']) flattenJsonLdNodes(value['@graph'], out);
       }
-      const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
-      if (types.some(type => String(type || '').toLowerCase() === 'recipe')) return node;
-      if (node['@graph']) return findJsonLdRecipe(node['@graph']);
-      return null;
+      return out;
     }
 
-    function extractRecipeFromWebHtml(html, sourceUrl) {
+    function hasRecipeType(node) {
+      const type = node?.['@type'];
+      return Array.isArray(type) ? type.some(item => /recipe/i.test(String(item))) : /recipe/i.test(String(type || ''));
+    }
+
+    function extractInstructionStrings(instructions) {
+      if (!instructions) return [];
+      if (typeof instructions === 'string') {
+        return instructions.split(/\r?\n+/).map(cleanWebText).filter(Boolean);
+      }
+      if (Array.isArray(instructions)) {
+        return instructions.flatMap(extractInstructionStrings);
+      }
+      if (typeof instructions === 'object') {
+        if (instructions.itemListElement) return extractInstructionStrings(instructions.itemListElement);
+        const text = cleanWebText(instructions.text || instructions.name || '');
+        return text ? [text] : [];
+      }
+      return [];
+    }
+
+    function parseServingsCount(recipeYield) {
+      const value = Array.isArray(recipeYield) ? recipeYield[0] : recipeYield;
+      const match = String(value ?? '').match(/(\d+)/);
+      return match ? Math.max(1, Number(match[1])) : 2;
+    }
+
+    function extractStructuredRecipeFromHtml(html, sourceUrl) {
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const scripts = [...doc.querySelectorAll('script[type*="ld+json"]')];
       for (const script of scripts) {
         try {
-          const recipeNode = findJsonLdRecipe(JSON.parse(script.textContent));
+          const parsed = JSON.parse(script.textContent.trim());
+          const recipeNode = flattenJsonLdNodes(parsed).find(hasRecipeType);
           if (!recipeNode) continue;
-          const rawIngredients = recipeNode.recipeIngredient || recipeNode.ingredients || [];
-          const ingredients = (Array.isArray(rawIngredients) ? rawIngredients : [rawIngredients])
-            .map(parseImportedIngredientLine)
-            .filter(Boolean);
-          const steps = flattenRecipeInstructions(recipeNode.recipeInstructions);
+          const rawIngredients = Array.isArray(recipeNode.recipeIngredient)
+            ? recipeNode.recipeIngredient
+            : Array.isArray(recipeNode.ingredients)
+              ? recipeNode.ingredients
+              : [];
+          const ingredients = rawIngredients.map(parseRecipeIngredientLine).filter(item => item.name);
+          const steps = extractInstructionStrings(recipeNode.recipeInstructions);
           if (!ingredients.length || !steps.length) continue;
-          const servingsMatch = String(Array.isArray(recipeNode.recipeYield) ? recipeNode.recipeYield[0] : recipeNode.recipeYield || '').match(/\d+/);
+          const categoryText = String(Array.isArray(recipeNode.recipeCategory) ? recipeNode.recipeCategory.join(' ') : recipeNode.recipeCategory || '').toLowerCase();
+          const category = /dessert|cake|cookie|sweet|pastry|bread/.test(categoryText) ? 'Dessert' : /quick|snack|breakfast/.test(categoryText) ? 'Quick' : 'Main';
           return {
-            title: cleanWebText(recipeNode.name || doc.title || 'Imported Recipe'),
-            category: inferRecipeCategory(recipeNode),
-            servings: servingsMatch ? Number(servingsMatch[0]) : 2,
+            title: cleanWebText(recipeNode.name) || 'Imported Recipe',
+            category,
             prepTime: parseIsoDuration(recipeNode.totalTime || recipeNode.cookTime || recipeNode.prepTime) || '30 mins',
-            description: cleanWebText(recipeNode.description || `Original recipe imported from ${new URL(sourceUrl).hostname}`),
-            sourceUrl,
+            servings: parseServingsCount(recipeNode.recipeYield),
+            description: cleanWebText(recipeNode.description) || `Imported verbatim from ${new URL(sourceUrl).hostname}.`,
             ingredients,
-            steps
+            steps,
+            sourceUrl,
+            rawImported: true
           };
         } catch (error) {}
       }
-      const mainText = cleanWebText(doc.querySelector('main, article, [class*="recipe" i]')?.innerText || doc.body?.innerText || '').slice(0, 12000);
-      if (!mainText || mainText.length < 120) return null;
-      return { pageText: mainText, title: cleanWebText(doc.title) };
+      return null;
     }
 
-    async function fetchRecipePageHtml(targetUrl) {
+    async function fetchWebpageHtml(targetUrl) {
       const proxies = [
         `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
-        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`
+        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`
       ];
       for (const proxyUrl of proxies) {
         try {
           const response = await fetch(proxyUrl);
           if (!response.ok) continue;
           const html = await response.text();
-          if (html && html.length > 300) return html;
+          if (html && html.length > 200) return html;
         } catch (error) {}
       }
-      throw new Error('Could not load that webpage directly. Copy and paste the recipe text into AI Smart Text Paste below.');
+      return '';
     }
 
     async function runWebRecipeImport() {
-      const url = document.getElementById('import-url-input').value.trim();
-      if (!url) {
-        showToast('Paste a valid recipe URL first!');
-        return;
-      }
+      const urlVal = document.getElementById('import-url-input').value.trim();
+      if (!urlVal) { showToast('Paste a recipe URL first!'); return; }
       let parsedUrl;
       try {
-        parsedUrl = new URL(url);
-        if (!['http:', 'https:'].includes(parsedUrl.protocol)) throw new Error();
+        parsedUrl = new URL(urlVal);
+        if (!/^https?:$/.test(parsedUrl.protocol)) throw new Error();
       } catch (error) {
-        showToast('Enter a valid http or https recipe link.');
+        showToast('Enter a valid http or https recipe URL.');
         return;
       }
       const btn = document.getElementById('btn-run-web-import');
-      const btnTxt = document.getElementById('btn-import-text');
+      const btnText = document.getElementById('btn-import-text');
       btn.disabled = true;
-      btnTxt.textContent = 'Reading original recipe...';
+      btnText.textContent = 'Reading recipe page...';
 
       try {
-        const html = await fetchRecipePageHtml(parsedUrl.href);
-        const extracted = extractRecipeFromWebHtml(html, parsedUrl.href);
-        if (!extracted) {
-          throw new Error('No recipe text was found on that page. Copy and paste the recipe into AI Smart Text Paste below.');
+        const html = await fetchWebpageHtml(parsedUrl.toString());
+        if (html) {
+          const structured = extractStructuredRecipeFromHtml(html, parsedUrl.toString());
+          if (structured) {
+            openImportConfirmModal(structured);
+            return;
+          }
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          doc.querySelectorAll('script, style, noscript, svg').forEach(node => node.remove());
+          const visibleText = cleanWebText(doc.body?.textContent || '').slice(0, 18000);
+          if (visibleText.length > 200) {
+            const prompt = `Extract the recipe from this webpage text verbatim. Do not rewrite, summarize, invent, or alter any ingredient quantities, units, ingredient names, or step wording. Return strictly valid JSON with keys: title, category ("Main", "Quick", or "Dessert"), prepTime, servings (integer), description, ingredients (array of {amount: number or string, unit: string, name: string, sourceText: exact original ingredient line}), steps (array of exact original instruction strings). Webpage URL: ${parsedUrl.toString()}\n\nPage text:\n${visibleText}`;
+            const parsed = await callGeminiJsonWithFallback([{ text: prompt }]);
+            openImportConfirmModal({ ...parsed, sourceUrl: parsedUrl.toString(), rawImported: true });
+            return;
+          }
         }
-        if (extracted.ingredients && extracted.steps) {
-          openConfirmRecipeModal(extracted);
-          return;
-        }
-        const prompt = `Extract ONLY the recipe written in this webpage text from "${parsedUrl.href}". Do not invent, rewrite, or add ingredients or steps. Keep the original wording and units. Return ONLY valid JSON with: title, category ("Main", "Quick", or "Dessert"), servings (number), prepTime, description, ingredients (array of {amount: number|null, unit: string, name: string, sourceText: string}), and steps (array of strings). Webpage text:\n${extracted.pageText}`;
-        const parsed = await callGeminiJsonWithFallback([{ text: prompt }]);
-        parsed.sourceUrl = parsedUrl.href;
-        openConfirmRecipeModal(parsed);
-      } catch (e) {
-        showToast(e.message || 'Could not read that recipe page.');
+        throw new Error('Could not read the recipe directly from that URL. Copy the recipe text on the page and use AI Smart Text Paste below.');
+      } catch (err) {
+        showToast('Import error: ' + err.message);
       } finally {
         btn.disabled = false;
-        btnTxt.textContent = 'Read Original Recipe';
+        btnText.textContent = 'Read Original Recipe';
       }
     }
 
     async function runSmartPaste() {
-      const txt = document.getElementById('smart-paste-input').value.trim();
-      if (!txt) {
-        showToast('Paste some recipe text first!');
-        return;
-      }
-      showToast('Parsing text with AI...');
+      const rawText = document.getElementById('smart-paste-input').value.trim();
+      if (!rawText) { showToast('Paste some recipe text first!'); return; }
+      showToast('Parsing recipe with Gemini...');
       try {
-        const prompt = `Parse this raw recipe text into structured JSON. Keep the original ingredient amounts, units, and step wording without rewriting or inventing anything. Return ONLY JSON with: title, category ("Main", "Quick", or "Dessert"), servings (number), prepTime, description, ingredients (array of {amount: number|null, unit: string, name: string, sourceText: string}), steps (array of strings). Text:\n${txt}`;
+        const prompt = `Extract this pasted recipe into strictly valid JSON keeping the original ingredient quantities, units, names, and instruction steps intact without inventing anything: title, category ("Main", "Quick", or "Dessert"), prepTime, servings (integer), description, ingredients (array of {amount: number or string, unit: string, name: string, sourceText: exact original line}), steps (array of strings). Text: ${rawText}`;
         const parsed = await callGeminiJsonWithFallback([{ text: prompt }]);
-        openConfirmRecipeModal(parsed);
-      } catch (e) {
-        showToast('Parse error: ' + e.message);
+        openImportConfirmModal({ ...parsed, rawImported: true });
+      } catch (err) {
+        showToast('Smart paste error: ' + err.message);
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', () => {
       updateDynamicGreeting();
       loadRecipes();
       loadMealPlan();
+      loadActiveCookingSession();
+      loadSavedTimersState();
+      const plannerSelect = document.getElementById('planner-currency');
+      if (plannerSelect) plannerSelect.value = plannerCurrency;
+      clearPlannerBudgetEstimate();
+      const buttonSoundsInput = document.getElementById('button-sounds-toggle');
+      if (buttonSoundsInput) buttonSoundsInput.checked = buttonSoundsEnabled;
+      const savedKeyInput = document.getElementById('menu-apikey-input');
+      if (savedKeyInput && geminiApiKey !== DEFAULT_API_KEY) savedKeyInput.value = geminiApiKey;
+      const savedGroqKeyInput = document.getElementById('menu-groq-apikey-input');
+      if (savedGroqKeyInput && groqApiKey && groqApiKey !== DEFAULT_GROQ_API_KEY) savedGroqKeyInput.value = groqApiKey;
       renderHomeFeatured();
+      renderAllRecipes();
+      renderMealPlanner();
       renderActiveTimers();
-      detectHardwareFlexMode();
-      const keyInput = document.getElementById('menu-apikey-input');
-      if (keyInput && geminiApiKey) keyInput.value = geminiApiKey;
-      const groqKeyInput = document.getElementById('menu-groq-apikey-input');
-      if (groqKeyInput && groqApiKey) groqKeyInput.value = groqApiKey;
-      const plannerCurrencySelect = document.getElementById('planner-currency');
-      if (plannerCurrencySelect) plannerCurrencySelect.value = plannerCurrency;
-      const soundToggle = document.getElementById('button-sounds-toggle');
-      if (soundToggle) soundToggle.checked = buttonSoundsEnabled;
+      updateResumeCookingIndicators();
+      try { history.replaceState({ steilView: 'home' }, '', ''); } catch (e) {}
     });
 </script>
 </body>
