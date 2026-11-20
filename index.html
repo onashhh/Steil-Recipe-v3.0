@@ -2380,10 +2380,29 @@
         window.location.href = androidIntent;
         showToast(`Opening Android Clock Timer (${Math.ceil(secs / 60)} min)...`);
       } else if (isIOS) {
-        // Apple restricts direct URL schemes to set Clock timers from Safari; trigger Apple Shortcuts bridge or native Calendar Alarm (.ics)
-        const mins = Math.max(1, Math.round(secs / 60));
-        downloadCalendarAlarmFallback(secs, cleanLabel);
-        showToast(`iOS Alert: Tap the downloaded Calendar Alarm (.ics) to set a lock-screen alert in ${mins} min!`);
+        const mins = Math.floor(secs / 60);
+        const remSecs = secs % 60;
+        const durationLabel = mins > 0
+          ? `${mins}m${remSecs > 0 ? ` ${remSecs}s` : ''}`
+          : `${remSecs}s`;
+
+        // Copy duration to clipboard as a convenience and launch the native iOS Clock app directly
+        try {
+          const tempInput = document.createElement('input');
+          tempInput.value = `${durationLabel} — ${cleanLabel}`;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
+        } catch (e) {}
+
+        showToast(`Opening iOS Clock app (${durationLabel})...`);
+        window.location.href = 'clock-timer://';
+        setTimeout(() => {
+          if (document.visibilityState === 'visible') {
+            window.location.href = 'clock-alarm://';
+          }
+        }, 450);
       } else {
         const mins = Math.floor(secs / 60);
         const remSecs = secs % 60;
