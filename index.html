@@ -9,10 +9,10 @@
 <!-- Optional: Hides the browser address bar when opened from Home Screen -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Steil Recipe v3.6 — Pantry Tracker, Cloud Sync & Kitchen Timer App</title>
+    <title>Steil Recipe v3.7 — Pantry Tracker, Cloud Sync & Kitchen Timer App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <script>
@@ -130,9 +130,9 @@
         <span class="w-4.5 h-0.5 bg-ink-900 rounded-full"></span>
     </button>
 
-    <div class="flex items-baseline gap-1.5" aria-label="Steil Recipe v3.6">
+    <div class="flex items-baseline gap-1.5" aria-label="Steil Recipe v3.7">
         <span class="font-extrabold text-[15px] tracking-tight text-ink-900">Steil Recipe</span>
-        <span class="text-[9px] font-bold tracking-wide text-tangerine-600 bg-peach-soft px-1.5 py-0.5 rounded-full">v3.6</span>
+        <span class="text-[9px] font-bold tracking-wide text-tangerine-600 bg-peach-soft px-1.5 py-0.5 rounded-full">v3.7</span>
     </div>
 
     <div class="flex items-center gap-1">
@@ -181,7 +181,7 @@
                 <button type="button" onclick="openHelpModal()" class="w-10 h-10 rounded-full bg-peach-soft hover:bg-peach-card text-tangerine-600 font-extrabold text-sm flex items-center justify-center shrink-0 transition active:scale-95" title="Release Notes & Guide" aria-label="Help and guide">?</button>
             </div>
             <div class="relative">
-                <input id="home-search-input" type="text" oninput="handleHomeSearch(this.value)" placeholder="Search 21 recipes or ingredients..." class="w-full pl-11 pr-4 py-3.5 rounded-full bg-peach-soft text-xs font-semibold text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-tangerine-500" />
+                <input id="home-search-input" type="text" oninput="handleHomeSearch(this.value)" placeholder="Search 22 recipes or ingredients..." class="w-full pl-11 pr-4 py-3.5 rounded-full bg-peach-soft text-xs font-semibold text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-tangerine-500" />
                 <svg class="w-4 h-4 text-ink-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.5-3.5"/></svg>
             </div>
             <div id="home-search-results" class="hidden space-y-2"></div>
@@ -191,7 +191,7 @@
         <div class="space-y-2.5">
             <p class="text-xs font-extrabold text-ink-600">Select Your Category</p>
             <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-                <button type="button" id="cat-pill-All" onclick="setHomeCategory('All')" class="cat-pill px-5 py-2.5 rounded-full bg-tangerine-500 text-white text-xs font-extrabold shadow-orb transition shrink-0">All (21)</button>
+                <button type="button" id="cat-pill-All" onclick="setHomeCategory('All')" class="cat-pill px-5 py-2.5 rounded-full bg-tangerine-500 text-white text-xs font-extrabold shadow-orb transition shrink-0">All (22)</button>
                 <button type="button" id="cat-pill-Main" onclick="setHomeCategory('Main')" class="cat-pill px-5 py-2.5 rounded-full bg-peach-soft text-ink-600 hover:bg-peach-card text-xs font-bold transition shrink-0">Main</button>
                 <button type="button" id="cat-pill-Quick" onclick="setHomeCategory('Quick')" class="cat-pill px-5 py-2.5 rounded-full bg-peach-soft text-ink-600 hover:bg-peach-card text-xs font-bold transition shrink-0">Quick</button>
                 <button type="button" id="cat-pill-Dessert" onclick="setHomeCategory('Dessert')" class="cat-pill px-5 py-2.5 rounded-full bg-peach-soft text-ink-600 hover:bg-peach-card text-xs font-bold transition shrink-0">Dessert</button>
@@ -212,27 +212,70 @@
                 </div>
             </div>
 
-            <!-- Cooking Chef Vector Illustration -->
-            <div class="w-24 h-28 shrink-0 relative z-10 flex items-end justify-center" aria-hidden="true">
-                <svg viewBox="0 0 110 125" class="w-full h-full overflow-visible" fill="none">
-                    <!-- Hair bun & head -->
-                    <circle cx="67" cy="14" r="7.5" fill="#292524"/>
-                    <circle cx="62" cy="24" r="9.5" fill="#d99b78"/>
-                    <path d="M55 18c4-5 13-5 16 1-3-1-9-1-16-1z" fill="#292524"/>
-                    <!-- Torso / apron top -->
-                    <path d="M48 37c0-3 4-5 11-5h7c7 0 11 2 11 5l5 36H44l4-36z" fill="#9a3412"/>
-                    <!-- Skirt / bottom -->
-                    <path d="M44 73h38l5 39H39l5-39z" fill="#6b7028"/>
-                    <!-- Arms stirring -->
-                    <path d="M50 42L33 64l13 6" stroke="#d99b78" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M74 42l8 22-21 4" stroke="#d99b78" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <!-- Wooden spoon -->
-                    <path d="M44 74L60 56" stroke="#c2410c" stroke-width="3.2" stroke-linecap="round"/>
-                    <!-- Cooking pot -->
-                    <rect x="20" y="73" width="38" height="24" rx="7" fill="#ea580c"/>
-                    <path d="M16 77h46" stroke="#c2410c" stroke-width="3.5" stroke-linecap="round"/>
-                    <!-- Steam lines -->
-                    <path d="M31 66c-2-4 2-7 0-11M39 64c-2-4 2-7 0-11M47 66c-2-4 2-7 0-11" stroke="#fb923c" stroke-width="2" stroke-linecap="round"/>
+            <!-- Flat-Vector Filipino Adobo Bowl Illustration -->
+            <div class="w-28 h-28 shrink-0 relative z-10 flex items-center justify-center" aria-hidden="true">
+                <svg viewBox="0 0 140 130" class="w-full h-full overflow-visible drop-shadow-xs" fill="none">
+                    <!-- Decorative banana / pandan leaves behind the bowl -->
+                    <path d="M74 44 L96 8 L104 38 Z" fill="#2d7a36"/>
+                    <path d="M96 8 L104 38 L92 42 Z" fill="#3a9444"/>
+                    <path d="M94 42 L119 15 L122 44 Z" fill="#3a9444"/>
+                    <path d="M119 15 L122 44 L108 46 Z" fill="#46a851"/>
+                    <path d="M110 45 L130 28 L126 48 Z" fill="#2d7a36"/>
+
+                    <!-- Bowl foot / base -->
+                    <ellipse cx="66" cy="111" rx="34" ry="10" fill="#8f4318"/>
+                    <!-- Wooden bowl outer body -->
+                    <path d="M12 64 C12 97, 36 112, 66 112 C96 112, 120 97, 120 64 Z" fill="#b85b23"/>
+                    <!-- Bowl wood shading highlight -->
+                    <path d="M16 74 C24 98, 43 107, 66 107 C89 107, 108 98, 116 74 C104 93, 86 101, 66 101 C46 101, 28 93, 16 74 Z" fill="#a24c1b"/>
+                    <!-- Wooden bowl top rim -->
+                    <ellipse cx="66" cy="64" rx="54" ry="26" fill="#d17234"/>
+                    <!-- Ceramic sky-blue inner lining -->
+                    <ellipse cx="66" cy="64.5" rx="50" ry="23.5" fill="#8ec5eb"/>
+                    <!-- Rich savory brown adobo sauce -->
+                    <ellipse cx="66" cy="67.5" rx="48" ry="20.5" fill="#7c3314"/>
+
+                    <!-- Fluffed white steamed rice mound (back right) -->
+                    <path d="M68 48 C70 43, 76 42, 79 45 C82 40, 89 40, 92 44 C96 41, 102 43, 104 48 C108 48, 111 53, 109 57 C112 60, 109 65, 104 65 L72 62 C67 59, 66 52, 68 48 Z" fill="#ffffff"/>
+                    <path d="M74 58 C84 55, 96 56, 106 62 L104 65 L72 62 Z" fill="#f1f5f9"/>
+
+                    <!-- Back calamansi half -->
+                    <ellipse cx="52" cy="44" rx="8" ry="6.5" fill="#f59e0b"/>
+                    <ellipse cx="52" cy="43" rx="6.5" ry="5" fill="#fbbf24"/>
+
+                    <!-- Back braised chicken / pork adobo chunk -->
+                    <path d="M42 52 C46 43, 62 39, 68 42 C74 45, 79 53, 77 60 C72 64, 52 63, 42 57 Z" fill="#8c3716"/>
+                    <path d="M47 48 C53 43, 63 41, 68 43 L62 49 Z" fill="#c85a23"/>
+
+                    <!-- Left glazed adobo meat chunk -->
+                    <path d="M23 56 C27 51, 47 52, 54 57 C60 63, 59 76, 51 81 C42 85, 27 81, 23 73 C20 67, 20 60, 23 56 Z" fill="#a54219"/>
+                    <path d="M28 57 C35 55, 45 57, 49 61 C47 67, 37 70, 29 67 C26 64, 26 59, 28 57 Z" fill="#ea6a1f"/>
+                    <!-- Peppercorn & glaze dots -->
+                    <circle cx="34" cy="62" r="1.1" fill="#451a03"/>
+                    <circle cx="43" cy="65" r="1.2" fill="#451a03"/>
+                    <circle cx="37" cy="73" r="1" fill="#fed7aa" opacity="0.7"/>
+
+                    <!-- Center-bottom adobo meat chunk -->
+                    <path d="M56 67 C62 63, 76 66, 82 73 C85 78, 82 85, 73 87 C64 88, 56 84, 55 77 C54 72, 54 69, 56 67 Z" fill="#9a3b17"/>
+                    <path d="M59 69 C64 68, 70 71, 72 76 C68 80, 61 80, 58 76 Z" fill="#c65322"/>
+                    <circle cx="64" cy="74" r="1" fill="#451a03"/>
+                    <circle cx="71" cy="78" r="1.1" fill="#451a03"/>
+
+                    <!-- Right glazed adobo meat chunk -->
+                    <path d="M74 55 C80 49, 93 48, 100 53 C107 59, 108 72, 101 78 C94 83, 81 80, 76 72 C72 66, 71 59, 74 55 Z" fill="#ad461b"/>
+                    <path d="M79 54 C85 51, 93 52, 97 56 C95 62, 87 65, 81 62 C78 59, 78 56, 79 54 Z" fill="#ea6a1f"/>
+                    <circle cx="88" cy="58" r="1" fill="#451a03"/>
+                    <circle cx="95" cy="65" r="1.2" fill="#451a03"/>
+
+                    <!-- Fresh green bay leaf (laurel) garnish on top -->
+                    <path d="M48 51 C61 49, 75 54, 83 65 C70 66, 56 61, 48 51 Z" fill="#4ca638"/>
+                    <path d="M48 51 C60 54, 72 59, 83 65" stroke="#86efac" stroke-width="1.2" stroke-linecap="round"/>
+
+                    <!-- Front cut calamansi lime half with citrus segments -->
+                    <circle cx="88" cy="80" r="7.5" fill="#ea580c"/>
+                    <circle cx="88" cy="79.5" r="6" fill="#fbbf24"/>
+                    <circle cx="88" cy="79.5" r="4.5" fill="#f59e0b"/>
+                    <path d="M88 75 V84 M83.5 79.5 H92.5 M85 76.5 L91 82.5 M91 76.5 L85 82.5" stroke="#fef08a" stroke-width="0.9" stroke-linecap="round"/>
                 </svg>
             </div>
         </div>
@@ -349,9 +392,12 @@
 
         <!-- ADD NEW PANTRY ITEM FORM -->
         <div class="rounded-[22px] bg-white border border-peach-card p-4 shadow-card-clean space-y-2.5">
-            <h3 class="text-xs font-extrabold text-ink-900">+ Add Pantry Staple</h3>
+            <div class="flex items-center justify-between gap-2">
+                <h3 class="text-xs font-extrabold text-ink-900">+ Add Pantry Staple</h3>
+                <button type="button" onclick="resetPantryToDefaultList()" class="text-[10px] font-extrabold text-tangerine-600 hover:underline">↻ Load Pinoy Staples (48)</button>
+            </div>
             <div class="flex gap-2">
-                <input id="new-pantry-name" type="text" onkeydown="if(event.key==='Enter') addNewPantryItem()" placeholder="e.g. Coconut Milk, Garlic, Eggs..." class="flex-1 min-w-0 px-3.5 py-2.5 rounded-xl bg-peach-soft text-xs font-bold text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-1 focus:ring-tangerine-400" />
+                <input id="new-pantry-name" type="text" onkeydown="if(event.key==='Enter') addNewPantryItem()" placeholder="e.g. Toyo, Bawang, Gata, Lumpia wrappers..." class="flex-1 min-w-0 px-3.5 py-2.5 rounded-xl bg-peach-soft text-xs font-bold text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-1 focus:ring-tangerine-400" />
                 <select id="new-pantry-status" class="px-2.5 py-2.5 rounded-xl bg-peach-soft text-xs font-extrabold text-ink-900 focus:outline-none">
                     <option value="Full">Full</option>
                     <option value="Half">Half</option>
@@ -361,10 +407,12 @@
             </div>
             <div class="flex items-center gap-2">
                 <select id="new-pantry-category" class="flex-1 px-3 py-2 rounded-xl bg-peach-soft text-[11px] font-bold text-ink-700 focus:outline-none">
-                    <option value="Pantry & Sauces">🥫 Pantry & Sauces</option>
-                    <option value="Produce & Aromatics">🧄 Produce & Aromatics</option>
-                    <option value="Meat & Seafood">🍗 Meat & Seafood</option>
-                    <option value="Dairy & Baking">🥚 Dairy & Baking</option>
+                    <option value="Condiments & Liquid Seasonings">🍶 Condiments & Liquid Seasonings</option>
+                    <option value="Aromatics & Fresh Essentials">🧄 Aromatics & Fresh Essentials</option>
+                    <option value="Dry Goods, Grains & Noodles">🌾 Dry Goods, Grains & Noodles</option>
+                    <option value="Canned & Jarred Staples">🥫 Canned & Jarred Staples</option>
+                    <option value="Spices, Mixes & Bouillon">🌶 Spices, Mixes & Bouillon</option>
+                    <option value="Frozen & Fridge Staples">❄️ Frozen & Fridge Staples</option>
                 </select>
                 <button type="button" onclick="addNewPantryItem()" class="px-4 py-2 rounded-full bg-tangerine-500 hover:bg-tangerine-600 text-white text-xs font-extrabold shadow-orb active:scale-95 transition">Add Item</button>
             </div>
@@ -377,6 +425,12 @@
                 <button type="button" onclick="setPantryFilter('all')" id="pantry-filter-all" class="px-3.5 py-1.5 rounded-full bg-tangerine-500 text-white text-[11px] font-extrabold shadow-orb shrink-0">All Items</button>
                 <button type="button" onclick="setPantryFilter('mustbuy')" id="pantry-filter-mustbuy" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Low & Empty</button>
                 <button type="button" onclick="setPantryFilter('stocked')" id="pantry-filter-stocked" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Full & Half</button>
+                <button type="button" onclick="setPantryFilter('Condiments & Liquid Seasonings')" id="pantry-filter-Condiments & Liquid Seasonings" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Condiments</button>
+                <button type="button" onclick="setPantryFilter('Aromatics & Fresh Essentials')" id="pantry-filter-Aromatics & Fresh Essentials" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Aromatics</button>
+                <button type="button" onclick="setPantryFilter('Dry Goods, Grains & Noodles')" id="pantry-filter-Dry Goods, Grains & Noodles" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Dry & Noodles</button>
+                <button type="button" onclick="setPantryFilter('Canned & Jarred Staples')" id="pantry-filter-Canned & Jarred Staples" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Canned & Jarred</button>
+                <button type="button" onclick="setPantryFilter('Spices, Mixes & Bouillon')" id="pantry-filter-Spices, Mixes & Bouillon" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Spices & Mixes</button>
+                <button type="button" onclick="setPantryFilter('Frozen & Fridge Staples')" id="pantry-filter-Frozen & Fridge Staples" class="px-3.5 py-1.5 rounded-full bg-peach-soft text-ink-600 text-[11px] font-bold shrink-0">Frozen & Fridge</button>
             </div>
         </div>
 
@@ -398,7 +452,7 @@
         </div>
 
         <div class="flex gap-2">
-            <button type="button" onclick="setAllFilter('all')" id="filter-btn-all" class="flex-1 py-2.5 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb">All Recipes (21)</button>
+            <button type="button" onclick="setAllFilter('all')" id="filter-btn-all" class="flex-1 py-2.5 rounded-full bg-tangerine-500 text-white font-extrabold text-xs shadow-orb">All Recipes (22)</button>
             <button type="button" onclick="setAllFilter('saved')" id="filter-btn-saved" class="flex-1 py-2.5 rounded-full bg-peach-soft text-ink-600 font-extrabold text-xs">Favorites ★</button>
         </div>
 
@@ -980,7 +1034,7 @@
             </span>
                     <div>
                         <h3 class="font-extrabold text-base tracking-tight text-ink-900">steil</h3>
-                        <p class="text-[10px] text-ink-400 font-bold">v3.6 • Pantry, Cloud & Fold</p>
+                        <p class="text-[10px] text-ink-400 font-bold">v3.7 • Pantry, Cloud & Fold</p>
                     </div>
                 </div>
                 <button type="button" onclick="toggleMenuDrawer()" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center">✕</button>
@@ -1001,7 +1055,7 @@
                     <span>🍳</span> Resume Active Cooking
                 </button>
                 <button type="button" onclick="toggleMenuDrawer(); navigateTab('all')" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
-                    <span>📖</span> All Recipes (21)
+                    <span>📖</span> All Recipes (22)
                 </button>
                 <button type="button" onclick="toggleMenuDrawer(); navigateTab('planner')" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
                     <span>📅</span> Weekly Meal Planner
@@ -1013,7 +1067,7 @@
                     <span>✦</span> AI Recipe & Web Import
                 </button>
                 <button type="button" onclick="toggleMenuDrawer(); openHelpModal()" class="w-full text-left px-4 py-3 rounded-2xl bg-peach-soft hover:bg-peach-card flex items-center gap-3">
-                    <span>❓</span> What's New in v3.6
+                    <span>❓</span> What's New in v3.7
                 </button>
             </div>
 
@@ -1076,13 +1130,13 @@
                     </label>
                 </div>
                 <button type="button" onclick="resetToDefaultBackup()" class="w-full mt-2 py-2.5 px-3 rounded-xl bg-white border border-peach-card text-[11px] font-extrabold text-tangerine-600 hover:bg-peach-soft transition">
-                    🔄 Restore All 21 Default Recipes
+                    🔄 Restore All 22 Default Recipes
                 </button>
             </div>
         </div>
 
         <div class="text-center text-[11px] font-extrabold text-ink-400 pb-4">
-            Steil Recipe v3.6 • Pantry & Cloud Ready
+            Steil Recipe v3.7 • Pantry & Cloud Ready
         </div>
     </div>
 </div>
@@ -1092,7 +1146,7 @@
     <div class="bg-white w-full max-w-md max-h-[85vh] overflow-y-auto rounded-[28px] p-6 shadow-2xl space-y-4">
         <div class="flex items-center justify-between sticky top-0 bg-white/95 pb-2 border-b border-peach-soft">
             <div>
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-peach-soft text-tangerine-600 uppercase tracking-wider">v3.6 Release Notes</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-peach-soft text-tangerine-600 uppercase tracking-wider">v3.7 Release Notes</span>
                 <h3 class="font-extrabold text-base text-ink-900 tracking-tight mt-1">Pantry Tracker, Cloud Sync & Kitchen Features</h3>
             </div>
             <button type="button" onclick="document.getElementById('tutorial-modal').classList.add('hidden')" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center">✕</button>
@@ -1100,11 +1154,11 @@
 
         <div class="space-y-2.5 text-xs">
             <div class="p-3.5 rounded-2xl bg-peach-soft space-y-1">
-                <h4 class="font-extrabold text-ink-900">🥫 1. 4-Level Pantry & Must-Buy Groceries (New in v3.6)</h4>
+                <h4 class="font-extrabold text-ink-900">🥫 1. 4-Level Pantry & Must-Buy Groceries (New in v3.7)</h4>
                 <p class="text-ink-600 leading-relaxed">Mark kitchen staples as <strong>Full</strong>, <strong>Half</strong>, <strong>Low</strong>, or <strong>Empty</strong>. Any item marked <strong>Low</strong> or <strong>Empty</strong> automatically appears in your <strong>Must-Buy Groceries</strong> list with one-tap "Bought → Full" and WhatsApp sharing.</p>
             </div>
             <div class="p-3.5 rounded-2xl bg-peach-soft space-y-1">
-                <h4 class="font-extrabold text-ink-900">☁ 2. GitHub Cloud Sync Across Devices (New in v3.6)</h4>
+                <h4 class="font-extrabold text-ink-900">☁ 2. GitHub Cloud Sync Across Devices (New in v3.7)</h4>
                 <p class="text-ink-600 leading-relaxed">Hosting on GitHub Pages alone stores data per browser. Add a GitHub Token (<code class="font-mono">gist</code> scope) in the Menu Drawer to automatically sync recipes, pantry stock, and meal plans across phone, Z Fold, and laptop.</p>
             </div>
             <div class="p-3.5 rounded-2xl bg-peach-soft space-y-1">
@@ -1334,6 +1388,64 @@
     </div>
 </div>
 
+<!-- PHONE CLOCK APP BRIDGE MODAL (iOS SHORTCUTS, CALENDAR ALARM & ANDROID INTENT) -->
+<div id="phone-clock-modal" class="hidden fixed inset-0 z-[65] bg-ink-900/50 backdrop-blur-xs flex items-center justify-center p-4" onclick="if(event.target===this) closePhoneClockModal()">
+    <div class="bg-white w-full max-w-sm rounded-[28px] p-5 shadow-2xl space-y-4">
+        <div class="flex items-start justify-between gap-2">
+            <div>
+                <span id="phone-clock-platform-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-peach-soft text-tangerine-600 uppercase tracking-wider">Phone Clock Bridge</span>
+                <h3 class="font-extrabold text-base text-ink-900 tracking-tight mt-1">Open Native Phone Clock</h3>
+                <p id="phone-clock-summary" class="text-xs font-extrabold text-tangerine-600 mt-0.5">5 min 0 sec • Kitchen Timer</p>
+            </div>
+            <button type="button" onclick="closePhoneClockModal()" class="w-8 h-8 rounded-full bg-peach-soft text-xs font-bold flex items-center justify-center" aria-label="Close phone clock options">✕</button>
+        </div>
+
+        <p id="phone-clock-explainer" class="text-[11px] text-ink-600 leading-relaxed">
+            Apple Safari blocks websites from opening the iOS Clock app directly. Use Apple Shortcuts or a native Lock-Screen Calendar Alarm below:
+        </p>
+
+        <div class="space-y-2.5 text-xs">
+            <!-- iOS / Apple Shortcuts Trigger -->
+            <button type="button" id="btn-trigger-ios-shortcut" onclick="triggerIosShortcutTimer()" class="w-full p-3.5 rounded-2xl bg-tangerine-500 hover:bg-tangerine-600 text-white text-left shadow-orb active:scale-95 transition flex items-center justify-between gap-3">
+                <div>
+                    <span class="font-extrabold block">⚡ Start iOS Clock Timer via Shortcuts</span>
+                    <span class="text-[10px] text-orange-100 block mt-0.5">Runs Shortcut named "Steil Timer" with exact seconds</span>
+                </div>
+                <span class="font-extrabold text-sm">↗</span>
+            </button>
+
+            <!-- Android Clock Intent Trigger -->
+            <button type="button" id="btn-trigger-android-clock" onclick="triggerAndroidClockIntent()" class="w-full p-3.5 rounded-2xl bg-tangerine-500 hover:bg-tangerine-600 text-white text-left shadow-orb active:scale-95 transition flex items-center justify-between gap-3">
+                <div>
+                    <span class="font-extrabold block">⏰ Open Android Clock App</span>
+                    <span class="text-[10px] text-orange-100 block mt-0.5">Sets & starts native Android timer automatically</span>
+                </div>
+                <span class="font-extrabold text-sm">↗</span>
+            </button>
+
+            <!-- Native Lock-Screen Calendar Alarm (.ics) -->
+            <button type="button" onclick="triggerCalendarAlarmFromModal()" class="w-full p-3.5 rounded-2xl bg-peach-soft hover:bg-peach-card border border-peach-card text-ink-900 text-left active:scale-95 transition flex items-center justify-between gap-3">
+                <div>
+                    <span class="font-extrabold block">🔔 Native Lock-Screen Alarm (.ics)</span>
+                    <span class="text-[10px] text-ink-500 block mt-0.5">Works on iPhone, iPad & Apple Watch with zero setup</span>
+                </div>
+                <span class="font-extrabold text-tangerine-600 text-xs">Add</span>
+            </button>
+        </div>
+
+        <!-- Collapsible 1-Time Apple Shortcut Setup Guide -->
+        <details id="ios-shortcut-setup-guide" class="rounded-2xl bg-peach-soft/80 p-3 text-[11px] text-ink-700 space-y-1.5">
+            <summary class="font-extrabold text-ink-900 cursor-pointer">How to set up "Steil Timer" in iOS Shortcuts (15 secs)</summary>
+            <ol class="list-decimal list-inside space-y-1 pt-1.5 text-[10px] leading-relaxed text-ink-600">
+                <li>Open the built-in <strong>Shortcuts</strong> app on your iPhone/iPad and tap <strong>+</strong>.</li>
+                <li>Name the shortcut exactly: <strong class="font-mono text-tangerine-600">Steil Timer</strong></li>
+                <li>Add action: <strong>Start Timer</strong> → tap <em>Duration</em> → choose <strong>Shortcut Input</strong> (set unit to <em>Seconds</em>).</li>
+                <li>Now tapping <strong>Start iOS Clock Timer</strong> above will trigger the real Apple Clock timer!</li>
+            </ol>
+        </details>
+    </div>
+</div>
+
 <!-- TOAST NOTIFICATION -->
 <div id="toast" class="hidden fixed top-20 left-1/2 -translate-x-1/2 z-[70] bg-white/95 backdrop-blur-md text-ink-900 border-2 border-tangerine-400 text-xs font-extrabold px-4 py-2.5 rounded-full shadow-xl max-w-[90vw] text-center">
     Notification
@@ -1344,6 +1456,50 @@
     const DEFAULT_GROQ_API_KEY = "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";
 
     const RESTORED_BACKUP_RECIPES = [
+      {
+        "id": "builtin_creamy_filipino_chicken_sopas",
+        "title": "Creamy Filipino Chicken Sopas",
+        "category": "Main",
+        "difficulty": "Easy",
+        "servings": 2,
+        "prepTime": "25 mins",
+        "isBuiltin": true,
+        "bookmarked": true,
+        "description": "Comforting, creamy Filipino chicken macaroni soup simmered with shredded chicken, sliced hotdogs, diced carrots, shredded cabbage, and evaporated milk.",
+        "ingredients": [
+          { "amount": 250, "unit": "grams", "name": "Elbow Macaroni" },
+          { "amount": 300, "unit": "grams", "name": "Chicken breast or thigh" },
+          { "amount": 1, "unit": "pieces", "name": "Medium carrot, diced" },
+          { "amount": 0.5, "unit": "pieces", "name": "Small cabbage, shredded" },
+          { "amount": 1, "unit": "pieces", "name": "Medium onion, chopped" },
+          { "amount": 3, "unit": "cloves", "name": "Garlic, minced" },
+          { "amount": 2, "unit": "tbsp", "name": "Butter" },
+          { "amount": 1, "unit": "tbsp", "name": "Vegetable oil" },
+          { "amount": 1, "unit": "pieces", "name": "Chicken bouillon cube" },
+          { "amount": 1, "unit": "cup", "name": "Evaporated milk" },
+          { "amount": 4, "unit": "cup", "name": "Water or chicken broth" },
+          { "amount": 0.5, "unit": "cup", "name": "Hotdogs, sliced" },
+          { "amount": null, "unit": "to taste", "name": "Salt" },
+          { "amount": null, "unit": "to taste", "name": "Black pepper" },
+          { "amount": 0.5, "unit": "tsp", "name": "Sugar (optional)" }
+        ],
+        "steps": [
+          "Place 300grams chicken breast or thigh in a pot with 4 cup water or chicken broth and a little salt. Simmer for 20 minutes (15–20 minutes) or until fully cooked. Remove chicken, shred into small pieces, and reserve the broth.",
+          "Sauté aromatics: Heat 2 tbsp butter and 1 tbsp vegetable oil in a large pot. Sauté 3 cloves garlic until fragrant, then add 1 pieces medium onion, chopped and cook until softened (20 minutes).",
+          "Cook the 0.5 cup Hotdogs, sliced and 300grams chicken breast or thigh: Add sliced 0.5 cup Hotdogs, sliced (if using) and cook for 2 minutes. Add shredded chicken and stir well.",
+          "Prepare the soup: Pour in the reserved chicken broth. Add 1 pieces chicken bouillon cube and 1 pieces medium carrot, diced. Simmer for 5 minutes.",
+          "Cook the macaroni: Add 250grams Elbow Macaroni and cook according to package instructions, usually 8 minutes (7–10 minutes). Stir occasionally to prevent sticking.",
+          "Add milk: Lower the heat and pour in 1 cup evaporated milk. Stir gently.",
+          "Add vegetables: Add 0.5 pieces small cabbage, shredded and simmer gently for 3 minutes (2–3 minutes) until slightly tender.",
+          "Season: Add salt and black pepper to taste. Add 0.5 tsp sugar if desired.",
+          "Adjust consistency: Add more hot water or chicken broth if the soup becomes too thick.",
+          "Serve: Serve hot with toasted pandesal or bread."
+        ],
+        "stepTimers": {
+          "0": 1200,
+          "1": 1200
+        }
+      },
       {
         "id": "builtin_patis_fried_chicken",
         "title": "Air Fryer Pinoy Patis Fried Chicken",
@@ -2476,26 +2632,69 @@
       Sunday: { breakfast: null, lunch: null }
     };
     const MEAL_PLAN_KEY = 'steil_meal_plan_v5';
-    const RECIPES_KEY = 'steil_recipes_restored_v131';
-    const PANTRY_KEY = 'steil_pantry_inventory_v1';
+    const RECIPES_KEY = 'steil_recipes_restored_v133';
+    const PANTRY_KEY = 'steil_pantry_inventory_v2';
     const GITHUB_SYNC_KEY = 'steil_github_gist_sync_v1';
 
     const DEFAULT_PANTRY_ITEMS = [
-      { id: 'pantry_rice', name: 'Jasmine Rice', category: 'Pantry & Sauces', status: 'Full' },
-      { id: 'pantry_soysauce', name: 'Soy Sauce', category: 'Pantry & Sauces', status: 'Half' },
-      { id: 'pantry_patis', name: 'Fish Sauce (Patis)', category: 'Pantry & Sauces', status: 'Low' },
-      { id: 'pantry_vinegar', name: 'White / Cane Vinegar', category: 'Pantry & Sauces', status: 'Full' },
-      { id: 'pantry_oil', name: 'Cooking Oil', category: 'Pantry & Sauces', status: 'Half' },
-      { id: 'pantry_garlic', name: 'Fresh Garlic', category: 'Produce & Aromatics', status: 'Low' },
-      { id: 'pantry_onion', name: 'Red & Yellow Onions', category: 'Produce & Aromatics', status: 'Half' },
-      { id: 'pantry_calamansi', name: 'Calamansi / Lemons', category: 'Produce & Aromatics', status: 'Empty' },
-      { id: 'pantry_chicken', name: 'Chicken Thighs / Legs', category: 'Meat & Seafood', status: 'Low' },
-      { id: 'pantry_eggs', name: 'Large Eggs', category: 'Dairy & Baking', status: 'Half' },
-      { id: 'pantry_milk', name: 'Whole Milk', category: 'Dairy & Baking', status: 'Empty' },
-      { id: 'pantry_butter', name: 'Unsalted Butter', category: 'Dairy & Baking', status: 'Full' },
-      { id: 'pantry_flour', name: 'All-Purpose / Type 405 Flour', category: 'Dairy & Baking', status: 'Full' },
-      { id: 'pantry_sugar', name: 'Brown & White Sugar', category: 'Pantry & Sauces', status: 'Half' },
-      { id: 'pantry_mayo', name: 'Mayonnaise', category: 'Pantry & Sauces', status: 'Low' }
+      // Condiments & Liquid Seasonings
+      { id: 'pantry_toyo', name: 'Soy sauce (Toyo)', category: 'Condiments & Liquid Seasonings', status: 'Full' },
+      { id: 'pantry_suka', name: 'Cane or coconut vinegar (Suka)', category: 'Condiments & Liquid Seasonings', status: 'Full' },
+      { id: 'pantry_patis', name: 'Fish sauce (Patis)', category: 'Condiments & Liquid Seasonings', status: 'Half' },
+      { id: 'pantry_oyster', name: 'Oyster sauce', category: 'Condiments & Liquid Seasonings', status: 'Half' },
+      { id: 'pantry_ketchup', name: 'Banana ketchup', category: 'Condiments & Liquid Seasonings', status: 'Half' },
+      { id: 'pantry_liquid_seasoning', name: 'Liquid seasoning (Knorr or Maggi Savor)', category: 'Condiments & Liquid Seasonings', status: 'Low' },
+      { id: 'pantry_worcestershire', name: 'Worcestershire sauce', category: 'Condiments & Liquid Seasonings', status: 'Half' },
+
+      // Aromatics & Fresh Essentials
+      { id: 'pantry_bawang', name: 'Garlic (Bawang)', category: 'Aromatics & Fresh Essentials', status: 'Low' },
+      { id: 'pantry_sibuyas', name: 'Red onions (Sibuyas)', category: 'Aromatics & Fresh Essentials', status: 'Half' },
+      { id: 'pantry_luya', name: 'Ginger (Luya)', category: 'Aromatics & Fresh Essentials', status: 'Half' },
+      { id: 'pantry_calamansi', name: 'Calamansi (or lemon & lime)', category: 'Aromatics & Fresh Essentials', status: 'Empty' },
+      { id: 'pantry_labuyo', name: "Bird's eye chilies (Siling labuyo)", category: 'Aromatics & Fresh Essentials', status: 'Low' },
+      { id: 'pantry_haba', name: 'Long green chilies (Siling haba)', category: 'Aromatics & Fresh Essentials', status: 'Empty' },
+
+      // Dry Goods, Grains & Noodles
+      { id: 'pantry_rice', name: 'Jasmine or Sinandomeng rice', category: 'Dry Goods, Grains & Noodles', status: 'Full' },
+      { id: 'pantry_bihon', name: 'Bihon noodles (thin rice noodles)', category: 'Dry Goods, Grains & Noodles', status: 'Half' },
+      { id: 'pantry_canton', name: 'Canton noodles (wheat-egg noodles)', category: 'Dry Goods, Grains & Noodles', status: 'Half' },
+      { id: 'pantry_sotanghon', name: 'Sotanghon noodles (glass noodles)', category: 'Dry Goods, Grains & Noodles', status: 'Low' },
+      { id: 'pantry_flour', name: 'All-purpose flour', category: 'Dry Goods, Grains & Noodles', status: 'Full' },
+      { id: 'pantry_cornstarch', name: 'Cornstarch', category: 'Dry Goods, Grains & Noodles', status: 'Half' },
+      { id: 'pantry_breadcrumbs', name: 'Breadcrumbs', category: 'Dry Goods, Grains & Noodles', status: 'Half' },
+      { id: 'pantry_brown_sugar', name: 'Brown sugar (Asukal na pula)', category: 'Dry Goods, Grains & Noodles', status: 'Half' },
+      { id: 'pantry_white_sugar', name: 'White sugar', category: 'Dry Goods, Grains & Noodles', status: 'Full' },
+
+      // Canned & Jarred Staples
+      { id: 'pantry_bagoong_alamang', name: 'Fermented shrimp paste (Bagoong alamang)', category: 'Canned & Jarred Staples', status: 'Half' },
+      { id: 'pantry_bagoong_isda', name: 'Fermented fish sauce/paste (Bagoong isda)', category: 'Canned & Jarred Staples', status: 'Half' },
+      { id: 'pantry_gata', name: 'Coconut milk (Gata)', category: 'Canned & Jarred Staples', status: 'Low' },
+      { id: 'pantry_kakang_gata', name: 'Coconut cream (Kakang gata)', category: 'Canned & Jarred Staples', status: 'Empty' },
+      { id: 'pantry_tomato_sauce', name: 'Tomato sauce', category: 'Canned & Jarred Staples', status: 'Half' },
+      { id: 'pantry_tomato_paste', name: 'Tomato paste', category: 'Canned & Jarred Staples', status: 'Half' },
+      { id: 'pantry_sardines', name: 'Canned sardines in tomato sauce', category: 'Canned & Jarred Staples', status: 'Full' },
+      { id: 'pantry_corned_beef', name: 'Canned corned beef', category: 'Canned & Jarred Staples', status: 'Half' },
+      { id: 'pantry_tuna', name: 'Canned tuna', category: 'Canned & Jarred Staples', status: 'Full' },
+      { id: 'pantry_liver_spread', name: 'Liver spread', category: 'Canned & Jarred Staples', status: 'Low' },
+      { id: 'pantry_evap_milk', name: 'Evaporated milk', category: 'Canned & Jarred Staples', status: 'Half' },
+      { id: 'pantry_condensed_milk', name: 'Condensed milk', category: 'Canned & Jarred Staples', status: 'Half' },
+
+      // Spices, Mixes & Bouillon
+      { id: 'pantry_whole_pepper', name: 'Whole black peppercorns', category: 'Spices, Mixes & Bouillon', status: 'Full' },
+      { id: 'pantry_ground_pepper', name: 'Ground black pepper', category: 'Spices, Mixes & Bouillon', status: 'Half' },
+      { id: 'pantry_laurel', name: 'Dried bay leaves (Laurel)', category: 'Spices, Mixes & Bouillon', status: 'Full' },
+      { id: 'pantry_atsuete', name: 'Annatto seeds or powder (Atsuete)', category: 'Spices, Mixes & Bouillon', status: 'Low' },
+      { id: 'pantry_bouillon', name: 'Pork, chicken, and beef bouillon cubes', category: 'Spices, Mixes & Bouillon', status: 'Half' },
+      { id: 'pantry_sinigang_mix', name: 'Tamarind soup base mix (Sinigang sa sampalok)', category: 'Spices, Mixes & Bouillon', status: 'Low' },
+      { id: 'pantry_salt', name: 'Salt', category: 'Spices, Mixes & Bouillon', status: 'Full' },
+
+      // Frozen & Fridge Staples
+      { id: 'pantry_lumpia_wrappers', name: 'Lumpia wrappers', category: 'Frozen & Fridge Staples', status: 'Empty' },
+      { id: 'pantry_tocino', name: 'Tocino', category: 'Frozen & Fridge Staples', status: 'Half' },
+      { id: 'pantry_longganisa', name: 'Longganisa', category: 'Frozen & Fridge Staples', status: 'Low' },
+      { id: 'pantry_beef_tapa', name: 'Beef tapa', category: 'Frozen & Fridge Staples', status: 'Half' },
+      { id: 'pantry_red_hotdogs', name: 'Filipino-style red hotdogs', category: 'Frozen & Fridge Staples', status: 'Low' },
+      { id: 'pantry_eggs', name: 'Eggs', category: 'Frozen & Fridge Staples', status: 'Half' }
     ];
 
     let pantryItems = [];
@@ -2521,6 +2720,13 @@
       } catch (e) {}
       pantryItems = JSON.parse(JSON.stringify(DEFAULT_PANTRY_ITEMS));
       savePantryItems(false);
+    }
+
+    function resetPantryToDefaultList() {
+      pantryItems = JSON.parse(JSON.stringify(DEFAULT_PANTRY_ITEMS));
+      savePantryItems(true);
+      renderPantryView();
+      showToast(`🥫 Loaded all ${pantryItems.length} Filipino pantry staples!`);
     }
 
     function savePantryItems(triggerSync = true) {
@@ -2556,7 +2762,18 @@
 
     function setPantryFilter(filterMode) {
       pantryFilter = filterMode;
-      ['all', 'mustbuy', 'stocked'].forEach(key => {
+      const filterKeys = [
+        'all',
+        'mustbuy',
+        'stocked',
+        'Condiments & Liquid Seasonings',
+        'Aromatics & Fresh Essentials',
+        'Dry Goods, Grains & Noodles',
+        'Canned & Jarred Staples',
+        'Spices, Mixes & Bouillon',
+        'Frozen & Fridge Staples'
+      ];
+      filterKeys.forEach(key => {
         const btn = document.getElementById(`pantry-filter-${key}`);
         if (!btn) return;
         btn.className = key === filterMode
@@ -2591,7 +2808,7 @@
         return;
       }
       const status = statusSel?.value || 'Low';
-      const category = catSel?.value || 'Pantry & Sauces';
+      const category = catSel?.value || 'Condiments & Liquid Seasonings';
 
       const existing = pantryItems.find(x => x.name.toLowerCase() === name.toLowerCase());
       if (existing) {
@@ -2711,6 +2928,7 @@
         }
         if (pantryFilter === 'mustbuy') return item.status === 'Low' || item.status === 'Empty';
         if (pantryFilter === 'stocked') return item.status === 'Full' || item.status === 'Half';
+        if (pantryFilter !== 'all') return item.category === pantryFilter;
         return true;
       });
 
@@ -2729,7 +2947,7 @@
         Empty: 'bg-rose-500 text-white shadow-xs'
       };
 
-      invBox.innerHTML = filtered.map(item => `
+      const renderPantryCard = (item) => `
         <div class="p-3.5 rounded-[22px] bg-white border border-peach-card shadow-card-clean space-y-2.5">
           <div class="flex items-center justify-between gap-2">
             <div class="min-w-0 flex-1">
@@ -2744,7 +2962,42 @@
             `).join('')}
           </div>
         </div>
-      `).join('');
+      `;
+
+      const categoryOrder = [
+        'Condiments & Liquid Seasonings',
+        'Aromatics & Fresh Essentials',
+        'Dry Goods, Grains & Noodles',
+        'Canned & Jarred Staples',
+        'Spices, Mixes & Bouillon',
+        'Frozen & Fridge Staples'
+      ];
+
+      const groups = new Map();
+      categoryOrder.forEach(cat => groups.set(cat, []));
+      filtered.forEach(item => {
+        const cat = item.category || 'Other Staples';
+        if (!groups.has(cat)) groups.set(cat, []);
+        groups.get(cat).push(item);
+      });
+
+      let html = '';
+      groups.forEach((items, cat) => {
+        if (!items || items.length === 0) return;
+        html += `
+          <div class="space-y-2 pt-2">
+            <div class="flex items-center justify-between px-1">
+              <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-tangerine-600">${escapeHtml(cat)}</h3>
+              <span class="text-[10px] font-bold text-ink-400">${items.length}</span>
+            </div>
+            <div class="space-y-2.5">
+              ${items.map(renderPantryCard).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      invBox.innerHTML = html;
     }
 
     function addMissingRecipeIngredientsToMustBuy() {
@@ -2762,7 +3015,7 @@
           pantryItems.unshift({
             id: 'pantry_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
             name: cleanName,
-            category: 'Pantry & Sauces',
+            category: 'Condiments & Liquid Seasonings',
             status: 'Empty',
             updatedAt: Date.now()
           });
@@ -2792,7 +3045,7 @@
               pantryItems.unshift({
                 id: 'pantry_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
                 name: cleanName,
-                category: 'Pantry & Sauces',
+                category: 'Condiments & Liquid Seasonings',
                 status: 'Empty',
                 updatedAt: Date.now()
               });
@@ -2956,7 +3209,7 @@
         // Push merged state back up to GitHub Gist
         const syncPayload = {
           app: 'Steil Recipe',
-          version: 'v3.6',
+          version: 'v3.7',
           updatedAt: new Date().toISOString(),
           recipes,
           pantryItems,
@@ -3198,98 +3451,98 @@
       updatePopupTimerUI();
       updateScreenWakeLock();
     }
+    let pendingPhoneClockTimer = { secs: 300, label: 'Steil Kitchen Timer' };
 
-    function closePopupTimer() {
-      stopTimerAlarm();
-      activePopupTimer = { id: null, remaining: 0, total: 0, running: false, label: '', endTime: null };
-      saveTimersState();
-      document.getElementById('cooking-timer-popup')?.classList.add('hidden');
-      updateScreenWakeLock();
-    }
-
-    function downloadCalendarAlarmFallback(secs, label) {
-      const start = new Date(Date.now() + secs * 1000);
-      const end = new Date(start.getTime() + 60 * 1000);
-      const fmt = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
-      const safeTitle = String(label || 'Steil Kitchen Timer').replace(/[\r\n,;]/g, ' ');
-      const icsContent = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//Steil Recipe//Kitchen Timer//EN',
-        'BEGIN:VEVENT',
-        `UID:steil-timer-${Date.now()}@steilrecipe`,
-        `DTSTAMP:${fmt(new Date())}`,
-        `DTSTART:${fmt(start)}`,
-        `DTEND:${fmt(end)}`,
-        `SUMMARY:⏰ ${safeTitle}`,
-        'BEGIN:VALARM',
-        'TRIGGER:PT0S',
-        'ACTION:DISPLAY',
-        `DESCRIPTION:${safeTitle} is done!`,
-        'END:VALARM',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\r\n');
-      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'steil-kitchen-alarm.ics';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    function detectMobilePlatform() {
+      const ua = navigator.userAgent || '';
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      return { isAndroid, isIOS };
     }
 
     function openBuiltInPhoneTimer(totalSecs, label = 'Steil Kitchen Timer') {
       const secs = Math.max(1, Math.round(Number(totalSecs) || 60));
       const cleanLabel = label || 'Steil Kitchen Timer';
-      const encodedMsg = encodeURIComponent(cleanLabel);
-      const ua = navigator.userAgent || '';
-      const isAndroid = /Android/i.test(ua);
-      const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      pendingPhoneClockTimer = { secs, label: cleanLabel };
 
+      const mins = Math.floor(secs / 60);
+      const remSecs = secs % 60;
+      const durationLabel = mins > 0
+        ? `${mins}m${remSecs > 0 ? ` ${remSecs}s` : ''}`
+        : `${remSecs}s`;
+
+      // Copy duration + label to clipboard as convenience
+      try {
+        const tempInput = document.createElement('input');
+        tempInput.value = `${durationLabel} — ${cleanLabel}`;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      } catch (e) {}
+
+      const { isAndroid, isIOS } = detectMobilePlatform();
+
+      // On Android, launch the native SET_TIMER intent directly
       if (isAndroid) {
-        const androidIntent = `intent:#Intent;action=android.intent.action.SET_TIMER;i.android.intent.extra.alarm.LENGTH=${secs};S.android.intent.extra.alarm.MESSAGE=${encodedMsg};B.android.intent.extra.alarm.SKIP_UI=false;end`;
-        window.location.href = androidIntent;
-        showToast(`Opening Android Clock Timer (${Math.ceil(secs / 60)} min)...`);
-      } else if (isIOS) {
-        const mins = Math.floor(secs / 60);
-        const remSecs = secs % 60;
-        const durationLabel = mins > 0
-          ? `${mins}m${remSecs > 0 ? ` ${remSecs}s` : ''}`
-          : `${remSecs}s`;
-
-        try {
-          const tempInput = document.createElement('input');
-          tempInput.value = `${durationLabel} — ${cleanLabel}`;
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          document.execCommand('copy');
-          document.body.removeChild(tempInput);
-        } catch (e) {}
-
-        showToast(`Opening iOS Clock app (${durationLabel})...`);
-        window.location.href = 'clock-timer://';
-        setTimeout(() => {
-          if (document.visibilityState === 'visible') {
-            window.location.href = 'clock-alarm://';
-          }
-        }, 450);
-      } else {
-        const mins = Math.floor(secs / 60);
-        const remSecs = secs % 60;
-        const formatted = `${mins}m ${remSecs}s (${cleanLabel})`;
-        try {
-          const tempInput = document.createElement('input');
-          tempInput.value = formatted;
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          document.execCommand('copy');
-          document.body.removeChild(tempInput);
-        } catch (e) {}
-        showToast(`Timer details (${formatted}) copied! Open on Android or iPhone to launch the phone Clock.`);
+        triggerAndroidClockIntent();
+        return;
       }
+
+      // On iOS / Desktop, open the Phone Clock Bridge Modal because Apple Safari blocks clock-timer:// URLs
+      const modal = document.getElementById('phone-clock-modal');
+      const badge = document.getElementById('phone-clock-platform-badge');
+      const summary = document.getElementById('phone-clock-summary');
+      const explainer = document.getElementById('phone-clock-explainer');
+      const iosBtn = document.getElementById('btn-trigger-ios-shortcut');
+      const androidBtn = document.getElementById('btn-trigger-android-clock');
+      const guide = document.getElementById('ios-shortcut-setup-guide');
+
+      if (summary) summary.textContent = `${durationLabel} (${secs}s) • ${cleanLabel}`;
+
+      if (isIOS) {
+        if (badge) badge.textContent = 'iPhone / iPad Clock';
+        if (explainer) explainer.textContent = 'Apple Safari blocks direct clock-timer:// links. Tap below to launch your iPhone Clock via Apple Shortcuts or add a native Lock-Screen Alarm:';
+        if (iosBtn) iosBtn.classList.remove('hidden');
+        if (androidBtn) androidBtn.classList.add('hidden');
+        if (guide) guide.open = true;
+      } else {
+        if (badge) badge.textContent = 'Mobile Clock Bridge';
+        if (explainer) explainer.textContent = `Timer (${durationLabel}) copied! Choose your mobile platform below or download a native Lock-Screen Calendar Alarm:`;
+        if (iosBtn) iosBtn.classList.remove('hidden');
+        if (androidBtn) androidBtn.classList.remove('hidden');
+        if (guide) guide.open = false;
+      }
+
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closePhoneClockModal() {
+      document.getElementById('phone-clock-modal')?.classList.add('hidden');
+    }
+
+    function triggerAndroidClockIntent() {
+      const { secs, label } = pendingPhoneClockTimer;
+      const encodedMsg = encodeURIComponent(label || 'Steil Kitchen Timer');
+      const androidIntent = `intent:#Intent;action=android.intent.action.SET_TIMER;i.android.intent.extra.alarm.LENGTH=${secs};S.android.intent.extra.alarm.MESSAGE=${encodedMsg};B.android.intent.extra.alarm.SKIP_UI=false;end`;
+      closePhoneClockModal();
+      window.location.href = androidIntent;
+      showToast(`Opening Android Clock Timer (${Math.ceil(secs / 60)} min)...`);
+    }
+
+    function triggerIosShortcutTimer() {
+      const { secs } = pendingPhoneClockTimer;
+      // Official Apple Shortcuts URL scheme supported in iOS Safari & PWAs
+      const shortcutUrl = `shortcuts://run-shortcut?name=${encodeURIComponent('Steil Timer')}&input=text&text=${encodeURIComponent(String(secs))}`;
+      window.location.href = shortcutUrl;
+      showToast(`Launching Apple Shortcut "Steil Timer" (${secs}s)...`);
+    }
+
+    function triggerCalendarAlarmFromModal() {
+      const { secs, label } = pendingPhoneClockTimer;
+      downloadCalendarAlarmFallback(secs, label);
+      closePhoneClockModal();
+      showToast('🔔 Calendar alarm downloaded — tap Open to add to iOS Calendar!');
     }
 
     function launchNativeTimerFromInput() {
@@ -3381,7 +3634,7 @@
       } else if (cat === 'Quick') {
         return `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`;
       }
-      return `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 11h16v3a6 6 0 01-6 6h-4a6 6 0 01-6-6v-3zm4-4c0-1.5 1-2.5 1-4m4 4c0-1.5 1-2.5 1-4m4 4c0-1.5 1-2.5 1-4"/></svg>`;
+      return `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 11h16v3a6 6 0 01-6 6h-4a6 6 0 01-6-6v-3zm4-4c0-1.5 1-2.5 1-4m4 4c-1.5 1-2.5 1-4m4 4c-1.5 1-2.5 1-4"/></svg>`;
     }
 
     function setHomeCategory(cat) {
@@ -3470,7 +3723,7 @@
     function exportAppData() {
       const backup = {
         app: 'Steil Recipe',
-        version: 'v3.6',
+        version: 'v3.7',
         exportedAt: new Date().toISOString(),
         recipes: recipes,
         mealPlan: mealPlanData,
@@ -5497,7 +5750,7 @@
       row.innerHTML = `
         <input type="number" step="any" min="0" value="${ing.amount ?? ''}" placeholder="Amt" class="edit-ing-amt w-16 px-2 py-1.5 rounded-lg bg-white font-mono font-bold text-center text-ink-900 text-[11px]" />
         <input type="text" value="${escapeHtml(ing.unit || '')}" placeholder="Unit" class="edit-ing-unit w-16 px-2 py-1.5 rounded-lg bg-white font-bold text-ink-900 text-[11px]" />
-        <input type="text" value="${escapeHtml(ing.name || '')}" placeholder="Ingredient name" class="edit-ing-name flex-1 min-w-0 px-2 py-1.5 rounded-lg bg-white font-bold text-ink-900 text-[11px]" />
+        <input type="text" value="${escapeHtml(ing.name || '')}" placeholder="Ingredient name" class="edit-ing-name flex-1 min-w-0 px-2.5 py-1.5 rounded-lg bg-white font-bold text-ink-900 text-[11px]" />
         <button type="button" onclick="this.closest('.edit-ing-row').remove()" class="w-7 h-7 rounded-lg bg-white text-ink-400 hover:text-rose-600 font-bold flex items-center justify-center shrink-0" aria-label="Remove ingredient">✕</button>
       `;
       container.appendChild(row);
